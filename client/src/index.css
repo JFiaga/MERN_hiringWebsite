@@ -4,10 +4,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* 
+html{
+  width: 100vw;
+  background: #fff;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 
-
+} */
 body{
+
   font-family: 'Poppins', sans-serif;
   background: #000;
   color: white;
+  /* max-width: 1000px; */
 }

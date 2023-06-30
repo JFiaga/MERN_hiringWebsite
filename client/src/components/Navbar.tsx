@@ -8,7 +8,7 @@ const Navbar = (props: Props) => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   return (
-    <nav className="">
+    <nav className="bg-primaryDark flex justify-center">
       {/* Mobile Nav */}
       <div className=" bg-white  flex justify-between w-full p-2 py-4 text-black items-center relative sm:hidden">
         <div>
@@ -62,9 +62,9 @@ const Navbar = (props: Props) => {
         </div>
       </div>
 
-      {/* Tablet Navigation */}
+      {/* Tablet And Desktop Navigation */}
 
-      <div className="bg-primaryDark flex justify-between w-full p-4 text-white items-center relative">
+      <div className="bg-primaryDark hidden sm:flex max-w-[1400px] justify-between w-full py-4 text-white items-center relative">
         <div className="flex items-center justify-center">
           <FiMenu className="mr-4" />
           Logo
@@ -78,7 +78,6 @@ const Navbar = (props: Props) => {
           </div>
           <div>
             <a href="#" className="mr-4">
-              {" "}
               Sign In
             </a>
             <a href="#" className="border border-white px-4 py-1 rounded-sm">

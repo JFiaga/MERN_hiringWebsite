@@ -12,6 +12,9 @@ module.exports = {
     colors:{
       primary:'#1dbf73',
       primaryDark:'#1A1B1D'
+    },
+    borderRadius:{
+      sm:'5px'
     }
   }
   },
