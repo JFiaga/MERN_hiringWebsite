@@ -1,5 +1,5 @@
-import React from 'react'
-import { MainHeader } from '../containers'
+
+import { MainHeader, MainPopular, MainPresentation } from '../containers'
 
 type Props = {}
 
@@ -7,6 +7,8 @@ function Main({}: Props) {
   return (
     <>
     <MainHeader/>
+    <MainPopular/>
+    <MainPresentation/>
     </>
   )
 }

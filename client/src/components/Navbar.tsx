@@ -1,14 +1,29 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
+import { mainHeaderImg1, mainHeaderImg2 } from "../assets";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
+interface CurrentUser {
+  id: number;
+  name: string;
+  isDevelopper: boolean;
+}
+
 const Navbar = (props: Props) => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [toggleProfileMenu, setToggleProfileDetail] = useState(false);
+
+  const user1: CurrentUser = {
+    id: 2,
+    name: "John doe",
+    isDevelopper: true,
+  };
 
   return (
-    <nav className="bg-primaryDark flex justify-center">
+    <nav className="bg-primaryDark flex justify-center w-[100vw] ">
       {/* Mobile Nav */}
       <div className=" bg-white  flex justify-between w-full p-2 py-4 text-black items-center relative sm:hidden">
         <div>
@@ -64,26 +79,75 @@ const Navbar = (props: Props) => {
 
       {/* Tablet And Desktop Navigation */}
 
-      <div className="bg-primaryDark hidden sm:flex max-w-[1400px] justify-between w-full py-4 text-white items-center relative">
+      <div className="bg-primaryDark hidden sm:flex max-w-[1400px] px-4 md:px-8 justify-between w-full py-4 text-white items-center relative">
         <div className="flex items-center justify-center">
-          <FiMenu className="mr-4" />
+          <FiMenu className="mr-4 md:hidden" />
           Logo
         </div>
 
-        <div className=" flex space-x-4">
+        <div className=" flex space-x-4 items-center">
           <div className="space-x-4 hidden md:flex">
             <a href="#">Business</a>
             <a href="#">Explore</a>
             <a href="#">Become a seller</a>
           </div>
-          <div>
-            <a href="#" className="mr-4">
-              Sign In
-            </a>
-            <a href="#" className="border border-white px-4 py-1 rounded-sm">
-              <button>Join</button>
-            </a>
-          </div>
+          {!user1 && (
+            <div>
+              <a href="#" className="mr-4">
+                Sign In
+              </a>
+              <a href="#" className="border border-white px-4 py-1 rounded-sm">
+                <button>Join</button>
+              </a>
+            </div>
+          )}
+          {user1 && (
+            <div
+              onClick={() =>
+                setToggleProfileDetail(
+                  (toggleProfileMenu) => !toggleProfileMenu
+                )
+              }
+              className="h-[50px] w-[50px] bg-white rounded-full relative  cursor-pointer"
+            >
+              <div className=" h-[50px] w-[50px] overflow-hidden  rounded-full">
+                <img
+                  src={mainHeaderImg2}
+                  className="object-cover h-full w-full"
+                  alt=""
+                />
+              </div>
+
+
+
+              {toggleProfileMenu &&
+                <div className="absolute top-[100%] bg-red h-50 w-50  bg-white text-black/80 rounded-lg font-medium w-[200px] text-center py-2 -right-[100%]">
+                  <ul className="flex flex-col">
+                    {user1.isDevelopper && (
+                      <>
+                        <Link to="/myGigs" className="text-2xl">
+                          gigs
+                        </Link>
+                        <Link to="/addNewGigs" className="text-2xl">
+                          New Gigs
+                        </Link>
+                      </>
+                    )}
+                    <Link to="/orders" className="text-2xl">
+                      Orders
+                    </Link>
+                    <Link to="/messages" className="text-2xl">
+                      Messages
+                    </Link>
+                    <Link to="/" className="text-2xl">
+                      Logout
+                    </Link>
+                  </ul>
+                </div>
+             
+            }
+            </div>
+          )}
         </div>
       </div>
     </nav>
