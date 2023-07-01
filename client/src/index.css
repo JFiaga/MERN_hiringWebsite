@@ -4,6 +4,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 /* 
 html{
   width: 100vw;
@@ -13,10 +14,22 @@ html{
  align-items: center;
 
 } */
-body{
+body {
 
   font-family: 'Poppins', sans-serif;
   background: #fffbfb;
   color: white;
   /* max-width: 1000px; */
+}
+
+.carousel .carousel-prev, .carousel .carousel-next {
+  height: 50px;
+  width: 50px;
+  background: #1dbf73;
+  border-radius: 999px;
+  padding: 0 5px;
+  position: absolute;
+  top: 50%;
+  z-index: 1000;
+  transform: translate(-30%,-50%);
 }
