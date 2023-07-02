@@ -3,7 +3,6 @@ import { Saxo, laravel } from "../../assets/index";
 import { CardPopular } from "../../components";
 import Slider from "infinite-react-carousel";
 
-
 // type Props = {};
 
 const MainPopular = () => {
@@ -42,33 +41,27 @@ const MainPopular = () => {
 
   return (
     <section className=" flex  w-[100vw]  md:px-8 px-4 pt-16 pb-10 text-white justify-center ">
-      
       <div className="max-w-[1400px] w-full flex flex-col items-center">
+      <h2 className="font-semibold text-xl md:text-3xl mb-10 w-[90%]  max-w-[900px] text-center self-center">
+      Popular Services
+        </h2>
 
-        
-      <h3 className="text-black text-2xl font-semibold mb-12 text-center">
-        Popular services
-      </h3>
-
-          
-      <Slider
-      
-      slidesToShow={5} arrowScroll={5} className={`carousel relative w-full max-w-[1400px]`}>
-        
-        {cardDesc.map((card, index) => (
-       
+        <Slider
+          slidesToShow={5}
+          arrowScroll={5}
+          className={`carousel relative w-full max-w-[1400px]`}
+        >
+          {cardDesc.map((card, index) => (
             <CardPopular
-            key={index}
+              key={index}
               title={card.title}
               desc={card.desc}
               link={"/gigs?category=backend"}
               img={card.img}
             />
-          
-        ))}
-      </Slider>
+          ))}
+        </Slider>
       </div>
-
     </section>
   );
 };
