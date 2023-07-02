@@ -49,7 +49,7 @@ const MainPopular = () => {
         <Slider
           slidesToShow={5}
           arrowScroll={5}
-          className={`carousel relative w-full max-w-[1400px]`}
+          className={`carousel relative w-full max-w-[1400px] `}
         >
           {cardDesc.map((card, index) => (
             <CardPopular
