@@ -84,7 +84,7 @@ const MainHeader = (props: Props) => {
       </div>
       </div>
 
-      <div className="hidden md:block  h-[500px] w-1/2 max-h-[500px] max-w-[50%] overflow-hidden">
+      <div className="hidden md:block  h-full w-1/2 max-h-[500px] max-w-[50%] overflow-hidden">
         <img
           src={imgCaroussel[index].imgSrc}
           alt=""

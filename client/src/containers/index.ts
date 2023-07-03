@@ -7,5 +7,8 @@ export {default as MainPresentation} from './Main/MainPresentation'
 export {default as GigsHeader} from './Gigs/GigsHeader'
 export {default as GigsMain} from './Gigs/GigsMain'
 
+export {default as ProfileHeader} from './Profile/ProfileHeader'
+export {default as ProfileMain} from './Profile/ProfileMain'
+
 
 

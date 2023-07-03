@@ -33,9 +33,9 @@ const Navbar = (props: Props) => {
           />
         </div>
 
-        <div>
+        <Link to='/'>
           <span className="cursor-pointer">logo</span>
-        </div>
+        </Link>
 
         <span className="cursor-pointer">Join</span>
 
@@ -82,8 +82,11 @@ const Navbar = (props: Props) => {
       <div className="bg-primaryDark hidden sm:flex max-w-[1400px] px-4 md:px-8 justify-between w-full py-4 text-white items-center relative">
         <div className="flex items-center justify-center">
           <FiMenu className="mr-4 md:hidden" />
-          Logo
+          <Link to='/'>
+          <span className="cursor-pointer">logo</span>
+        </Link>
         </div>
+     
 
         <div className=" flex space-x-4 items-center">
           <div className="space-x-4 hidden md:flex">

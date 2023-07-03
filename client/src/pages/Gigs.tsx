@@ -6,7 +6,7 @@ type Props = {}
 
 const Gigs = (props: Props) => {
   return (
-    <div className='text-black'>
+    <div className='text-white bg-black w-[100vw]'>
           <GigsHeader/>
           <GigsMain/>
     </div>

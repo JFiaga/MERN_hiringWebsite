@@ -1,6 +1,6 @@
 import { Navbar } from "./components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Main, Gigs } from "./pages";
+import { Main, Gigs, Profile } from "./pages";
 
 function App() {
   return (
@@ -10,9 +10,9 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/" element={<Main />} />
         <Route path="/gigs/category=backend" element={<Gigs />} />
+        <Route path="gigs/category=backend/profileId=123123123" element={<Profile />} />
       </Routes>
-      <Routes>
-      </Routes>
+    
     </BrowserRouter>
   );
 }
