@@ -17,7 +17,7 @@ const Testimony = ({img,
     linkedinLink,
     message}: Props) => {
   return (
-    <div className="flex flex-col bg-black rounded-md cursor-pointer w-[500px] relative overflow-hidden ">
+    <div className="flex flex-col bg-black rounded-md cursor-pointer w-[90%] max-w-[500px]  relative overflow-hidden ">
            <div className="px-4 py-12 rounded-t-lg sm:px-8 md:px-12 ">
              <p className="relative px-6 py-1 text-lg italic text-center dark:text-gray-100">
                <svg

@@ -16,4 +16,7 @@ export {default as mainPresentaion} from './mainPresentaion.jpg'
 export {default as uiImg} from './ui.png'
 
 
+export {default as laravelLogo} from './laravelLogo.png'
+
+
 

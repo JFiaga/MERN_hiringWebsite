@@ -60,7 +60,7 @@ const MainTestimony = (props: Props) => {
         </h2>
 
         <Slider
-          slidesToShow={2}
+          slidesToShow={1}
           arrowScroll={5}
           className={`carousel relative w-full max-w-[1400px]`}
         >

@@ -1,10 +1,15 @@
 import React from 'react'
+import { GigsHeader,GigsMain } from '../containers'
+
 
 type Props = {}
 
 const Gigs = (props: Props) => {
   return (
-    <div>Gigs</div>
+    <div className='text-black'>
+          <GigsHeader/>
+          <GigsMain/>
+    </div>
   )
 }
 
