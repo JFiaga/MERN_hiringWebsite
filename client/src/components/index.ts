@@ -4,5 +4,7 @@ export { default as GigsCard} from './GigsCard'
 export {default as Category} from './Category'
 export {default as Certified} from './Certified'
 export {default as Testimony} from './Testimony'
-export {default as LastExperiencesCard} from './LastExperincesCard'
+export {default as LastExperiencesCard} from './LastExperiencesCard'
+export {default as MessageCard} from './MessageCard'
+
 export {default as Footer } from'./Footer'

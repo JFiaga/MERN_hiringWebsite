@@ -10,5 +10,8 @@ export {default as GigsMain} from './Gigs/GigsMain'
 export {default as ProfileHeader} from './Profile/ProfileHeader'
 export {default as ProfileMain} from './Profile/ProfileMain'
 
+export {default as MessageBoard} from './Messages/MessageBoard'
+export {default as MessagesAside} from './Messages/MessagesAside'
+
 
 

@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
+import { MessageBoard, MessagesAside } from "../containers";
 
-type Props = {}
+type Props = {};
 
 const Messages = (props: Props) => {
   return (
-    <div>Messages</div>
-  )
-}
+    <section className=" flex  w-[100vw]  md:px-8 px-4 pt-16 pb-10  justify-center text-black  min-h-[100vw] ">
+      <div className="max-w-[1400px] h-[100vw] w-full flex  items-start p-4 justify-between">
+        <MessagesAside/>
+        <MessageBoard/>
+      </div>
 
-export default Messages
+    </section>
+  );
+};
+
+export default Messages;
