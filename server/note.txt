@@ -1,0 +1,3 @@
+// "start": "ts-node-dev server.ts",
+// "dev": "nodemon --exec node --loader ts-node/esm server.ts",
+// "init": "nodemon --exec ts-node-esm server.ts"

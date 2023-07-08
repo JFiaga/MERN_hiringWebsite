@@ -1,0 +1,32 @@
+// {
+//   "compilerOptions": {
+//     "esModuleInterop": true,
+//     "moduleResolution": "Node",
+//     "module": "ESNext",
+//     "target": "ESNext"
+//   }
+// }
+
+{
+    "extends": "ts-node/node16/tsconfig.json",
+    "ts-node": {
+      "transpileOnly": true,
+      "files": true,
+      // Tell ts-node CLI to install the --loader automatically, explained below
+      "esm": true,
+      "compilerOptions": {
+        "module": "ESNext"
+      }
+    },
+    "compilerOptions": {
+        "noEmit": true,
+      "module": "ESNext",
+      "allowImportingTsExtensions": true,
+      "moduleResolution": "Node",
+      "lib": [
+        "DOM",
+        "ES2022"
+      ],
+      "target": "ES2022"
+    }
+  }

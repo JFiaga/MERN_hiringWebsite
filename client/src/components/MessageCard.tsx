@@ -11,8 +11,8 @@ const MessageCard = (props: Props) => {
   return (
     <div
       onClick={() => setmessageUnread((val) => false)}
-      className={` cursor-pointer hover:bg-primary/30 flex space-x-2 w-full  justify-between   px-2 my-4 border border-gray-500/10 py-4 rounded shadow-lg ${
-        messageUnread ? "" : "bg-primary"
+      className={` cursor-pointer flex space-x-2 w-full  justify-between   px-2 my-4 border border-gray-500/10 py-4 rounded shadow-lg ${
+        messageUnread ? "" : "bg-primary text-white hover:bg-primary"
       }`}
     >
       <div className="h-[60px] w-[60px] rounded-full overflow-hidden border-primary border">
