@@ -1,14 +1,16 @@
 import jwt  from 'jsonwebtoken';
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
+import { BaseError } from '../utils/error.ts';
 
-export const verifyToken = (req:Request, res:Response) => {
+export const verifyToken = (req:any, res:any, next:NextFunction) => {
     const token =  req.cookies.accessToken
-    if(!token) return res.status(401).send("You are not authenticated")
+    if(!token) return next(new BaseError('You are not authenticated', 401, true))
 
     jwt.verify(token, "process.env.JWT_SECRET", async (err:any, payload:any) => {
-        if(err) return res.status(403).send("Token is not valid")
-        req.body.userId = payload.id;
-        req.body.isEmployee = payload.isEmployee
+        if(err) return next(new BaseError ("Token is not valid", 403, true))
+        req.userId = payload.id;
+        req.isEmployee = payload.isEmployee
+        next()
     })
 }
 

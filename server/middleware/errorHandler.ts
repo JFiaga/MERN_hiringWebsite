@@ -1,5 +1,5 @@
 import { ErrorRequestHandler, Request, Response, NextFunction } from "express";
-import { BaseError, ValidationError } from "../utils/error";
+import { BaseError, ValidationError } from "../utils/error.ts";
 
 const errorHandler = (
   err: ErrorRequestHandler,
@@ -29,4 +29,4 @@ const errorHandler = (
   }
 };
 
-export {errorHandler}
+export { errorHandler };
