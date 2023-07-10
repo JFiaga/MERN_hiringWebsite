@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { Errback, ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import dotenv from 'dotenv'
 import helmet from "helmet";
 import mongoose from "mongoose";
@@ -8,6 +8,8 @@ import messageRoute from "./routes/message.route.ts";
 import userAuth from "./routes/auth.route.ts";
 import cookieParser from "cookie-parser";
 
+
+dotenv.config()
 const app = express();
 app.use(express.json());
 app.use(cookieParser())
@@ -33,7 +35,19 @@ app.use("/api/auth", userAuth);
 app.use("/api/profile", profileRoute);
 app.use("/api/message", messageRoute);
 
-app.listen(3001, () => {
+
+app.use((err: any,req:Request,res:Response,next:NextFunction) => {
+
+  const errorStatus = err.status || 500
+  const errorMessage  = err.message  || 'something went wrong'
+
+  return res.status(errorStatus).send(errorMessage)
+
+})
+
+
+app.listen(8800, () => {
   connect();
-  console.log("Listen at port 3000");
+  console.log("Listen at port 8800");
+    
 });

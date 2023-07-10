@@ -2,10 +2,15 @@ import { Schema, model } from "mongoose";
 import { IUser } from "../interfaces/user.interface";
 
 const userSchema = new Schema<IUser>(
+
   {
-    _id: {
-      type:Schema.Types.ObjectId
-    },
+    // _doc:{
+     
+    // },
+    // id: {
+    //   type:Schema.Types.ObjectId
+
+    // },
     username: {
       type: String,
       required: true,
@@ -18,7 +23,7 @@ const userSchema = new Schema<IUser>(
     },
     password: {
       type: String,
-      required: true,
+      required: true, 
     },
     // img: {
     //   type: String,
