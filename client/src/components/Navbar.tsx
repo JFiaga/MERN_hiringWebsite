@@ -1,25 +1,35 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
-import { mainHeaderImg1, mainHeaderImg2 } from "../assets";
-import { Link } from "react-router-dom";
+import { NoAvatar } from "../assets";
+import { Link, useNavigate } from "react-router-dom";
+import { newRequest } from "../utils/newRequest";
+import { AxiosError } from "axios";
 
-type Props = {};
-
-interface CurrentUser {
+interface ICurrentUser {
   id: number;
   name: string;
   isDevelopper: boolean;
 }
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleProfileMenu, setToggleProfileDetail] = useState(false);
 
-  const user1: CurrentUser = {
-    id: 2,
-    name: "John doe",
-    isDevelopper: true,
+  const navigate = useNavigate()
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
+
+  const handleLogout = async () => {
+    try {
+      await newRequest.post("auth/logout");
+      localStorage.removeItem("currentUser");
+      window.location.reload()
+      
+    } catch (error: any) {
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data);
+      }
+    }
   };
 
   return (
@@ -33,7 +43,7 @@ const Navbar = (props: Props) => {
           />
         </div>
 
-        <Link to='/'>
+        <Link to="/">
           <span className="cursor-pointer">logo</span>
         </Link>
 
@@ -82,11 +92,10 @@ const Navbar = (props: Props) => {
       <div className="bg-primaryDark hidden sm:flex max-w-[1400px] px-4 md:px-8 justify-between w-full py-4 text-white items-center relative">
         <div className="flex items-center justify-center">
           <FiMenu className="mr-4 md:hidden" />
-          <Link to='/'>
-          <span className="cursor-pointer">logo</span>
-        </Link>
+          <Link to="/">
+            <span className="cursor-pointer">logo</span>
+          </Link>
         </div>
-     
 
         <div className=" flex space-x-4 items-center">
           <div className="space-x-4 hidden md:flex">
@@ -94,17 +103,19 @@ const Navbar = (props: Props) => {
             <a href="#">Explore</a>
             <a href="#">Become a seller</a>
           </div>
-          {!user1 && (
+          {!currentUser && (
             <div>
-              <a href="#" className="mr-4">
+              <Link to='/login'  className="mr-4">
                 Sign In
-              </a>
+              </Link>
               <a href="#" className="border border-white px-4 py-1 rounded-sm">
                 <button>Join</button>
               </a>
             </div>
           )}
-          {user1 && (
+
+          {/* IMAGE PROFILE */}
+          {currentUser && (
             <div
               onClick={() =>
                 setToggleProfileDetail(
@@ -115,18 +126,17 @@ const Navbar = (props: Props) => {
             >
               <div className=" h-[50px] w-[50px] overflow-hidden  rounded-full">
                 <img
-                  src={mainHeaderImg2}
+                  src={currentUser.img || NoAvatar}
                   className="object-cover h-full w-full"
                   alt=""
                 />
               </div>
+              {currentUser.username}
 
-
-
-              {toggleProfileMenu &&
+              {toggleProfileMenu && (
                 <div className="absolute top-[100%] bg-red h-50 w-50  bg-white text-black/80 rounded-lg font-medium w-[200px] text-center py-2 -right-[100%]">
                   <ul className="flex flex-col">
-                    {user1.isDevelopper && (
+                    {currentUser.isEmployee && (
                       <>
                         <Link to="/myGigs" className="text-2xl">
                           gigs
@@ -142,13 +152,14 @@ const Navbar = (props: Props) => {
                     <Link to="/messages" className="text-2xl">
                       Messages
                     </Link>
-                    <Link to="/" className="text-2xl">
+                    <Link 
+                    onClick={handleLogout}
+                    to="/" className="text-2xl">
                       Logout
                     </Link>
                   </ul>
                 </div>
-             
-            }
+              )}
             </div>
           )}
         </div>

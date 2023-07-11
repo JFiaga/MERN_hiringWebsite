@@ -43,8 +43,9 @@ app.use("/api/message", messageRoute);
 
 app.use(errorHandler)
 
-app.listen(8801, () => {
+app.listen(8800, () => {
   connect();
-  console.log("Listen at port 8801");
+  console.log("Listen at port 8800");
     
 });
+ 

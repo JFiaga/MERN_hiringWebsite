@@ -1,7 +1,7 @@
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { newRequest } from "../utils/newRequest";
+import { Link, useNavigate } from "react-router-dom";
+import {newRequest}  from "../utils/newRequest";
 
 type Props = {};
 
@@ -10,27 +10,29 @@ const Login = (props: Props) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<any>(null);
 
+  const navigate = useNavigate();
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     try {
       const res = await newRequest.post(
         "auth/login",
-        {
-          username,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
+        { username, password },
+     
       );
-
-    } catch (error:any) {
-      setError(error);
-      console.log(error.response.data);
-
-      //type that
+      localStorage.setItem("currentUser", JSON.stringify(res.data));
+      navigate("/");
+    } catch (err: any) {
+      if (error instanceof AxiosError) {
+        setError(err);
+        console.log(error.response?.data);
+      } else {
+        setError(err);
+        console.log(err);
+      }
     }
+
     console.log("submitted");
   }
   return (
