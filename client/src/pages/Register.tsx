@@ -1,12 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
+import { FiCheck } from "react-icons/fi";
+import upload from "../utils/upload";
+import { newRequest } from "../utils/newRequest";
 
 type Props = {};
 
 const Register = (props: Props) => {
+  const [fileUpload, setFileUpload] = useState<string | any>();
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    img: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserData((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+  const handleUploadFile = async (
+    event: React.ChangeEvent<HTMLInputElement> & {
+      target: HTMLInputElement & { files: Array<string> };
+    }
+  ) => {
+    setFileUpload(event.target?.files[0]);
+    console.log(fileUpload);
+    console.log("hered");
+  };
+
+  // const handleUplofadFile = (
+  //   event: React.ChangeEvent<HTMLInputElement> & {
+  //     target: HTMLInputElement & { files: Array<object> };
+  //   }
+  // ) => {
+  //   setFileUpload(event.target?.files[0]);
+  //   console.log(fileUpload);
+  //   console.log("hered");
+  // };
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const imgUrl = await upload(fileUpload);
+    try {
+      await newRequest.post("auth/register", {
+        ...userData,
+        img: imgUrl,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(fileUpload)
   return (
     <section className="text-black mt-10 w-[100vw] flex justify-center py-10 px-8">
       <div className="w-full max-w-[1400px] flex flex-col items-center  space-y-5">
         <form
+          onSubmit={handleSubmit}
           action=""
           className="w-full overflow-hidden h-auto flex flex-col items-center space-y-2 md:space-y-4"
         >
@@ -16,9 +65,11 @@ const Register = (props: Props) => {
               Nom
             </label>
             <input
-              className="outline-none px-4  py-2 rounded-sm focus-within:border-primary border border-transparent transition-all duration-300 shadow-md"
+              className="outline-none px-4 py-2 rounded-sm focus-within:border-primary border border-transparent transition-all duration-300 shadow-md"
               type="text"
               id="username"
+              name="username"
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col items-start max-w-[430px] justify-start  ">
@@ -41,6 +92,8 @@ const Register = (props: Props) => {
               className="outline-none px-4  py-2 rounded-sm focus-within:border-primary border border-transparent transition-all duration-300 shadow-md"
               type="text"
               id="email"
+              name="email"
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col items-start max-w-[430px] justify-start  ">
@@ -48,6 +101,7 @@ const Register = (props: Props) => {
               Mot de passe
             </label>
             <input
+              name="password"
               className="outline-none px-4  py-2 rounded-sm focus-within:border-primary border border-transparent transition-all duration-300 shadow-md"
               type="text"
               id="password"
@@ -61,19 +115,32 @@ const Register = (props: Props) => {
               className="outline-none px-4  py-2 rounded-sm focus-within:border-primary border border-transparent transition-all duration-300 shadow-md"
               type="text"
               id="checkPassword"
+              onChange={handleChange}
             />
           </div>
 
-          <div className="flex flex-col items-start max-w-[430px] justify-start  break-words overflow-hidden  ">
-            <label className="font-medium" htmlFor="profilePic">
-              Selectionner une photo de profil
+          <div className="flex flex-col items-start max-w-[430px] w-full justify-start cursor-pointer text-primary  break-words overflow-hidden  outline-none   py-2 rounded-sm bg-white  transition-all duration-300 shadow-md ">
+            <label
+              className="font-medium cursor-pointer w-[100%] text-center "
+              htmlFor="profilePic"
+            >
+              {fileUpload ? (
+                <div className=" flex space-x-2 ">
+                  <span className="text-center px-2">Fichier importe </span>
+                  <FiCheck className="bg-primary text-white font-bold rounded-full w-[30px] h-[30px] " />
+                </div>
+              ) : (
+                <span>Selectionner une photo de profil</span>
+              )}
+
             </label>
-            <input
-              className="outline-none px-4  py-2 rounded-sm   transition-all duration-300 shadow-md "
+            <input id="profilePic" type="file" className="" onChange={(e:any) => setFileUpload(e.target.files[0])} />
+            {/* <input
+              onChange={handleUploadFile}
+              className="outline-none px-4  py-2 rounded-sm hidden  transition-all duration-300 shadow-md "
               type="file"
               id="profilePic"
-              max={5}
-            />
+            /> */}
           </div>
 
           <div className="flex flex-col items-start max-w-[430px] justify-start  ">
