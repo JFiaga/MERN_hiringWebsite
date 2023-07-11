@@ -17,7 +17,7 @@ const Login = (props: Props) => {
 
     try {
       const res = await newRequest.post(
-        "auth/login",
+        "/auth/login",
         { username, password },
      
       );

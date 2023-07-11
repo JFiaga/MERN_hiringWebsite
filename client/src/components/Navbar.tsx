@@ -2,20 +2,20 @@
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { NoAvatar } from "../assets";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { newRequest } from "../utils/newRequest";
 import { AxiosError } from "axios";
 
-interface ICurrentUser {
-  id: number;
-  name: string;
-  isDevelopper: boolean;
-}
+// interface ICurrentUser {
+//   id: number;
+//   name: string;
+//   isDevelopper: boolean;
+// }
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleProfileMenu, setToggleProfileDetail] = useState(false);
 
-  const navigate = useNavigate()
+  
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
 
@@ -114,6 +114,7 @@ const Navbar = () => {
             </div>
           )}
 
+
           {/* IMAGE PROFILE */}
           {currentUser && (
             <div
@@ -126,7 +127,7 @@ const Navbar = () => {
             >
               <div className=" h-[50px] w-[50px] overflow-hidden  rounded-full">
                 <img
-                  src={currentUser.img || NoAvatar}
+                  src={currentUser.img || NoAvatar }
                   className="object-cover h-full w-full"
                   alt=""
                 />
