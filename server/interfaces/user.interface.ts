@@ -3,12 +3,14 @@ import { Document, ObjectId } from "mongoose";
 export interface IUser extends Document {
   _doc:any,
     _id:ObjectId;
-    username: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
     img: string;
     desc: string;
-    country: string;
+    city: string;
+    specialisation:string,
     phone: number;
     isEmployee: boolean;
   }

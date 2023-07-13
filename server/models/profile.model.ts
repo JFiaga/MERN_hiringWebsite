@@ -4,58 +4,60 @@ import { IProfile } from "../interfaces/profile.interfaces";
 const ProfileSchema = new Schema<IProfile>({
   userId: {
     type: String,
-    required: true,
+    // required: true,
     // unique:true
   },
   isCertified: {
     type: Boolean,
-    required: true,
+    // required: true,
   },
   resume: {
     type: String,
-    required: true,
+    // required: true,
   },
   category: {
     type: String,
-    required: true,
+    // required: true,
   },
   networkLink: {
     type: [],
-    required: false,
+    // required: false,
   },
   // rate: number,
   about: {
     type: String,
-    required: true,
+    // required: true,
   },
   experiences: {
-    required: true,
+    // required: true,
   },
   hardSkills: {
-    // type: [],
-    required: true,
+    type: [],
+    // required: true,
   },
   softSkills: {
-    // type: [],
-    required: true,
+    type: [],
+    // required: true,
   },
   languages: {
     // type: [],
-    required: true,
+    // required: true,
   },
   education: {
     // type: [],
-    required: true,
+    // required: true,
   },
   certification: {
     // type: [],
-    required: true,
+    // required: true,
   },
 },
 {
   timestamps: true,
 }
 );
+
+
 
 
 

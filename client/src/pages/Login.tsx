@@ -6,7 +6,7 @@ import {newRequest}  from "../utils/newRequest";
 type Props = {};
 
 const Login = (props: Props) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<any>(null);
 
@@ -18,7 +18,7 @@ const Login = (props: Props) => {
     try {
       const res = await newRequest.post(
         "/auth/login",
-        { username, password },
+        { email, password },
      
       );
       localStorage.setItem("currentUser", JSON.stringify(res.data));
@@ -50,7 +50,7 @@ const Login = (props: Props) => {
               Email
             </label>
             <input
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               type="text"
               className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-primary/70 focus:ring-primary/70 focus:outline-none focus:ring focus:ring-opacity-40"
             />

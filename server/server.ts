@@ -38,6 +38,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/api/user", userRoute);
 app.use("/api/auth", userAuth);
 app.use("/api/profile", profileRoute);
+
 app.use("/api/message", messageRoute);
 
 
@@ -45,7 +46,7 @@ app.use(errorHandler)
 
 app.listen(8800, () => {
   connect();
-  console.log("Listen at port 8800");
+  console.log("Listen at port 8800"); 
     
 });
  
