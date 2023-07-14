@@ -15,3 +15,17 @@ export const deleteUser = async (
   await User.findByIdAndDelete(req.params.id);
   res.status(200).send("deleted");
 };
+
+
+export const getUserDataForProfile = async (req:Request, res:Response, next:NextFunction) => {
+  try {
+        const user = await User.findById(req.params.id)
+        if (!user) res.status(404).send('no user found')
+
+        else{
+          res.status(200).send(user)
+        }
+  } catch (error) {
+    next (error)
+  }
+}

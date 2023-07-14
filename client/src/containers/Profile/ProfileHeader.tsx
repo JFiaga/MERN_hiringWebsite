@@ -1,57 +1,72 @@
 import React from "react";
-import { Certified } from "../../components";
+// import { Certified } from "../../components";
 import { FiDownload, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
-import { BiLogoTelegram } from "react-icons/bi";
-import { mainHeaderImg2 } from "../../assets";
-import { Link } from "react-router-dom";
+import { BiCurrentLocation, BiLogoTelegram } from "react-icons/bi";
+import { NoAvatar } from "../../assets";
+import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { newRequest } from "../../utils/newRequest";
 
-type Props = {};
+const ProfileHeader = () => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
 
-const ProfileHeader = (props: Props) => {
-  return (
+  const { id } = useParams();
+  const { isLoading, data } = useQuery({
+    queryKey: ["profile"],
+    queryFn: () =>
+      newRequest.get(`/profile/${id}`).then((res) => {
+        const data = res.data;
+        console.log(data);
+        return data;
+      }),
+  });
+
+  return isLoading ? (
+    <>
+      <span>Chargement en cours</span>
+    </>
+  ) : (
     <section className="text-black mt-10 w-[100vw] flex justify-center py-10 px-8">
       <div className="w-full max-w-[1400px] flex flex-col items-center space-y-5">
         <div className="h-[150px] w-[150px] rounded-full overflow-hidden border border-primary">
           <img
-            src={mainHeaderImg2}
+            src={data.img || NoAvatar}
             alt=""
             className="object-cover h-full w-full"
           />
         </div>
 
-        <div className="flex  text-white font-semibold justify-center  space-x-2 w-full">
-          <button className=" px-4 py-2 rounded-sm font-semibold cursor-pointer transition-all duration-500 hover:bg-transparent border  border-primary text-primary flex items-center justify-center space-x-2 hover:bg-primary hover:text-white">
-            <span>Download my resume</span>
-            <FiDownload className="text-xl  animate-pulse" />
-          </button>
-            
-          <Link
+        {!currentUser && (
+          <div className="flex  text-white font-semibold justify-center  space-x-2 w-full">
+            <button className=" px-4 py-2 rounded-sm font-semibold cursor-pointer transition-all duration-500 hover:bg-transparent border  border-primary text-primary flex items-center justify-center space-x-2 hover:bg-primary hover:text-white">
+              <span>Download my resume</span>
+              <FiDownload className="text-xl  animate-pulse" />
+            </button>
+
+            <Link
               to="/message"
               className="w-full flex items-center justify-center space-x-1 text-white font-bold bg-primary text-center capitalize rounded-md py-3 px-2 transition-all duration-500 border border-transparent hover:border-primary hover:bg-transparent hover:text-primary max-w-[300px]"
             >
               {" "}
-            
-             <span>
-             Send Me A Message
-             </span>
-             <BiLogoTelegram className="text-xl animate-bounce"/>
-            
+              <span>Send Me A Message</span>
+              <BiLogoTelegram className="text-xl animate-bounce" />
             </Link>
-
-        </div>
+          </div>
+        )}
 
         <div className="flex space-x-2 justify-center  items-center">
-          <h3 className="font-medium text-xl md:text-2xl">Jayden Fiaga</h3>
+          <h3 className="font-medium text-xl md:text-2xl">
+            {data.lastName} {data.firstName}{" "}
+          </h3>
           <span className="font-bold text-xl">-</span>
           <h3 className="font-bold text-xl md:text-2xl text-primary">
-            Backend Developper
+            {data.specialisation}
           </h3>
         </div>
-
-      
-
-          
-     
+        <div className=" flex font-medium">
+          <BiCurrentLocation className="text-4xl rounded-full text-white  bg-primary " />
+          <span>{data.city}</span>
+        </div>
 
         <div className=" flex space-x-4">
           <a

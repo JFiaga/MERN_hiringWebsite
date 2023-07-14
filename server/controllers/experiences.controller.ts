@@ -65,7 +65,6 @@ export const getExperiences = async (
       return res.status(200).send("This user has no experiences found");
     } else {
       res.status(200).send(experience);
-      return experience;
     }
   } catch (err) {
     next(err);

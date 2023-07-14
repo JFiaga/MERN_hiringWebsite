@@ -2,72 +2,81 @@ import { useQuery } from "@tanstack/react-query";
 import { LastExperiencesCard } from "../../components";
 import { FiAnchor } from "react-icons/fi";
 import { newRequest } from "../../utils/newRequest";
-import { useParams } from "react-router-dom";
-
+import { Link, useParams } from "react-router-dom";
 
 const ProfileMain = () => {
-
   const { id } = useParams();
 
-  const { isLoading, error, data, refetch } = useQuery({
+  const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
+
+  const { isLoading, data } = useQuery({
     queryKey: ["experiences"],
     queryFn: () =>
       newRequest.get(`/experiences/${id}`).then((res) => {
-         const  data = res.data
-         console.log(data)
+        const data = res.data;
         return data;
       }),
-    });
+  });
 
+  const { isLoading: isDataUserLoading, data: dataUser } = useQuery({
+    queryKey: ["profile"],
+    queryFn: () =>
+      newRequest.get(`/profile/${id}`).then((res) => {
+        const dataUser = res.data;
+        console.log(dataUser);
+        return dataUser;
+      }),
+  });
 
-  return (
+  return isLoading && isDataUserLoading && dataUser && data ? (
+    <>
+      {" "}
+      <span>...</span>
+    </>
+  ) : (
     <section className=" flex  w-[100vw]  md:px-8 px-4 pt-16 pb-10  justify-center text-black">
       <div className="max-w-[1400px] w-full flex flex-col md:flex-row items-start p-4 justify-between ">
         <div className=" w-[70%]">
           <div className="">
             <h4 className="font-medium"> </h4>
             <p className="border border-black w-[60%]">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Laboriosam fuga quos obcaecati nemo rem iste ad magnam natus,
-              necessitatibus, enim assumenda illo nesciunt porro quas. Officia,
-              laudantium laborum dolorem iure molestias perferendis consectetur
-              distinctio voluptatem ab corporis? Hic recusandae at ipsa quos
-              asperio eum cumque perferendis corporis consectetur aperiam, iure
-              quo, illum quidem sed doloremque neque expedita blanditiis tenetur
-              quis veniam quia vitae repellendus molestiae maxime! Officia,
-              excepturi. Vero quas tenetur deserunt, quia culpa illum a ab
-              maiores nesciunt laudantium est adipisci, unde suscipit sint!
-              Fugit tempora nam minima! Accusantium quaerat minus molestias
-              consequatur similique necessitatibus debitis cupiditate corrupti
-              atque.
+              {dataUser.desc}
             </p>
           </div>
 
-        {data ?
+          {data ? (
+            <div>
+              {data.map((val: any, index: number) => (
+                <div key={index}>
+                  <h3 className="font-medium">Last Experiences</h3>
+                  <div className="flex flex-col space-y-4">
+                    <LastExperiencesCard
+                      role={val.role}
+                      projectName={val.projectName}
+                      technologiesUsed={val.technologiesUsed}
+                      projectLink={val.projectLink}
+                      desc={val.desc}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <>
+              <span>Aucune experience </span>
+            </>
+          )}
+          {currentUser && currentUser._id === id && (
+            <Link
+              to=""
+              className="inline-block px-4 py-2 cursor-pointer bg-primary rounded-sm text-white font-bold mt-5 hover:bg-transparent border border-transparent hover:border-primary transition-all duration-300  hover:text-primary"
+            >
+              Ajouter une experience
+            </Link>
+          )}
+        </div>
 
-        <div>
-          {data.map((val:any,index:number) => (
-          <div key={index}>
-        <h3 className="font-medium">Last Experiences</h3>
-          <div className="flex flex-col space-y-4">
-            <LastExperiencesCard
-              role={val.role}
-              projectName={val.projectName}
-              technologiesUsed={val.technologiesUsed}
-              projectLink={val.projectLink}
-              desc={val.desc}
-            />
-          </div>
-        </div>
-        ))}
-        </div>
-        :<>
-          <span>Aucune experience </span>
-        </>
-          }
-
-          <div></div>
-        </div>
+        {/* side */}
         <div>
           <h3>More Information</h3>
 
