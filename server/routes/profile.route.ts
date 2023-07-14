@@ -4,8 +4,7 @@ import { createExperience, deleteExperience } from "../controllers/experiences.c
 
 const router = Router()
 
-router.post('/createNewExperience',verifyToken,  createExperience )
-router.delete('/:id', verifyToken, deleteExperience)
+
 
 
 export default router

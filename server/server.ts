@@ -5,6 +5,7 @@ import cors from 'cors'
 import mongoose from "mongoose";
 import userRoute from "./routes/user.route.ts";
 import profileRoute from "./routes/profile.route.ts";
+import experiencesRoute from "./routes/experiences.route.ts";
 import messageRoute from "./routes/message.route.ts";
 import userAuth from "./routes/auth.route.ts";
 import cookieParser from "cookie-parser";
@@ -35,10 +36,11 @@ app.get("/", (req: Request, res: Response) => {
   res.sendStatus(200);
 });
 
+
 app.use("/api/user", userRoute);
 app.use("/api/auth", userAuth);
 app.use("/api/profile", profileRoute);
-
+app.use("/api/experiences", experiencesRoute);
 app.use("/api/message", messageRoute);
 
 
@@ -46,7 +48,5 @@ app.use(errorHandler)
 
 app.listen(8800, () => {
   connect();
-  console.log("Listen at port 8800"); 
-    
+  console.log("Listen at port 8800");
 });
- 

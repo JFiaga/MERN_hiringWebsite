@@ -6,32 +6,28 @@ const ExperiencesSchema = new Schema<IExperiences>(
     userId: {
       type: String,
       // required: true,
-      // unique:true
+      unique:true
     },
     projectLink: {
         type: String,
         // required: true,
-        // unique:true
+
       },
     projectName: {
       type: String,
       // required: true,
-      // unique:true
     },
     role: {
       type: String,
       // required: true,
-      // unique:true
     },
     technologiesUsed: {
-      type: String,
+      type:[String],
       // required: true,
-      // unique:true
     },
     desc: {
       type: String,
       // required: true,
-      // unique:true
     },
   },
   {

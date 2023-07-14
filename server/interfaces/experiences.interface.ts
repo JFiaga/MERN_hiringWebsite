@@ -5,6 +5,6 @@ export interface IExperiences extends Document {
   projectLink: string;
   projectName: string;
   role: string;
-  technologiesUsed: string;
+  technologiesUsed:string[];
   desc: string;
 }

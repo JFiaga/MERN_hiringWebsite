@@ -27,7 +27,7 @@ const Register = (props: Props) => {
       setUserData((prev) => {
         return { ...prev, [e.target.name]: e.target.value };
       });
-      
+
       console.log(userData);
     };
 

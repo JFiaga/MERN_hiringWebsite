@@ -1,37 +1,70 @@
+import { useQuery } from "@tanstack/react-query";
 import { LastExperiencesCard } from "../../components";
 import { FiAnchor } from "react-icons/fi";
+import { newRequest } from "../../utils/newRequest";
+import { useParams } from "react-router-dom";
 
-type Props = {};
 
-const ProfileMain = (props: Props) => {
+const ProfileMain = () => {
+
+  const { id } = useParams();
+
+  const { isLoading, error, data, refetch } = useQuery({
+    queryKey: ["experiences"],
+    queryFn: () =>
+      newRequest.get(`/experiences/${id}`).then((res) => {
+         const  data = res.data
+         console.log(data)
+        return data;
+      }),
+    });
+
+
   return (
     <section className=" flex  w-[100vw]  md:px-8 px-4 pt-16 pb-10  justify-center text-black">
       <div className="max-w-[1400px] w-full flex flex-col md:flex-row items-start p-4 justify-between ">
         <div className=" w-[70%]">
           <div className="">
-            <h4 className="font-medium">About me</h4>
+            <h4 className="font-medium"> </h4>
             <p className="border border-black w-[60%]">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Laboriosam fuga quos obcaecati nemo rem iste ad magnam natus,
               necessitatibus, enim assumenda illo nesciunt porro quas. Officia,
               laudantium laborum dolorem iure molestias perferendis consectetur
               distinctio voluptatem ab corporis? Hic recusandae at ipsa quos
-              asperiores eum cumque perferendis corporis consectetur aperiam,
-              iure quo, illum quidem sed doloremque neque expedita blanditiis
-              tenetur quis veniam quia vitae repellendus molestiae maxime!
-              Officia, excepturi. Vero quas tenetur deserunt, quia culpa illum a
-              ab maiores nesciunt laudantium est adipisci, unde suscipit sint!
+              asperio eum cumque perferendis corporis consectetur aperiam, iure
+              quo, illum quidem sed doloremque neque expedita blanditiis tenetur
+              quis veniam quia vitae repellendus molestiae maxime! Officia,
+              excepturi. Vero quas tenetur deserunt, quia culpa illum a ab
+              maiores nesciunt laudantium est adipisci, unde suscipit sint!
               Fugit tempora nam minima! Accusantium quaerat minus molestias
               consequatur similique necessitatibus debitis cupiditate corrupti
               atque.
             </p>
           </div>
 
-          <h3 className="font-medium">Last Experiences</h3>
+        {data ?
+
+        <div>
+          {data.map((val:any,index:number) => (
+          <div key={index}>
+        <h3 className="font-medium">Last Experiences</h3>
           <div className="flex flex-col space-y-4">
-            <LastExperiencesCard />
-            <LastExperiencesCard />
+            <LastExperiencesCard
+              role={val.role}
+              projectName={val.projectName}
+              technologiesUsed={val.technologiesUsed}
+              projectLink={val.projectLink}
+              desc={val.desc}
+            />
           </div>
+        </div>
+        ))}
+        </div>
+        :<>
+          <span>Aucune experience </span>
+        </>
+          }
 
           <div></div>
         </div>
@@ -177,9 +210,7 @@ const ProfileMain = (props: Props) => {
               <span className="font-semibold text-primary">
                 React Developper
               </span>
-              <span className="font-thin">
-               FreeCodeCamp -Certification
-              </span>
+              <span className="font-thin">FreeCodeCamp -Certification</span>
             </div>
             <div className="flex flex-col ">
               <span className="font-medium">
@@ -193,7 +224,6 @@ const ProfileMain = (props: Props) => {
               </span>
             </div>
           </div>
-
         </div>
       </div>
     </section>
