@@ -25,6 +25,7 @@ const {pathname} = useLocation()
       localStorage.removeItem("currentUser");
       window.location.reload()
       
+      
     } catch (error: any) {
       if (error instanceof AxiosError) {
         console.log(error.response?.data);

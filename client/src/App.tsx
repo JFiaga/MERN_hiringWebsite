@@ -1,6 +1,6 @@
 import { Navbar } from "./components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Main, Gigs, Profile, Login, Register, ChooseProfile } from "./pages";
+import { Main, Gigs, Profile, Login, RegisterDeveloper, ChooseProfile, RegisterRecruiter } from "./pages";
 import Messages from "./pages/Messages";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -15,7 +15,8 @@ function App() {
   
         <Routes>
           <Route path="/chooseProfile" element={<ChooseProfile />} />
-          <Route path="/registerDeveloper" element={<Register />} />
+          <Route path="/registerDeveloper" element={<RegisterDeveloper />} />
+          <Route path="/registerRecruiter" element={<RegisterRecruiter />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Main />} />
           <Route path="/gigs/category=backend" element={<Gigs />} />

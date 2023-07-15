@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { uploadCv, uploadImg } from "../utils/upload";
 import { newRequest } from "../utils/newRequest";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
-type Props = {};
 
-const Register = (props: Props) => {
+const RegisterDeveloper = () => {
+
   //Verify if login
   // const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
 
@@ -97,7 +97,7 @@ const Register = (props: Props) => {
           className="w-full overflow-hidden h-auto flex flex-col items-center space-y-2 md:space-y-4"
         >
           <div className="flex flex-col ">
-            {userData.lastName}
+           
             <label htmlFor="firstName" className="font-medium text-xl ">
               Nom
             </label>
@@ -273,4 +273,4 @@ const Register = (props: Props) => {
   );
 };
 
-export default Register;
+export default RegisterDeveloper;

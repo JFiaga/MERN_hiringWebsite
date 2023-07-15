@@ -3,9 +3,9 @@ import { BiCodeAlt } from "react-icons/bi";
 import { MdOutlineManageSearch } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-type Props = {};
 
-const ChooseProfile = (props: Props) => {
+
+const ChooseProfile = () => {
   const [chooseLink, setChooseLink] = useState("");
 
    

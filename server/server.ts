@@ -4,10 +4,11 @@ import helmet from "helmet";
 import cors from 'cors'
 import mongoose from "mongoose";
 import userRoute from "./routes/user.route.ts";
+import recruiterAuthRoute from './routes/authRecruiter.route.ts'
 import profileRoute from "./routes/profile.route.ts";
 import experiencesRoute from "./routes/experiences.route.ts";
 import messageRoute from "./routes/message.route.ts";
-import userAuth from "./routes/auth.route.ts";
+import authRoute from "./routes/auth.route.ts";
 import cookieParser from "cookie-parser";
 import { errorHandler } from "./middleware/errorHandler.ts";
 
@@ -38,7 +39,8 @@ app.get("/", (req: Request, res: Response) => {
 
 
 app.use("/api/user", userRoute);
-app.use("/api/auth", userAuth);
+app.use("/api/auth", authRoute);
+app.use("/api/authRecruiter", recruiterAuthRoute);
 app.use("/api/profile", profileRoute);
 app.use("/api/experiences", experiencesRoute);
 app.use("/api/message", messageRoute);
