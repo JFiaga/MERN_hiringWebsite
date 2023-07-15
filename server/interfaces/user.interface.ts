@@ -8,9 +8,13 @@ export interface IUser extends Document {
     email: string;
     password: string;
     img: string;
+    cv:string;
     desc: string;
     city: string;
+    github: string;
+    linkedin: string;
+    twitter: string;
     specialisation:string,
-    phone: number;
     isEmployee: boolean;
   }
+

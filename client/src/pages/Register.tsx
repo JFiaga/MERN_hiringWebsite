@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import upload from "../utils/upload";
+import { uploadCv, uploadImg } from "../utils/upload";
 import { newRequest } from "../utils/newRequest";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -15,40 +15,58 @@ const Register = (props: Props) => {
     email: "",
     password: "",
     img: "",
-    city: "",
+    cv:"",
     desc: "",
+    city: "",
+    github: "",
+    linkedin: "",
+    twitter: "",
+    specialisation:""
   });
 
   const navigate = useNavigate();
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-      setUserData((prev) => {
-        return { ...prev, [e.target.name]: e.target.value };
-      });
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    setUserData((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
 
-      console.log(userData);
-    };
+    console.log(userData);
+  };
 
-    //Upload Image
-    const [fileUpload, setFileUpload] = useState<string | any>();
+  //Upload Image
+  const [imgUpload, setImgUpload] = useState<string | any>();
+  const [cvUpload, setCvUpload] = useState<string | any>();
 
-  const handleUploadImage = (e:React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files){
-      setFileUpload(e.target.files[0])
+  const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setImgUpload(e.target.files[0]);
+      console.log(e.target.files[0]);
     }
-  }
+  };
+
+  const handleUploadCv = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setCvUpload(e.target.files[0]);
+      console.log(e.target.files[0]);
+    }
+  };
 
   //submit form
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const imgUrl = await upload(fileUpload);
+    const imgUrl = await uploadImg(imgUpload);
+    const cvUrl = await uploadCv(cvUpload);
     try {
       await newRequest.post("/auth/register", {
         ...userData,
         img: imgUrl,
+        cv: cvUrl,
       });
 
       navigate("/login");
@@ -60,6 +78,15 @@ const Register = (props: Props) => {
   // const handleSelect = (e:React.FormEvent<HTMLSelectElement>) => {
   //         console.log(e.options[e.selectedIndex].getAttribute("data-adr"))
   // }
+
+  const specialisationTag = [
+    "Frontend",
+    "Backend",
+    "Android",
+    "IOS",
+    "C#",
+    "devOps",
+  ];
 
   return (
     <section className="text-black mt-10 w-[100vw] flex flex-col justify-center py-10 px-8">
@@ -75,6 +102,7 @@ const Register = (props: Props) => {
               Nom
             </label>
             <input
+              required
               onChange={handleChange}
               type="text"
               id="firstName"
@@ -88,6 +116,7 @@ const Register = (props: Props) => {
               Prenom
             </label>
             <input
+              required
               onChange={handleChange}
               type="text"
               id="lastName"
@@ -101,6 +130,7 @@ const Register = (props: Props) => {
               email
             </label>
             <input
+              required
               onChange={handleChange}
               type="email"
               id="email"
@@ -114,6 +144,7 @@ const Register = (props: Props) => {
               password
             </label>
             <input
+              required
               onChange={handleChange}
               type="password"
               id="password"
@@ -121,25 +152,51 @@ const Register = (props: Props) => {
               className="outline-none p-2 rounded border"
             />
           </div>
-          
-                 <div className="flex flex-col ">
-              <label  className="font-medium text-xl " htmlFor="profilePic">Photo de profile</label>
-              <input  type="file" id="profilePic" name="profilePic" className="outline-none p-2 rounded border"
-              onChange={handleUploadImage}
-              />
-            </div>
 
-            <div className="flex flex-col ">
-            <label className="font-medium text-xl " htmlFor="specialisation">
-              Specialisation
+          <div className="flex flex-col ">
+            <label className="font-medium text-xl " htmlFor="profilePic">
+              Photo de profile
             </label>
-           {/* <select className="text-black" name="specialisation" id="specialisation">
+            <input
+              required
+              type="file"
+              id="profilePic"
+              name="profilePic"
+              className="outline-none p-2 rounded border"
+              onChange={handleUploadImage}
+            />
+          </div>
 
-            <option  value="Frontend">Frontend</option>
-            <option value="Backend">Backend</option>
-            <option value="Mobile">Mobile</option>
-            <option value="DevOps">DevOps</option>
-           </select> */}
+          <div className="flex flex-col ">
+            <label className="font-medium text-xl " htmlFor="profilePic">
+              Votre CV
+            </label>
+            <input
+              required
+              type="file"
+              id="profilePic"
+              name="profilePic"
+              className="outline-none p-2 rounded border"
+              onChange={handleUploadCv}
+            />
+          </div>
+
+          <div className="flex flex-col ">
+            choisissez votre specialisation
+
+            <select
+              required
+              className="font-medium text-xl "
+              name="specialisation"
+              onChange={handleChange}
+            >
+              <option value=" "> </option>
+              {specialisationTag.map((val, index) => (
+                <option key={index} value={val}>
+                  {val}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="flex flex-col ">
@@ -147,6 +204,7 @@ const Register = (props: Props) => {
               Ville
             </label>
             <input
+              required
               onChange={handleChange}
               type="text"
               id="city"
@@ -156,10 +214,49 @@ const Register = (props: Props) => {
           </div>
 
           <div className="flex flex-col ">
+            <label className="font-medium text-xl " htmlFor="github">
+              lien de votre profil github*
+            </label>
+            <input
+              required
+              onChange={handleChange}
+              id="github"
+              className="outline-none p-2 rounded border"
+              name="github"
+            />
+          </div>
+
+          <div className="flex flex-col ">
+            <label className="font-medium text-xl " htmlFor="linkedin">
+              Lien de votre profil Linkedin*
+            </label>
+            <input
+              required
+              onChange={handleChange}
+              id="linkedin"
+              className="outline-none p-2 rounded border"
+              name="linkedin"
+            />
+          </div>
+
+          <div className="flex flex-col ">
+            <label className="font-medium text-xl " htmlFor="twitter">
+              Lien de votre profil Twitter
+            </label>
+            <input
+              onChange={handleChange}
+              id="twitter"
+              className="outline-none p-2 rounded border"
+              name="twitter"
+            />
+          </div>
+
+          <div className="flex flex-col ">
             <label className="font-medium text-xl " htmlFor="desc">
               Description
             </label>
             <input
+              required
               onChange={handleChange}
               id="desc"
               className="outline-none p-2 rounded border"

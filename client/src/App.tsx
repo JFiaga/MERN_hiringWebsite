@@ -1,6 +1,6 @@
 import { Navbar } from "./components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Main, Gigs, Profile, Login, Register } from "./pages";
+import { Main, Gigs, Profile, Login, Register, ChooseProfile } from "./pages";
 import Messages from "./pages/Messages";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -11,11 +11,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Navbar />
+   
+  
         <Routes>
-          <Route path="/register" element={<Register />} />
+          <Route path="/chooseProfile" element={<ChooseProfile />} />
+          <Route path="/registerDeveloper" element={<Register />} />
           <Route path="/login" element={<Login />} />
-        </Routes>
-        <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/gigs/category=backend" element={<Gigs />} />
           <Route

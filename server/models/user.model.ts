@@ -10,7 +10,7 @@ const userSchema = new Schema<IUser>(
     //   type:Schema.Types.ObjectId
 
     // },
-    
+
     firstName: {
       type: String,
       required: true,
@@ -21,9 +21,8 @@ const userSchema = new Schema<IUser>(
     },
     email: {
       type: String,
-      unique:true,
-      required:true,
-      
+      unique: true,
+      required: true,
     },
     password: {
       type: String,
@@ -33,10 +32,10 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: false,
     },
-    // phone: {
-    //   type: Number,
-    //   required: false,
-    // },
+    cv: {
+      type: String,
+      required: true,
+    },
     city: {
       type: String,
       required: true,
@@ -45,9 +44,21 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
     },
-    specialisation:{
-      type:String,
-      required:true
+    specialisation: {
+      type: String,
+      required: true,
+    },
+    github: {
+      type: String,
+      required: true,
+    },
+    linkedin: {
+      type: String,
+      required: true,
+    },
+    twitter: {
+      type: String,
+      required:false
     },
     isEmployee: {
       type: Boolean,

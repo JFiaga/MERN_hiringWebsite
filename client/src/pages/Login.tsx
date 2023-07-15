@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {newRequest}  from "../utils/newRequest";
+import { newRequest } from "../utils/newRequest";
 
 type Props = {};
 
@@ -16,11 +16,7 @@ const Login = (props: Props) => {
     event.preventDefault();
 
     try {
-      const res = await newRequest.post(
-        "/auth/login",
-        { email, password },
-     
-      );
+      const res = await newRequest.post("/auth/login", { email, password });
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       navigate("/");
     } catch (err: any) {
