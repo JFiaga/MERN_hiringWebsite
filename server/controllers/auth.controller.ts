@@ -3,6 +3,7 @@ import { User } from "../models/user.model.ts";
 import bcrypt from "bcrypt";
 import jwt, { Secret } from "jsonwebtoken";
 import { notFoundError, BaseError } from "../utils/error.ts";
+import { Recruiter } from "../models/recruiter.model.ts";
 
 export const register = async (
   req: Request,
@@ -10,9 +11,9 @@ export const register = async (
   next: NextFunction
 ) => {
   try {
-    const isEmailExist  =await User.findOne({email: req.body.email})
+    const isEmailExist = await User.findOne({ email: req.body.email });
 
-    if (!isEmailExist){
+    if (!isEmailExist) {
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(req.body.password, salt);
       const newUser = new User({
@@ -21,9 +22,8 @@ export const register = async (
       });
       await newUser.save();
       res.status(201).send("User has been created");
-    }
-    else{
-      return res.status(403).send("Email already exist, enter a valid email")
+    } else {
+      return res.status(403).send("Email already exist, enter a valid email");
     }
   } catch (err) {
     next(new BaseError("something went wrong", 500, true));
@@ -37,34 +37,65 @@ export const login = async (
 ) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    if (!user) return next(new notFoundError("user not found"));
+    const recruiter = await Recruiter.findOne({ email: req.body.email });
 
-    const isCorrect = bcrypt.compareSync(req.body.password, user.password);
+    if (!user && !recruiter) {
+      return next(new notFoundError("user not found"));
+    } else if (!user) {
+      const isCorrect = bcrypt.compareSync(
+        req.body.password,
+        recruiter!.password
+      );
 
-    if (!isCorrect) {
-      return next(new BaseError("Wrong email or password", 400, true));
+      if (!isCorrect) {
+        return next(new BaseError("Wrong email or password", 400, true));
+      }
 
+      const secret = "process.env.JWT_SECRET";
+
+      const token = jwt.sign(
+        {
+          id: recruiter!._id,
+          isEmployee: recruiter!.isEmployee,
+
+          //we will use the isEmployee to verify some part of application like experiences
+        },
+        secret
+      );
+
+      const { password, ...other } = recruiter!._doc;
+      res
+        .cookie("accessToken", token, {
+          httpOnly: true,
+        })
+        .status(200)
+        .send(other);
+    } else if (user) {
+      const isCorrect = bcrypt.compareSync(req.body.password, user.password);
+
+      if (!isCorrect) {
+        return next(new BaseError("Wrong email or password", 400, true));
+      }
+
+      const secret = "process.env.JWT_SECRET";
+      const token = jwt.sign(
+        {
+          id: user._id,
+          isEmployee: user.isEmployee,
+
+          //we will use the isEmployee to verify some part of application like experiences
+        },
+        secret
+      );
+      const { password, ...other } = user._doc;
+      res
+        .cookie("accessToken", token, {
+          httpOnly: true,
+        })
+        .status(200)
+        .send(other)
+        .redirect("/");
     }
-
-    const secret = "process.env.JWT_SECRET";
-
-    const token = jwt.sign(
-      {
-        id: user._id,
-        isEmployee: user.isEmployee,
-
-        //we will use the isEmployee to verify some part of application like experiences
-      },
-      secret
-    );
-
-    const { password, ...other } = user._doc;
-    res
-      .cookie("accessToken", token, {
-        httpOnly: true,
-      })
-      .status(200)
-      .send(other).redirect('/');
   } catch (error) {
     next(new BaseError("Internal server error", 500, true));
   }

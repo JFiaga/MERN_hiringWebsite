@@ -1,23 +1,41 @@
-import { useState } from "react";
-
+import React, { useState } from "react";
+import { newRequest } from "../utils/newRequest";
 
 const RegisterRecruiter = () => {
-
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    
     city: "",
-   
+    companyName: "",
   });
-    
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserData((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+
+    console.log(userData);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await newRequest.post("/authRecruiter/registerRecruiter", {
+        ...userData,
+      });
+      window.location.pathname = '/'
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
   return (
     <section className="text-black mt-10 w-[100vw] flex flex-col justify-center py-10 px-8">
       <div className="w-full max-w-[1400px] flex flex-col items-center  space-y-5">
         <form
-          //   onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
           action=""
           className="w-full overflow-hidden h-auto flex flex-col items-center space-y-2 md:space-y-4"
         >
@@ -27,7 +45,7 @@ const RegisterRecruiter = () => {
             </label>
             <input
               required
-              //  onChange={handleChange}
+              onChange={handleChange}
               type="text"
               id="firstName"
               name="firstName"
@@ -40,7 +58,7 @@ const RegisterRecruiter = () => {
             </label>
             <input
               required
-              //  onChange={handleChange}
+              onChange={handleChange}
               type="text"
               id="lastName"
               name="lastName"
@@ -53,7 +71,7 @@ const RegisterRecruiter = () => {
             </label>
             <input
               required
-              //  onChange={handleChange}
+              onChange={handleChange}
               type="text"
               id="email"
               name="email"
@@ -61,28 +79,28 @@ const RegisterRecruiter = () => {
             />
           </div>
           <div className="flex flex-col ">
-            <label htmlFor="company" className="font-medium text-xl ">
+            <label htmlFor="companyName" className="font-medium text-xl ">
               Nom de votre entreprise
             </label>
             <input
               required
-              //  onChange={handleChange}
+              onChange={handleChange}
               type="text"
-              id="company"
-              name="company"
+              id="companyName"
+              name="companyName"
               className="outline-none p-2 rounded border"
             />
           </div>
           <div className="flex flex-col ">
-            <label htmlFor="country" className="font-medium text-xl ">
+            <label htmlFor="city" className="font-medium text-xl ">
               Ville
             </label>
             <input
               required
-              //  onChange={handleChange}
+              onChange={handleChange}
               type="text"
-              id="country"
-              name="country"
+              id="city"
+              name="city"
               className="outline-none p-2 rounded border"
             />
           </div>
@@ -93,7 +111,7 @@ const RegisterRecruiter = () => {
             </label>
             <input
               required
-              //  onChange={handleChange}
+              onChange={handleChange}
               type="text"
               id="password"
               name="password"
@@ -101,7 +119,10 @@ const RegisterRecruiter = () => {
             />
           </div>
 
-          <button type="submit" className="w-full max-w-[430px] bg-primary  px-2 py-2 text-center text-white rounded-md font-medium outline-none border border-transparent hover:border-primary transition-all duration-300 hover:bg-transparent hover:text-primary">
+          <button
+            type="submit"
+            className="w-full max-w-[430px] bg-primary  px-2 py-2 text-center text-white rounded-md font-medium outline-none border border-transparent hover:border-primary transition-all duration-300 hover:bg-transparent hover:text-primary"
+          >
             Submit
           </button>
         </form>

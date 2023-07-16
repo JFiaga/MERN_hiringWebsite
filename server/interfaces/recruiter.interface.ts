@@ -7,6 +7,7 @@ export interface IRecruiter extends Document {
     lastName: string;
     email: string;
     password: string;
+    companyName:string;
     city: string;
     isEmployee: boolean;
   }

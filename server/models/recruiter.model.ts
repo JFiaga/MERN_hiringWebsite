@@ -3,27 +3,31 @@ import { IRecruiter } from "../interfaces/recruiter.interface";
 
 const RecruiterSchema = new Schema<IRecruiter>({
   firstName: {
-    trype: String,
+    type: String,
     required: true,
   },
   lastName: {
-    trype: String,
+    type: String,
     required: true,
   },
   email: {
-    trype: String,
+    type: String,
     required: true,
   },
   password: {
-    trype: String,
+    type: String,
     required: true,
   },
   city: {
-    trype: String,
+    type: String,
     required: true,
   },
+  companyName: {
+    type: String,
+    required:true
+  },
   isEmployee: {
-    trype: Boolean,
+    type: Boolean,
     default: false,
   },
 });
