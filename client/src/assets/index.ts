@@ -17,6 +17,7 @@ export {default as uiImg} from './ui.png'
 
 
 export {default as laravelLogo} from './laravelLogo.png'
+export {default as recruiter} from './recruiter.jpg'
 
 
 export {default as NoAvatar} from './noAvatar.png'

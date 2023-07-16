@@ -54,14 +54,16 @@ const ProfileHeader = () => {
                 <FiDownload className="text-xl  animate-pulse" />
               </button>
 
-              <Link
-                to="/message"
-                className="w-full flex items-center justify-center space-x-1 text-white font-bold bg-primary text-center capitalize rounded-md py-3 px-2 transition-all duration-500 border border-transparent hover:border-white hover:bg-primary/70 hover:text-white max-w-[300px]"
-              >
-                {" "}
-                <span>Send Me A Message</span>
-                <BiLogoTelegram className="text-xl animate-bounce" />
-              </Link>
+              {!currentUser.isEmployee && (
+                <Link
+                  to="/message"
+                  className="w-full flex items-center justify-center space-x-1 text-white font-bold bg-primary text-center capitalize rounded-md py-3 px-2 transition-all duration-500 border border-transparent hover:border-white hover:bg-primary/70 hover:text-white max-w-[300px]"
+                >
+                  {" "}
+                  <span>Send Me A Message</span>
+                  <BiLogoTelegram className="text-xl animate-bounce" />
+                </Link>
+              )}
             </div>
           )
         ) : (
@@ -100,19 +102,19 @@ const ProfileHeader = () => {
 
         <div className=" flex space-x-4">
           <a
-            href={data? addHttps(data!.github): '#noLink'}
+            href={data ? addHttps(data!.github) : "#noLink"}
             className="h-[60px] w-[60px] bg-black text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-black hover:bg-white hover:text-black cursor-pointer overflow-hidden transition-all duration-500"
           >
             <FiGithub />
           </a>
           <a
-            href={data? addHttps(data!.linkedin): '#noLink'}
+            href={data ? addHttps(data!.linkedin) : "#noLink"}
             className="h-[60px] w-[60px] bg-blue-600 text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-blue-600 hover:bg-white hover:text-blue-600 overflow-hidden cursor-pointer transition-all duration-500"
           >
             <FiLinkedin />
           </a>
           <a
-            href={data? addHttps(data!.twitter): '#noLink'}
+            href={data ? addHttps(data!.twitter) : "#noLink"}
             className="h-[60px] w-[60px] bg-blue-400 text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-blue-400 hover:bg-white hover:text-blue-400 overflow-hidden cursor-pointer transition-all duration-500"
           >
             <FiTwitter />
