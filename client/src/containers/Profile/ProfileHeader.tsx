@@ -36,7 +36,7 @@ const ProfileHeader = () => {
       <div className="w-full max-w-[1400px] flex flex-col items-center space-y-5">
         <div className="h-[150px] w-[150px] rounded-full overflow-hidden border border-primary">
           <img
-            src={data.img || NoAvatar}
+            src={data?.img || NoAvatar}
             alt=""
             className="object-cover h-full w-full"
           />
@@ -50,7 +50,7 @@ const ProfileHeader = () => {
               <button
                 className={`px-4 py-2 rounded-sm font-semibold  transition-all duration-500  border   border-primary text-primary flex items-center justify-center space-x-2 hover:bg-[#f1f1f1] hover:text-primary`}
               >
-                <a href={data.cv}>Download my resume</a>
+                <a href={data?.cv}>Download my resume</a>
                 <FiDownload className="text-xl  animate-pulse" />
               </button>
 
@@ -86,33 +86,33 @@ const ProfileHeader = () => {
 
         <div className="flex space-x-2 justify-center  items-center">
           <h3 className="font-medium text-xl md:text-2xl">
-            {data.lastName} {data.firstName}{" "}
+            {data?.lastName} {data?.firstName}{" "}
           </h3>
           <span className="font-bold text-xl">-</span>
           <h3 className="font-bold text-xl md:text-2xl text-primary">
-            {data.specialisation}
+            {data?.specialisation}
           </h3>
         </div>
         <div className=" flex font-medium">
           <BiCurrentLocation className="text-4xl rounded-full text-white  bg-primary " />
-          <span>{data.city}</span>
+          <span>{data?.city}</span>
         </div>
 
         <div className=" flex space-x-4">
           <a
-            href={addHttps(data.github)}
+            href={data? addHttps(data!.github): '#noLink'}
             className="h-[60px] w-[60px] bg-black text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-black hover:bg-white hover:text-black cursor-pointer overflow-hidden transition-all duration-500"
           >
             <FiGithub />
           </a>
           <a
-            href={addHttps(data.linkedin)}
+            href={data? addHttps(data!.linkedin): '#noLink'}
             className="h-[60px] w-[60px] bg-blue-600 text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-blue-600 hover:bg-white hover:text-blue-600 overflow-hidden cursor-pointer transition-all duration-500"
           >
             <FiLinkedin />
           </a>
           <a
-            href={addHttps(data.twitter)}
+            href={data? addHttps(data!.twitter): '#noLink'}
             className="h-[60px] w-[60px] bg-blue-400 text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-blue-400 hover:bg-white hover:text-blue-400 overflow-hidden cursor-pointer transition-all duration-500"
           >
             <FiTwitter />

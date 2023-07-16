@@ -39,7 +39,7 @@ const ProfileMain = () => {
         <div className=" w-[70%]">
           <div className="">
             <h4 className="font-medium"> </h4>
-            <p className="border border-black w-[60%]">{dataUser.desc}</p>
+            <p className="border border-black w-[60%]">{dataUser?.desc}</p>
           </div>
 
           {data ? (
