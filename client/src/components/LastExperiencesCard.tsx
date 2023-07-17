@@ -28,7 +28,7 @@ const LastExperiencesCard = ({
       <div className="mr-3 flex space-x-1 items-center font-medium ">
         <FiArrowRight />
         <a
-          href="https://github.com "
+          href="https://github.com"
           className="mr-3 font-semibold bg-primary text-white px-4 rounded-sm hover:bg-transparent border border-transparent hover:border-primary hover:text-primary transition-all duration-300"
         >
           {projectLink}

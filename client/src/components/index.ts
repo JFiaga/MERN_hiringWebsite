@@ -7,5 +7,6 @@ export {default as Testimony} from './Testimony'
 export {default as LastExperiencesCard} from './LastExperiencesCard'
 export {default as MessageCard} from './MessageCard'
 export {default as RegisterDevTag} from './RegisterDevTag'
+export {default as AddExperience} from './AddExperience'
 
 export {default as Footer } from'./Footer'

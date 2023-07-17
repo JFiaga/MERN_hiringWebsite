@@ -8,13 +8,14 @@ type Props = {};
 const Login = (props: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState<string|null>(null);
   const [error, setError] = useState<any>(null);
 
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     try {
+      setErrorMsg("")
       const res = await newRequest.post("/auth/login", { email, password });
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       window.location.pathname = '/'
@@ -22,6 +23,9 @@ const Login = (props: Props) => {
       if (error instanceof AxiosError) {
         setError(err);
         console.log(error.response?.data);
+        setTimeout(() => {
+          setErrorMsg('Mauvais email ou mot de passe')
+        }, 1000);
       } else {
         setError(err);
         console.log(err);
@@ -46,7 +50,8 @@ const Login = (props: Props) => {
             </label>
             <input
               onChange={(e) => setEmail(e.target.value)}
-              type="text"
+              required
+              type="email"
               className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-primary/70 focus:ring-primary/70 focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
@@ -60,6 +65,7 @@ const Login = (props: Props) => {
             <input
               onChange={(e) => setPassword(e.target.value)}
               type="password"
+              required
               className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-primary/70 focus:ring-primary/70 focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
@@ -72,7 +78,7 @@ const Login = (props: Props) => {
             </button>
           </div>
         </form>
-
+          <span className="text-red-500 font-medium">{errorMsg}</span>
         <p className="mt-8 text-xs font-light text-center text-gray-700">
           {" "}
           Don't have an account?{" "}

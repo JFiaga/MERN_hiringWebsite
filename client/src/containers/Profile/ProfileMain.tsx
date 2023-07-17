@@ -5,7 +5,7 @@ import { newRequest } from "../../utils/newRequest";
 import { Link, useParams } from "react-router-dom";
 
 const ProfileMain = () => {
-  const { id } = useParams();
+  const { id } = useParams(); 
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
 
