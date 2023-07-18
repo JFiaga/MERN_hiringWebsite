@@ -1,23 +1,26 @@
 import { NextFunction, Request, Response } from "express";
 import { BaseError } from "../utils/error.ts";
 import { Experiences } from "../models/experiences.model.ts";
+import { IRequestCustom } from "../interfaces/request.interface.ts";
+
+
+
 
 export const deleteExperience = async (
-  req: any,
+  req: IRequestCustom,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const experience = await Experiences.findById(req.params.id);
+    const experience = await Experiences.findOne({userId:req.params.id});
 
-    if (experience?.userId !== req.userId) {
-      // return res.status(403).send('h')
+    if (experience!.userId !== req.userId) {
       return next(
         new BaseError("You are not authorizhed to do that operation", 403, true)
       );
     } else {
-      await Experiences.findByIdAndDelete(req.params.id);
-      res.status(200).send("Gig has deleted");
+      await Experiences.deleteOne({userId:req.params.id});
+      res.status(200).send("experiences has deleted");
     }
   } catch (err) {
     next(err);
@@ -25,11 +28,11 @@ export const deleteExperience = async (
 };
 
 export const createExperience = async (
-  req: any,
+  req: IRequestCustom,
   res: Response,
   next: NextFunction
 ) => {
-  // req.isEmployee
+
   if (!req.isEmployee)
     return next(
       new BaseError(

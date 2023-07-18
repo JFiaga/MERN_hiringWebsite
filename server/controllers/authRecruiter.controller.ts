@@ -4,9 +4,7 @@ import { NextFunction, Request, Response } from "express";
 import { BaseError, notFoundError } from "../utils/error.ts";
 import { Recruiter } from "../models/recruiter.model.ts";
 
-export interface TypedRequestBody<T> extends Express.Request { 
-  body: T;
-}
+
 export const register = async (
   req: Request,
   res: Response,
@@ -31,45 +29,7 @@ export const register = async (
   }
 };
 
-// export const login = async (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction
-// ) => {
-//   try {
-//     const recruiter = await Recruiter.findOne({ email: req.body.email });
-//     if (!recruiter) return next(new notFoundError("recruiter not found"));
 
-//     const isCorrect = bcrypt.compareSync(req.body.password, recruiter.password);
-
-//     if (!isCorrect) {
-//       return next(new BaseError("Wrong email or password", 400, true));
-
-//     }
-
-//     const secret = "process.env.JWT_SECRET";
-
-//     const token = jwt.sign(
-//       {
-//         id: recruiter._id,
-//         isEmployee: recruiter.isEmployee,
-
-//         //we will use the isEmployee to verify some part of application like experiences
-//       },
-//       secret
-//     );
-
-//     const { password, ...other } = recruiter._doc;
-//     res
-//       .cookie("accessToken", token, {
-//         httpOnly: true,
-//       })
-//       .status(200)
-//       .send(other).redirect('/');
-//   } catch (error) {
-//     next(new BaseError("Internal server error", 500, true));
-//   }
-// };
 
 export const logout = async (req: Request, res: Response) => {
   res
