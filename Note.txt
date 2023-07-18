@@ -1,0 +1,2 @@
+>>>mise en place du errorHandling bien approfondir cela
+>>> bien approfondir le typage avec mongoose

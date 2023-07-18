@@ -6,8 +6,8 @@ type Props = {
   modalStatus?: boolean;
 };
 
-const AddExperience = ({ modalStatus }: Props) => {
-  const [modalOpen, setModalOpen] = useState<boolean>(true);
+const AddExperience = () => {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const [userData, setUserData] = useState({
     role: "",
@@ -40,10 +40,13 @@ const AddExperience = ({ modalStatus }: Props) => {
   return (
       <>
         {modalOpen &&  <div className="w-[100vw] min-h-[100vh] h-[100%] absolute ">
-      <div className="w-[100vw] h-[100%] bg-red-300/50 absolute"></div>
+      <div 
+        onClick={() => setModalOpen((bool) => (bool = false))}
+
+      className="w-[100vw] h-[100%] bg-red-300/50 absolute"></div>
 
       <form
-        onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
         action=""
         className="flex flex-col items-center justify-center space-y-2 md:space-y-4 p-4  bg-[#f1f1f1] z-[100] absolute top-[10%] left-[50%] -translate-x-[50%] rounded-sm"
       >
