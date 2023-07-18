@@ -6,8 +6,8 @@ import { createExperience, deleteExperience, getExperiences } from "../controlle
 const router = Router()
 
 router.get('/:id',  getExperiences )
-router.post('/createNewExperience',verifyToken,  createExperience )
+router.post('/createNewExperience', verifyToken, createExperience ) 
 router.delete('/:id', verifyToken, deleteExperience)
 
 
-export default router
+export default router  

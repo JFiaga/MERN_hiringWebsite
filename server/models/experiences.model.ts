@@ -6,7 +6,7 @@ const ExperiencesSchema = new Schema<IExperiences>(
     userId: {
       type: String,
       // required: true,
-      unique:true
+
     },
     projectLink: {
         type: String,
@@ -21,11 +21,11 @@ const ExperiencesSchema = new Schema<IExperiences>(
       type: String,
       // required: true,
     },
-    technologiesUsed: {
-      type:[String],
+    technologiesUsed: {  
+      type:String,
       // required: true,
-    },
-    desc: {
+    },  
+    projectDesc: {
       type: String,
       // required: true,
     },

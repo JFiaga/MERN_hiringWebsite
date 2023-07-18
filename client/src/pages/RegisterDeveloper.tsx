@@ -24,22 +24,21 @@ const RegisterDeveloper = () => {
     specialisation:""
   });
 
-  const navigate = useNavigate();
-
+  
   const handleChange = (
     e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
-  ) => {
-    setUserData((prev) => {
-      return { ...prev, [e.target.name]: e.target.value };
-    });
-
-    console.log(userData);
-  };
-
-  //Upload Image
-  const [imgUpload, setImgUpload] = useState<string | any>();
+    ) => {
+      setUserData((prev) => {
+        return { ...prev, [e.target.name]: e.target.value };
+      });
+      
+      console.log(userData);
+    };
+    
+    //Upload Image
+    const [imgUpload, setImgUpload] = useState<string | any>();
   const [cvUpload, setCvUpload] = useState<string | any>();
 
   const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +56,8 @@ const RegisterDeveloper = () => {
   };
 
   //submit form
-
+  const navigate = useNavigate();
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const imgUrl = await uploadImg(imgUpload);

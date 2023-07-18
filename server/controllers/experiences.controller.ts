@@ -3,7 +3,7 @@ import { BaseError } from "../utils/error.ts";
 import { Experiences } from "../models/experiences.model.ts";
 
 export const deleteExperience = async (
-  req: Request,
+  req: any,
   res: Response,
   next: NextFunction
 ) => {
@@ -25,7 +25,7 @@ export const deleteExperience = async (
 };
 
 export const createExperience = async (
-  req: Request,
+  req: any,
   res: Response,
   next: NextFunction
 ) => {
@@ -70,3 +70,5 @@ export const getExperiences = async (
     next(err);
   }
 };
+
+//Change the any type of req

@@ -53,7 +53,7 @@ const ProfileMain = () => {
                       projectName={val.projectName}
                       technologiesUsed={val.technologiesUsed}
                       projectLink={val.projectLink}
-                      desc={val.desc}
+                      projectDesc={val.projectDesc}
                     />
                   </div>
                 </div>

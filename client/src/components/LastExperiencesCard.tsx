@@ -3,9 +3,9 @@ import { FiArrowRight, FiTag } from "react-icons/fi";
 type Props = {
   role: string;
   projectName: string;
-  technologiesUsed?: [];
+  technologiesUsed?: string;
   projectLink: string;
-  desc: string;
+  projectDesc: string;
 };
 
 const LastExperiencesCard = ({
@@ -13,7 +13,7 @@ const LastExperiencesCard = ({
   projectName,
   technologiesUsed,
   projectLink,
-  desc,
+  projectDesc,
 }: Props) => {
   return (
     <div className="bg-white w-[90%] flex flex-col items-start justify-center shadow-md text-black rounded-sm px-2 space-y-4 py-2">
@@ -27,8 +27,9 @@ const LastExperiencesCard = ({
 
       <div className="mr-3 flex space-x-1 items-center font-medium ">
         <FiArrowRight />
+        lien du projet :
         <a
-          href="https://github.com"
+          href={projectLink}
           className="mr-3 font-semibold bg-primary text-white px-4 rounded-sm hover:bg-transparent border border-transparent hover:border-primary hover:text-primary transition-all duration-300"
         >
           {projectLink}
@@ -39,16 +40,21 @@ const LastExperiencesCard = ({
         <div className="mr-3 flex space-x-1 items-center font-medium ">
           <FiArrowRight />
           <h4 className="mr-3 font-semibold">Technologie utilisees:</h4>
-        </div>
-        <div className="flex space-x-3">
-          {technologiesUsed && technologiesUsed.map((technology, index) => (
+        
+          {/* {technologiesUsed && technologiesUsed.map((technology, index) => (
             <div key={index}>
               <div className="flex justify-center items-center">
                 <FiTag className="rotate-90 text-primary" />
                 <span className=" ml-1">{technology}</span>
               </div>
             </div>
-          ))}
+          ))} */}
+     <div className="flex justify-center items-center">
+                {/* <FiTag className="rotate-90 text-primary" /> */}
+                <span className=" ml-1">{technologiesUsed}</span>
+              </div>
+
+      
         </div>
       </div>
 
@@ -57,9 +63,9 @@ const LastExperiencesCard = ({
         <div className="mr-3 flex space-x-1 items-center font-semibold ">
           <FiArrowRight />
           Description du poste:
-          <span></span>
+          
         </div>
-        <div className="">{desc}</div>
+        <div className="">{projectDesc}</div>
       </div>
     </div>
   );
