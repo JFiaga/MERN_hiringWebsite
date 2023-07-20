@@ -22,7 +22,6 @@ const ProfileHeader = () => {
     queryFn: () =>
       newRequest.get(`/profile/${id}`).then((res) => {
         const data = res.data;
-        console.log(data);
         return data;
       }),
   });

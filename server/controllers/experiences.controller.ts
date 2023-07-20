@@ -9,7 +9,7 @@ import { IRequestCustom } from "../interfaces/request.interface.ts";
 export const deleteExperience = async (
   req: IRequestCustom,
   res: Response,
-  next: NextFunction
+  next: NextFunction 
 ) => {
   try {
     const experience = await Experiences.findOne({userId:req.params.id});
@@ -33,7 +33,7 @@ export const createExperience = async (
   next: NextFunction
 ) => {
 
-  if (!req.isEmployee)
+  if (!req.isEmployee) 
     return next(
       new BaseError(
         "Only developper profile can create an experience card",
@@ -73,5 +73,26 @@ export const getExperiences = async (
     next(err);
   }
 };
+
+export const deleteOneExperience = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const experience = await Experiences.findById( req.params.id );
+    if (experience!.userId !== req.userId) {
+      return next(
+        new BaseError("You are not authorizhed to do that operation", 403, true)
+      );
+    } else {
+      await Experiences.findByIdAndDelete(req.params.id);
+      res.status(200).send("experiences has deleted");
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 
 //Change the any type of req

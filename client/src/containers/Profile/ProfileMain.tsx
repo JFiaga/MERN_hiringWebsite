@@ -3,9 +3,10 @@ import { LastExperiencesCard } from "../../components";
 import { FiAnchor } from "react-icons/fi";
 import { newRequest } from "../../utils/newRequest";
 import { Link, useParams } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
 
 const ProfileMain = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
 
@@ -28,6 +29,16 @@ const ProfileMain = () => {
       }),
   });
 
+  const deleteExperience = () => {
+    try {
+      newRequest.delete(`/experiences/unique/${'64b6cde2573bb10a40ee10ad'}`)
+      console.log('deleted')
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+    }
+    }
+
   return isLoading && isDataUserLoading ? (
     <>
       {" "}
@@ -46,7 +57,7 @@ const ProfileMain = () => {
             <div>
               {data.map((val: any, index: number) => (
                 <div key={index}>
-                  <h3 className="font-medium">Last Experiences</h3>
+                  <h3 className="font-medium">Last Experiences </h3>
                   <div className="flex flex-col space-y-4">
                     <LastExperiencesCard
                       role={val.role}
@@ -54,7 +65,14 @@ const ProfileMain = () => {
                       technologiesUsed={val.technologiesUsed}
                       projectLink={val.projectLink}
                       projectDesc={val.projectDesc}
+                     
                     />
+                    <div
+                      onClick={deleteExperience}
+                      className="bg-red-500 text-[40px] text-white rounded-full  right-[-2%] bottom-[-5%] cursor-pointer"
+                    >
+                      <MdDelete />
+                    </div>
                   </div>
                 </div>
               ))}

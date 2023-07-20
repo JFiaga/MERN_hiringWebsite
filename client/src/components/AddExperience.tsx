@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { newRequest } from "../utils/newRequest";
+import { useParams } from "react-router-dom";
 
 type Props = {
   modalStatus?: boolean;
 };
 
 const AddExperience = () => {
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(true);
 
   const [userData, setUserData] = useState({
     role: "",
@@ -25,12 +26,13 @@ const AddExperience = () => {
     console.log(userData);
   };
 
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
-      await newRequest.post("/experiences/createNewExperience", { ...userData });
-      setModalOpen (val => val=false)
+      await newRequest.post(`experiences/createNewExperience`, { ...userData });
+      setModalOpen (val => val =false)
       console.log('done')
     } catch (err) {
       console.log(err);
