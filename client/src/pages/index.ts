@@ -8,3 +8,4 @@ export {default as RegisterRecruiter} from './RegisterRecruiter'
 export {default as ChooseProfile} from './ChooseProfile'
 
 export {default as MessagesList} from './MessagesList'
+export {default as MessageDiscussion} from './MessageDiscussion'

@@ -7,6 +7,7 @@ import moment from "moment";
 const MessagesList = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
 
+
   const queryClient = useQueryClient();
 
   const { isLoading, error, data } = useQuery({
@@ -18,9 +19,7 @@ const MessagesList = () => {
   });
 
   const mutation = useMutation({
-    mutationFn: (id) => {
-      return newRequest.put(`/messagesList/${id}`);
-    },
+    mutationFn: (id) =>  newRequest.put(`/messagesList/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["messagesList"] });
     },
@@ -68,7 +67,7 @@ const MessagesList = () => {
                 </span>
 
                 {((currentUser.isEmployee && !messageData.readByEmployee) ||
-                    (!currentUser.isEmployee && messageData.readByRecruitor)) && (
+                    (!currentUser.isEmployee && !messageData.readByRecruitor)) && (
                     <button className="bg-green-400 w-[15%]" onClick={() => handleRead(messageData.conversationId)}>
                     Mark as Read
                   </button>

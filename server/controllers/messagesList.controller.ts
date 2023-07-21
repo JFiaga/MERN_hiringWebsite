@@ -20,8 +20,10 @@ export const createMessage = async (
   try {
     const savedMessage = await newMessagesList.save();
     res.status(200).send(savedMessage);
-    
-  } catch (error) {}
+
+  } catch (error) {
+    next(error)
+  }
 };
 
 export const updatedMessage = async (
@@ -41,7 +43,9 @@ export const updatedMessage = async (
       { new: true }
     );
     res.status(200).send(updatedMessage);
-  } catch (error) {}
+  } catch (error) {
+    next(error)
+  }
 };
 
 export const getSingleMessage = async (
@@ -52,7 +56,9 @@ export const getSingleMessage = async (
   try {
     const singleMessage = await MessagesList.findOne({ id: req.params.id });
     res.status(200).send(singleMessage);
-  } catch (error) {}
+  } catch (error) {
+    next (error)
+  }
 };
 
 export const getMessagesList = async (
@@ -65,5 +71,7 @@ export const getMessagesList = async (
       req.isEmployee ? { employeeId: req.userId } : { recruitorId: req.userId }
     );
     res.status(200).send(allMessagesList)
-  } catch (error) {}
+  } catch (error) {
+    next(error)
+  }
 };

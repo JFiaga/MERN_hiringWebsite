@@ -7,8 +7,9 @@ import userRoute from "./routes/user.route.ts";
 import recruiterAuthRoute from './routes/authRecruiter.route.ts'
 import profileRoute from "./routes/profile.route.ts";
 import experiencesRoute from "./routes/experiences.route.ts";
-import messagesListRoute from "./routes/messagesList.route.ts";
 import authRoute from "./routes/auth.route.ts";
+import messagesListRoute from "./routes/messagesList.route.ts";
+import messageDiscussionRoute from "./routes/messageDiscussion.route.ts";
 import cookieParser from "cookie-parser";
 import { errorHandler } from "./middleware/errorHandler.ts";
 
@@ -44,6 +45,7 @@ app.use("/api/authRecruiter", recruiterAuthRoute);
 app.use("/api/profile", profileRoute);
 app.use("/api/experiences", experiencesRoute);
 app.use("/api/messagesList", messagesListRoute);
+app.use("/api/messageDiscussion", messageDiscussionRoute);
 
 
 app.use(errorHandler)
