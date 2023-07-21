@@ -5,30 +5,30 @@ const MessageSchema = new Schema<IMessage>(
   {
     conversationId: {
       type: String,
-      required: true,
+      // required: true,
       unique: true,
     },
-    // userId
+
     recruitorId: {
       type: String,
-      required: true,
+      // required: true,
     },
     employeeId: {
       type: String,
-      required: true,
+      // required: true,
     },
     readByRecruitor: {
       type: Boolean,
-      required: true,
+      // required: true,
     },
     readByEmployee: {
       type: Boolean,
-      required: true,
+      // required: true,
     },
-    lastMessage: {
-      type: String,
-      required: false,
-    },
+    // lastMessage: {
+    //   type: String,
+    //   // required: false,
+    // },
   },
   {
     timestamps: true,
