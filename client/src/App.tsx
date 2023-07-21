@@ -1,8 +1,9 @@
 import { Navbar } from "./components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Main, Gigs, Profile, Login, RegisterDeveloper, ChooseProfile, RegisterRecruiter } from "./pages";
-import Messages from "./pages/Messages";
+import { Main, Gigs, Profile, Login, RegisterDeveloper, ChooseProfile, RegisterRecruiter, MessagesList } from "./pages";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 
 function App() {
   const queryClient = new QueryClient();
@@ -11,20 +12,18 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Navbar />
-   
-  
-        <Routes>
+          <Routes>
           <Route path="/chooseProfile" element={<ChooseProfile />} />
           <Route path="/registerDeveloper" element={<RegisterDeveloper />} />
           <Route path="/registerRecruiter" element={<RegisterRecruiter />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Main />} />
-          <Route path="/gigs/category=backend" element={<Gigs />} />
+          <Route path="/gigs/category=backend" element={<Gigs />} /> 
           <Route
-            path={`gigs/category=backend/:id`}
+            path="/gigs/category=backend/:id"
             element={<Profile />}
           />
-          <Route path="message" element={<Messages />} />
+          <Route path="/messagesList" element={<MessagesList />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

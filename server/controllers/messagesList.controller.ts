@@ -1,24 +1,26 @@
 import { NextFunction, Request, Response } from "express";
-import { Message } from "../models/message.model.ts";
-import { Query } from "express-serve-static-core";
+import { MessagesList } from "../models/messagesList.model.js";
+
 
 export const createMessage = async (
   req: any,
   res: Response,
   next: NextFunction
 ) => {
-  const newMessage = new Message({
+  const newMessagesList = new MessagesList({
     conversationId: req.isEmployee ? req.userId + req.body.to : req.body.to + req.userId,
     employeeId: req.isEmployee ? req.userId : req.body.to,
     recruitorId: req.isEmployee ? req.body.to : req.userId,
     readByEmployee: req.isEmployee,
     readByRecruitor: !req.isEmployee,
+    lastMessage:req.body.lastMessage
   });
-  
+
 
   try {
-    const savedMessage = await newMessage.save();
+    const savedMessage = await newMessagesList.save();
     res.status(200).send(savedMessage);
+    
   } catch (error) {}
 };
 
@@ -28,12 +30,12 @@ export const updatedMessage = async (
   next: NextFunction
 ) => {
   try {
-    const updatedMessage = await Message.findOneAndUpdate(
+    const updatedMessage = await MessagesList.findOneAndUpdate(
       { id: req.params.id },
       {
         $set: {
-          readByEmployee: req.isEmployee,
-          readByRecruitor: !req.isEmployee,
+          readByEmployee: true,
+          readByRecruitor: true,
         },
       },
       { new: true }
@@ -48,20 +50,20 @@ export const getSingleMessage = async (
   next: NextFunction
 ) => {
   try {
-    const singleMessage = await Message.findOne({ id: req.params.id });
+    const singleMessage = await MessagesList.findOne({ id: req.params.id });
     res.status(200).send(singleMessage);
   } catch (error) {}
 };
 
-export const getMessages = async (
+export const getMessagesList = async (
   req: any,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const allMessages = await Message.find(
+    const allMessagesList = await MessagesList.find(
       req.isEmployee ? { employeeId: req.userId } : { recruitorId: req.userId }
     );
-    res.status(200).send(allMessages)
+    res.status(200).send(allMessagesList)
   } catch (error) {}
 };

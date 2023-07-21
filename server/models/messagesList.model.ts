@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { IMessage } from "../interfaces/message.interface";
+import {  IMessagesList } from "../interfaces/messagesList.interface";
 
-const MessageSchema = new Schema<IMessage>(
+const MessagesListSchema = new Schema<IMessagesList>(
   {
     conversationId: {
       type: String,
@@ -25,10 +25,10 @@ const MessageSchema = new Schema<IMessage>(
       type: Boolean,
       // required: true,
     },
-    // lastMessage: {
-    //   type: String,
-    //   // required: false,
-    // },
+    lastMessage: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,
@@ -36,4 +36,4 @@ const MessageSchema = new Schema<IMessage>(
 );
 
 
-export const Message = model<IMessage>("Message", MessageSchema)
+export const MessagesList = model<IMessagesList>("MessagesList", MessagesListSchema)

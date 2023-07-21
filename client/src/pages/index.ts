@@ -6,3 +6,5 @@ export {default as Login} from './Login'
 export {default as RegisterDeveloper} from './RegisterDeveloper'
 export {default as RegisterRecruiter} from './RegisterRecruiter'
 export {default as ChooseProfile} from './ChooseProfile'
+
+export {default as MessagesList} from './MessagesList'
