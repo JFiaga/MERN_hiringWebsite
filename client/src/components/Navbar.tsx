@@ -1,10 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
+
 import { NoAvatar, recruiter } from "../assets";
 import { Link, useLocation } from "react-router-dom";
 import { newRequest } from "../utils/newRequest";
 import { AxiosError } from "axios";
+import { MdClose } from "react-icons/md";
+import { AiOutlineArrowDown } from "react-icons/ai";
+import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 
 // interface ICurrentUser {
 //   id: number;
@@ -12,17 +16,30 @@ import { AxiosError } from "axios";
 //   isDevelopper: boolean;
 // }
 const Navbar = () => {
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string);
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [toggleProfileMenu, setToggleProfileDetail] = useState(false);
+  const [desktopMenu, setDesktopMenu] = useState(false);
 
   const { pathname } = useLocation();
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
+
+  const closeMenu = () => {
+    setToggleMenu((toggleMenu) => toggleMenu= false)
+  }
+
+  const openMenu = () => {
+    setToggleMenu((toggleMenu) => toggleMenu= true)
+  }
+
+  const toggleDesktopMenu = () => {
+    setDesktopMenu(val => !val)
+  }
 
   const handleLogout = async () => {
     try {
       await newRequest.post("auth/logout");
-      localStorage.removeItem("currentUser");
+      localStorage.removeItem("currentUserJhire");
       window.location.reload();
     } catch (error: any) {
       if (error instanceof AxiosError) {
@@ -40,99 +57,129 @@ const Navbar = () => {
     return <></>;
   } else {
     return (
-      <nav className="bg-primaryDark flex justify-center w-[100vw] ">
-        {/* Mobile Nav */}
-        <div className=" bg-white  flex justify-between w-full p-2 py-4 text-black items-center relative sm:hidden">
-          <div>
-            <FiMenu
-              onClick={() => setToggleMenu((toggleMenu) => !toggleMenu)}
-              className="cursor-pointer"
+      <nav className="bg-white sm:bg-primaryDark flex justify-center w-[100vw]  py-2">
+
+        {/* Mobile Nav Start*/}
+        <div className=" bg-white  flex justify-between w-full px-4 py-4 text-black items-center relative sm:hidden">
+        
+            {/* Burger menu if we are login */}
+          {currentUser && <div onClick={()=>{}}>
+          <FiMenu
+              onClick={openMenu}
+              className="cursor-pointer text-xl hover:text-gray-600"
             />
-          </div>
-
-          <Link to="/">
-            <span className="cursor-pointer">logo</span>
-          </Link>
-
-          <span className="cursor-pointer">Join</span>
-
-          {/* Sidebar */}
-          <div
-            className={`absolute h-[100vh] w-full bg-black/40 transition-all  duration-100 top-0 left-0 ${
+            <div
+            className={`absolute min-h-[100vh]  w-full bg-black/40 transition-all  duration-100 top-0 left-0 ${
               !toggleMenu && "hidden"
             } md:hidden`}
-            onClick={(e) => {
+            onClick={() => {
               setToggleMenu((toggleMenu) => (toggleMenu = false));
             }}
           ></div>
           <div
-            className={`w-3/4 bg-white flex flex-col p-4 space-y-10  absolute h-[100vh] w-fulltransition-all duration-300  top-0 ${
+            className={`w-3/4 bg-white z-[10000] flex flex-col p-4 space-y-10  absolute h-[100vh] w-fulltransition-all duration-300  top-0 ${
               toggleMenu ? "left-0" : "-left-[2000px]"
             } md:hidden`}
           >
-            <button className="bg-g w-fit px-10 py-2 rounded-md bg-primary text-white font-semibold hover:bg-transparent border hover:border-primary hover:text-primary transition-all duration-300">
-              Join Us
-            </button>
-            <div className=" flex flex-col space-y-4 w-full ">
-              <a href="#">Sign In</a>
-              <a href="#">Browse Categories</a>
-              <a href="#">Explore</a>
-              <a href="#" className="text-primary font-semibold">
-                Jhire Business
-              </a>
+      
+            <div className=" flex flex-col space-y-4 w-full capitalize ">
+              <span onClick={closeMenu}><MdClose className="hover:text-red-600 text-2xl cursor-pointer"/></span>
+              <span className="text-xl font-medium">Welcome, <span className="font-bold  text-primary">{currentUser.lastName}</span></span>
+              <Link to="/" className="hover:text-primary transition-all duration-500 font-medium">Home</Link>
+              <Link to="/myDashboard" className="hover:text-primary transition-all duration-500 font-medium">My Profile</Link>
+              <Link to="/messages" className="hover:text-primary transition-all duration-500 font-medium">Messages</Link>
+              <Link to="/category" className="hover:text-primary transition-all duration-500 font-medium">Browse Categories</Link>
+              <Link to="/commingSoon" className="hover:text-primary transition-all duration-500 font-medium">get certified</Link>
+              <Link to="/commingSoon" className="hover:text-primary transition-all duration-500 font-medium">Comming soon</Link>
+                <Link onClick={handleLogout} to="/" className="text-primary transition-all duration-500 font-medium">Logout</Link>
             </div>
 
-            <div className="flex flex-col  space-y-4">
-              <span className="font-bold">
-                General <hr className="w-3/4  bg-black/30 h-[2px]" />
-              </span>
-              <a href="#">Home</a>
-              <a href="#">English</a>
-              <a href="#">$ USD</a>
-              <a href="#"> Open In App</a>
-            </div>
+           
           </div>
         </div>
+        }
+            {/* Burger menu end*/}
+
+
+
+          <Link to="/">
+            <span className="cursor-pointer">Logo</span>
+          </Link>
+
+          {/* Register and login btn if we are not login */}
+          {!currentUser && (
+          <div className="flex space-x-2 items-center">
+            <Link
+              to="/chooseProfile"
+              className="w-fit px-4 py-1 rounded-md bg-primary text-white font-semibold hover:bg-transparent border border-transparent hover:border-primary hover:text-primary transition-all duration-300"
+            >
+              Register
+            </Link>
+
+            <Link
+              to="/login"
+              className="font-medium text-lg hover:text-primary"
+            >
+              Login
+            </Link>
+          </div>)}
+
+
+{/* Image if we are login */}
+          {currentUser && (
+                <div className=" h-[50px] w-[50px] overflow-hidden  bg-white  relative  cursor-pointer  rounded-full">
+                  <img
+                    src={
+                      currentUser.isEmployee
+                        ? currentUser.img || NoAvatar
+                        : recruiter
+                    }
+                    className={`object-cover h-full w-full ${
+                      !currentUser.isEmployee && "scale-150"
+                    }`}
+                    alt=""
+                  />
+                {currentUser.firstName}
+                </div>
+            )}
+        </div>
+        {/* Mobile Nav End*/}
+
+        
 
         {/* Tablet And Desktop Navigation */}
 
-        <div className="bg-primaryDark hidden sm:flex max-w-[1400px] px-4 md:px-8 justify-between w-full py-4 text-white items-center relative">
+        <div className="bg-primaryDark  hidden sm:flex max-w-[1400px] px-4 md:px-8 justify-between w-full py-4 text-white text-xl items-center relative">
           <div className="flex items-center justify-center">
-            <FiMenu className="mr-4 md:hidden" />
+         
             <Link to="/">
-              <span className="cursor-pointer">logo</span>
+              <span className="cursor-pointer">Logo</span>
             </Link>
           </div>
 
           <div className=" flex space-x-4 items-center">
-            <div className="space-x-4 hidden md:flex">
-              <a href="#">Business</a>
-              <a href="#">Explore</a>
-              <a href="#">Become a seller</a>
-            </div>
-            {!currentUser && (
-              <div>
-                <Link to="/login" className="mr-4">
-                  Sign In
-                </Link>
-                <a
-                  href="#"
-                  className="border border-white px-4 py-1 rounded-sm"
-                >
-                  <button>Join</button>
-                </a>
-              </div>
-            )}
+          {!currentUser && (
+          <div className="flex space-x-2 items-center">
+            <Link
+              to="/chooseProfile"
+              className="w-fit px-4 py-1 rounded-md bg-primary text-white font-semibold hover:bg-transparent border border-transparent hover:border-primary  transition-all duration-300"
+            >
+              Register
+            </Link>
+
+            <Link
+              to="/login"
+              className="font-medium text-lg hover:text-primary"
+            >
+              Login
+            </Link>
+          </div>)}
 
             {/* IMAGE PROFILE */}
             {currentUser && (
               <div
-                onClick={() =>
-                  setToggleProfileDetail(
-                    (toggleProfileMenu) => !toggleProfileMenu
-                  )
-                }
-                className="h-[50px] w-[50px] bg-white rounded-full relative  cursor-pointer"
+              onClick={toggleDesktopMenu} 
+                className="flex flex-col items-center relative"
               >
                 <div className=" h-[50px] w-[50px] overflow-hidden  rounded-full">
                   <img
@@ -147,33 +194,18 @@ const Navbar = () => {
                     alt=""
                   />
                 </div>
-                {currentUser.username}
+                    <div className="absolute top-[100%] animate-pulse">{desktopMenu ? <BiSolidUpArrow/>:<BiSolidDownArrow/>}</div>
 
-                {toggleProfileMenu && (
-                  <div className="absolute top-[100%] bg-red h-50 w-50  bg-white text-black/80 rounded-lg font-medium w-[200px] text-center py-2 -right-[100%]">
-                    <ul className="flex flex-col">
-                      {currentUser.isEmployee && (
-                        <>
-                          <Link to="/myGigs" className="text-2xl">
-                            gig
-                          </Link>
-                          <Link to="/addNewGigs" className="text-2xl">
-                            New Gigs
-                          </Link>
-                        </>
-                      )}
-                      <Link to="/orders" className="text-2xl">
-                        Orders
-                      </Link>
-                      <Link to="/messages" className="text-2xl">
-                        Messages
-                      </Link>
-                      <Link onClick={handleLogout} to="/" className="text-2xl">
-                        Logout
-                      </Link>
-                    </ul>
-                  </div>
-                )}
+                      {/* Dropdown Menu */}
+                    <div className={` absolute w-[100vw] sm:max-w-[500px] px-4 py-4 flex flex-col bg-primaryDark rounded-md items-center z-[1000] transition-all duration-300 right-0 ${desktopMenu ? 'top-[145%]':'-top-[1000%]'}`}>
+                    <Link to="/" className="hover:text-primary transition-all duration-500 font-medium">Home</Link>
+              <Link to="/myDashboard" className="hover:text-primary transition-all duration-500 font-medium">My Profile</Link>
+              <Link to="/messages" className="hover:text-primary transition-all duration-500 font-medium">Messages</Link>
+              <Link to="/category" className="hover:text-primary transition-all duration-500 font-medium">Browse Categories</Link>
+              <Link to="/commingSoon" className="hover:text-primary transition-all duration-500 font-medium">get certified</Link>
+              <Link to="/commingSoon" className="hover:text-primary transition-all duration-500 font-medium">Comming soon</Link>
+                <Link onClick={handleLogout} to="/" className="text-primary">Logout</Link>
+                    </div>
               </div>
             )}
           </div>

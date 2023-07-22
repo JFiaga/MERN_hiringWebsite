@@ -17,7 +17,7 @@ const Login = (props: Props) => {
     try {
       setErrorMsg("")
       const res = await newRequest.post("/auth/login", { email, password });
-      localStorage.setItem("currentUser", JSON.stringify(res.data));
+      localStorage.setItem("currentUserJhire", JSON.stringify(res.data));
       window.location.pathname = '/'
     } catch (err: any) {
       if (error instanceof AxiosError) {
