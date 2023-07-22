@@ -39,7 +39,7 @@ const connect = async () => {
 
 // router
 app.get("/", (req: Request, res: Response) => {
-  res.sendStatus(200);
+  res.json("Jhire Api");
 });
 
 
