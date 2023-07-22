@@ -5,7 +5,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec ts-node server.ts --project ./tsconfig.json"
+    "start": "nodemon --exec ts-node ./src/server.ts --project ./tsconfig.json"
   },
   "author": "Jayden Fiaga",
   "license": "ISC",
