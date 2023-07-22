@@ -34,7 +34,7 @@ const userSchema = new Schema<IUser>(
     },
     cv: {
       type: String,
-      required: true,
+      // required: true,
     },
     city: {
       type: String,
@@ -50,19 +50,23 @@ const userSchema = new Schema<IUser>(
     },
     github: {
       type: String,
-      required: true,
+      // required: true,
     },
     linkedin: {
       type: String,
-      required: true,
+      // required: true,
     },
     twitter: {
       type: String,
-      required:false
+      required: false,
     },
     isEmployee: {
       type: Boolean,
       default: true,
+    },
+    isCertified: {
+      type: Boolean,
+      default: false,
     },
   },
   {

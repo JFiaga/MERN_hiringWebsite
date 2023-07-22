@@ -102,7 +102,7 @@ const RegisterDeveloper = () => {
               Nom
             </label>
             <input
-              required
+              // required
               onChange={handleChange}
               type="text"
               id="firstName"
@@ -116,7 +116,7 @@ const RegisterDeveloper = () => {
               Prenom
             </label>
             <input
-              required
+              // required
               onChange={handleChange}
               type="text"
               id="lastName"
@@ -130,7 +130,7 @@ const RegisterDeveloper = () => {
               email
             </label>
             <input
-              required
+              // required
               onChange={handleChange}
               type="email"
               id="email"
@@ -144,7 +144,7 @@ const RegisterDeveloper = () => {
               password
             </label>
             <input
-              required
+              // required
               onChange={handleChange}
               type="password"
               id="password"
@@ -158,7 +158,7 @@ const RegisterDeveloper = () => {
               Photo de profile
             </label>
             <input
-              required
+              // required
               type="file"
               id="profilePic"
               name="profilePic"
@@ -172,7 +172,7 @@ const RegisterDeveloper = () => {
               Votre CV
             </label>
             <input
-              required
+              // required
               type="file"
               id="profilePic"
               name="profilePic"
@@ -185,7 +185,7 @@ const RegisterDeveloper = () => {
             choisissez votre specialisation
 
             <select
-              required
+              // required
               className="font-medium text-xl "
               name="specialisation"
               onChange={handleChange}
@@ -231,7 +231,7 @@ const RegisterDeveloper = () => {
               Lien de votre profil Linkedin*
             </label>
             <input
-              required
+              // required
               onChange={handleChange}
               id="linkedin"
               className="outline-none p-2 rounded border"
@@ -244,6 +244,7 @@ const RegisterDeveloper = () => {
               Lien de votre profil Twitter
             </label>
             <input
+            type="url"
               onChange={handleChange}
               id="twitter"
               className="outline-none p-2 rounded border"
@@ -256,7 +257,7 @@ const RegisterDeveloper = () => {
               Description
             </label>
             <input
-              required
+              // required
               onChange={handleChange}
               id="desc"
               className="outline-none p-2 rounded border"

@@ -8,7 +8,7 @@ type Props = {}
 
 const GigsCard = (props: Props) => {
 
-  const id  = '64b27ab3880e6c851e762229'
+  const id  = '64bb9639e00ca636e63e7ce8'
 
   const isCertified = true
   return (

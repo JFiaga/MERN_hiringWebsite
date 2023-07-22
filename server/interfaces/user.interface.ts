@@ -16,5 +16,6 @@ export interface IUser extends Document {
     twitter: string;
     specialisation:string,
     isEmployee: boolean;
+    isCertified:boolean
   }
 

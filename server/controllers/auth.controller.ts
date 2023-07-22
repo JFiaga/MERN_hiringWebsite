@@ -51,8 +51,6 @@ export const login = async (
         return next(new BaseError("Wrong email or password", 400, true));
       }
 
-      const secret = "process.env.JWT_SECRET";
-
       const token = jwt.sign(
         {
           id: recruiter!._id,
@@ -60,7 +58,7 @@ export const login = async (
 
           //we will use the isEmployee to verify some part of application like experiences
         },
-        secret
+        process.env["JWT_SECRET"] as Secret
       );
 
       const { password, ...other } = recruiter!._doc;
@@ -77,7 +75,7 @@ export const login = async (
         return next(new BaseError("Wrong email or password", 400, true));
       }
 
-      const secret = "process.env.JWT_SECRET";
+      
       const token = jwt.sign(
         {
           id: user._id,
@@ -85,7 +83,7 @@ export const login = async (
 
           //we will use the isEmployee to verify some part of application like experiences
         },
-        secret
+        process.env["JWT_SECRET"] as Secret
       );
       const { password, ...other } = user._doc;
       res
