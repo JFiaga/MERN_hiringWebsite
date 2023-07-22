@@ -22,4 +22,7 @@ export {default as recruiter} from './recruiter.jpg'
 
 export {default as NoAvatar} from './noAvatar.png'
 
+export {default as registerBg} from './registerBg.png'
+export {default as registerBg2} from './registerBg2.jpg'
+
 

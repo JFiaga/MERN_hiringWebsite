@@ -54,7 +54,7 @@ const Navbar = () => {
     pathname === "/login" ||
     pathname === "/chooseProfile"
   ) {
-    return <></>;
+    return null;
   } else {
     return (
       <nav className="bg-white sm:bg-primaryDark flex justify-center w-[100vw]  py-2">

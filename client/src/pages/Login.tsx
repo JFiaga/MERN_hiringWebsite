@@ -37,8 +37,8 @@ const Login = (props: Props) => {
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-primary-600/40 ring  ring-primary lg:max-w-xl">
-        <h1 className="text-3xl font-semibold text-center text-primary underline uppercase decoration-wavy">
-          Sign in
+        <h1 className="text-3xl font-semibold text-center text-primary underline  decoration-wavy">
+          Welcome Back
         </h1>
         <form onSubmit={handleSubmit} className="mt-6">
           <div className="mb-2">
@@ -62,16 +62,18 @@ const Login = (props: Props) => {
             >
               Password
             </label>
-            <input
+           <div>
+           <input
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               required
               className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-primary/70 focus:ring-primary/70 focus:outline-none focus:ring focus:ring-opacity-40"
             />
+           </div>
           </div>
-          <a href="#d" className="text-xs text-primary hover:underline">
+          {/* <a href="#d" className="text-xs text-primary hover:underline">
             Forget Password?
-          </a>
+          </a> */}
           <div className="mt-6">
             <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-primary rounded-md hover:bg-primary focus:outline-none focus:bg-primary">
               Login
@@ -83,7 +85,7 @@ const Login = (props: Props) => {
           {" "}
           Don't have an account?{" "}
           <Link
-            to="/register"
+            to="/chooseProfile"
             className="font-medium text-primary hover:underline"
           >
             Sign up
