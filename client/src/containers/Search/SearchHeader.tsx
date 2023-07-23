@@ -1,16 +1,18 @@
 import React from "react";
 import { FiHome } from "react-icons/fi";
 import { laravelLogo } from "../../assets";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
 const GigsHeader = (props: Props) => {
   return (
-    <header className="text-white mt-10 w-[100vw] py-10 px-8">
-      <div className="w-full max-w-[1400px] flex flex-col items-start space-y-5">
+    
+    <header className="text-white mt-10 w-[100vw] py-10 px-8 justify-center">
+      <div className="w-full max-w-[1400px] flex flex-col items-start justify-start space-y-5">
         <div className=" flex items-center justify-center space-x-4 text-white/80">
-          <FiHome  className="text-primary"/>
-          <span>/ BackEnd</span>
+          <Link to ='/'><FiHome  className="text-primary text-xl"/></Link>
+          <span>BackEnd</span>
         </div>
 
         <div className="flex flex-col  ">

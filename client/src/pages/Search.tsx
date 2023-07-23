@@ -6,10 +6,10 @@ type Props = {}
 
 const Gigs = (props: Props) => {
   return (
-    <div className='text-white bg-black w-[100vw]'>
+    <section className='min-h-[100vh] bg-black'>
           <GigsHeader/>
           <GigsMain/>
-    </div>
+    </section>
   )
 }
 

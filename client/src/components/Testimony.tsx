@@ -15,8 +15,17 @@ const Testimony = ({img,
     roleInCompany,
     message}: Props) => {
   return (
-    <div className="flex flex-col bg-black rounded-md   max-w-[500px]    cursor-pointer h-[430px] w-[90%] sm:max-w-[500px]  relative overflow-hidden mx-2 mb-4 ">
-           <div className="px-4 py-16 rounded-t-lg sm:px-8 md:px-12 ">
+    <div className="flex flex-col bg-black rounded-md   max-w-[500px]     h-[430px] w-[90%] sm:max-w-[500px]  relative overflow-hidden mx-2 mb-4 ">
+             <div className="flex flex-col items-center justify-center p-8 rounded-md text-white bg-primary">
+             <img
+             src={img}
+               alt=""
+               className="w-20 h-20 mb-2 -mt-12 bg-center bg-cover object-cover rounded-full"
+             />
+             <p className="text-xl font-semibold ">{name} - {roleInCompany}</p>
+             <p className="text-sm uppercase text-black font-medium">{companyName}</p>
+           </div>
+           <div className="px-4  rounded-t-lg sm:px-8  ">
              <p className="relative px-6 py-1 text-lg italic text-center dark:text-gray-100">
                <svg
                  xmlns="http://www.w3.org/2000/svg"
@@ -39,15 +48,7 @@ const Testimony = ({img,
                </svg>
              </p>
            </div>
-           <div className="flex flex-col items-center justify-center p-8 rounded-md text-white bg-primary">
-             <img
-             src={img}
-               alt=""
-               className="w-20 h-20 mb-2 -mt-16 bg-center bg-cover object-cover rounded-full"
-             />
-             <p className="text-xl font-semibold ">{name} - {roleInCompany}</p>
-             <p className="text-sm uppercase text-black font-medium">{companyName}</p>
-           </div>
+        
          </div>
     
   );

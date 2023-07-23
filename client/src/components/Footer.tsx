@@ -1,5 +1,6 @@
 import { Footer } from 'flowbite-react';
 import { BsDribbble,  BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 export default function FooterSitemapLinks() {
   return (
@@ -107,11 +108,7 @@ export default function FooterSitemapLinks() {
     </div>
   
 
-    <div
-      className="p-4 text-center">
-
-      <span className="text-white text-lg font-bold"> JHIre</span>
-    </div>
+      <Link to='/' className="text-white text-xl font-bold my-2"> JHIre</Link>
   </footer>
   )
   }

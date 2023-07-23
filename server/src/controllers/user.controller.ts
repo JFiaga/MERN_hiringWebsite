@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response, request } from "express";
 import { User } from "../models/user.model.ts";
 import { BaseError } from "../utils/error.ts";
 
@@ -25,6 +25,19 @@ export const getUserDataForProfile = async (req:Request, res:Response, next:Next
         else{
           res.status(200).send(user)
         }
+  } catch (error) {
+    next (error)
+  }
+}
+export const getAllUser = async (req:Request, res:Response, next:NextFunction) => {
+  try {
+        const user = await User.find()
+        if (!user) res.status(404).send('no user found')
+
+        else{
+          res.status(200).send(user)
+        }
+        
   } catch (error) {
     next (error)
   }
