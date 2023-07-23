@@ -1,4 +1,4 @@
-import { Navbar } from "./components";
+import { Footer, Navbar } from "./components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Main, Gigs, Profile, Login, RegisterDeveloper, ChooseProfile, RegisterRecruiter, MessagesList, MessageDiscussion } from "./pages";
 
@@ -30,6 +30,7 @@ function App() {
           <Route path="/messagesList" element={<MessagesList />} />
           <Route path="/messagesList/:id" element={<MessageDiscussion />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </QueryClientProvider>
   );

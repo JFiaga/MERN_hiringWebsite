@@ -24,12 +24,7 @@ const array = [
 ];
 
 const MainCategory = (props: Props) => {
-  const [hover, setHover] = useState(false);
 
-  function hoverTarget(val: boolean) {
-    val = true;
-    return undefined;
-  }
 
   //mettre un parallax
   //data scientist, data analyst, web3.0, cybersecurity developer, network engineer, software engineer, database administrator, cloud system engineer, wordpress developer, Unreal engine developper

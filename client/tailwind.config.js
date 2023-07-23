@@ -15,10 +15,12 @@ module.exports = {
     },
     borderRadius:{
       sm:'5px'
-    }
+    },
+    
   }
   },
-  plugins: [],
+ 
 };
 
 
+ 
