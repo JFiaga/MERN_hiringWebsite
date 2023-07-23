@@ -4,6 +4,7 @@ import { registerBg } from "../assets";
 import { MdFormatAlignLeft } from "react-icons/md";
 import { FaHandshake } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
+import { Navigate } from "react-router-dom";
 
 const RegisterRecruiter = () => {
   const [userData, setUserData] = useState({
@@ -34,8 +35,13 @@ const RegisterRecruiter = () => {
       console.log(err);
     }
   };
+  const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string)
 
-  return (
+    
+   
+ return currentUser ? (
+    <Navigate to="/" />
+  ) : (
     <section className="text-black h-[100vh] w-[100vw] bg-green-500 flex flex-col justify-center items-center relative overflow-hidden ">
       <img
         src={registerBg}

@@ -31,7 +31,7 @@ const ProfileMain = () => {
 
   const deleteExperience = () => {
     try {
-      newRequest.delete(`/experiences/unique/${'64b6cde2573bb10a40ee10ad'}`)
+      newRequest.delete(`/experiences/unique/${id}`)
       console.log('deleted')
       window.location.reload()
     } catch (error) {

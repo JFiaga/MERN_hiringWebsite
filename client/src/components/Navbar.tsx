@@ -39,7 +39,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await newRequest.post("auth/logout");
-      localStorage.removeItem("currentUserJhire");
+      localStorage.removeItem("currentUserJhire"); 
       window.location.reload();
     } catch (error: any) {
       if (error instanceof AxiosError) {
@@ -181,7 +181,7 @@ const Navbar = () => {
               onClick={toggleDesktopMenu} 
                 className="flex flex-col items-center relative"
               >
-                <div className=" h-[50px] w-[50px] overflow-hidden  rounded-full">
+                <div className=" h-[50px] w-[50px] overflow-hidden  rounded-full cursor-pointer">
                   <img
                     src={
                       currentUser.isEmployee

@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { newRequest } from "../utils/newRequest";
 
 type Props = {};
@@ -34,7 +34,12 @@ const Login = (props: Props) => {
 
     console.log("submitted");
   }
-  return (
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string)
+
+  return currentUser ? (
+     <Navigate to="/" />
+   ) : (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-primary-600/40 ring  ring-primary lg:max-w-xl">
         <h1 className="text-3xl font-semibold text-center text-primary underline  decoration-wavy">

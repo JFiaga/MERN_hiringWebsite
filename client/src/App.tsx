@@ -23,6 +23,10 @@ function App() {
             path="/gigs/category=backend/:id"
             element={<Profile />}
           />
+          <Route
+            path="/profile/:id"
+            element={<Profile />}
+          />
           <Route path="/messagesList" element={<MessagesList />} />
           <Route path="/messagesList/:id" element={<MessageDiscussion />} />
         </Routes>

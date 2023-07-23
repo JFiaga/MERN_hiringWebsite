@@ -31,3 +31,7 @@ body {
   z-index: 1000;
   transform: translate(-30%,-50%);
 }
+
+.customRadius{
+  border-radius: 20% 80% 32% 68% / 39% 89% 11% 61%  ;
+}

@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { BiCodeAlt } from "react-icons/bi";
 import { MdOutlineManageSearch } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 
 
 const ChooseProfile = () => {
   const [chooseLink, setChooseLink] = useState("");
-  
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string)
    
-  return (
+ return currentUser ? (
+    <Navigate to="/" />
+  ) : (
     <section className=" flex  w-[100vw] h-[100vh]  md:px-8 px-4 pt-16 pb-10 text-black justify-center bg-[#f1f1f1] ">
       <div className="max-w-[1400px] w-full flex flex-col items-center justify-center h-[80vh]  py-4 space-y-4 text-center">
         <div 

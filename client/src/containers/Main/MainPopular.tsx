@@ -1,66 +1,63 @@
-import { Link } from "react-router-dom";
-import { Saxo, laravel } from "../../assets/index";
+
+import { aiImg, backendImg, embeddedImg, frontendImg, fullstackImg, unityImg } from "../../assets/index";
 import { CardPopular } from "../../components";
-import Slider from "infinite-react-carousel";
+
 
 // type Props = {};
 
 const MainPopular = () => {
   const cardDesc = [
     {
-      title: "Backend developper ",
-      desc: "PHP - Symphony",
-      img: Saxo,
+      title: "Backend ",
+      // desc: "PHP - Symphony",
+      img: backendImg,
     },
     {
-      title: "Backend developper ",
-      desc: "PHP - Laravel",
-      img: laravel,
+      title: "Frontend ",
+      img: frontendImg,
     },
     {
-      title: "Backend developper ",
-      desc: "PHP - Symphony",
-      img: Saxo,
+      title: "Fullstack ",
+      img: fullstackImg
     },
     {
-      title: "Backend developper ",
-      desc: "PHP - Laravel",
-      img: laravel,
+      title: "Embedded ",
+
+      img: embeddedImg
     },
     {
-      title: "Backend developper ",
-      desc: "PHP - Symphony",
-      img: Saxo,
+      title: "Artificial Intelligence ",
+      img: aiImg
     },
     {
-      title: "Backend developper ",
-      desc: "PHP - Laravel",
-      img: laravel,
+      title: "Unity ",
+   
+      img: unityImg
+
     },
   ];
 
   return (
     <section className=" flex  w-[100vw]  md:px-8 px-4 pt-16 pb-10 text-white justify-center ">
       <div className="max-w-[1400px] w-full flex flex-col items-center justify-center">
-      <h2 className="font-semibold text-xl md:text-3xl mb-10 w-[90%]  max-w-[900px] text-center self-center">
-      Popular Services
+      <h2 className="font-semibold text-3xl lg:text-4xl 2xl:text-5xl mb-10 w-[90%]   max-w-[900px] text-center self-center text-black ">
+    
+      Popular <span className="text-primary">Services</span>
         </h2>
 
-        <Slider
-          slidesToShow={5}
-          arrowScroll={5}
-          className={`carousel relative w-full max-w-[1400px]`}
-        >
-          {cardDesc.map((card, index) => (
+      
+         <div className="flex flex-col sm:flex-row flex-wrap w-full  sm:justify-center  items-center lg:justify-center ">
+         {cardDesc.map((card, index) => (
             <CardPopular
               key={index}
               title={card.title}
-              desc={card.desc}
+              // desc={card.desc}
               link={"/gigs/category=backend"}
               img={card.img}
             />
           ))}
-        </Slider>
+         </div>
+       
       </div>
     </section>
   );
