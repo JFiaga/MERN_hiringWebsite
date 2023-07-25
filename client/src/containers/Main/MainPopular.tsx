@@ -15,7 +15,7 @@ const MainPopular = () => {
         </h2>
 
         <div className="flex flex-col sm:flex-row flex-wrap w-full  sm:justify-center  items-center lg:justify-center ">
-          {allCategory.map((card, index) => (
+          {allCategory.slice(0,6).map((card, index) => (
             <CardCategory
               key={index}
               title={card.title}

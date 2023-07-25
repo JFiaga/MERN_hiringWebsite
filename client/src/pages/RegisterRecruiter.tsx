@@ -42,14 +42,14 @@ const RegisterRecruiter = () => {
  return currentUser ? (
     <Navigate to="/" />
   ) : (
-    <section className="text-black h-[100vh] w-[100vw] bg-green-500 flex flex-col justify-center items-center relative overflow-hidden ">
+    <section className="text-black min-h-[100vh] w-[100vw] bg-green-500 flex flex-col justify-center items-center relative overflow-hidden ">
       <img
         src={registerBg}
         className="w-[100vw] h-[100vh] object-cover absolute"
         alt=""
       />
       <div className="bg-white/50 w-full h-full absolute backdrop-blur-[20px]"></div>
-      <div className="w-full xl:w-[95%] max-w-[1700px] rounded-lg flex  items-center  space-y-5 z-[1000] bg-white h-[100vh] md:h-[70vh]">
+      <div className="w-full xl:w-[95%] max-w-[1700px] rounded-lg flex  items-center  space-y-5 z-[1000] bg-white h-[100vh] md:min-h-[70vh] md:max-h-[95vh]">
 
         {/* Green Block */}
         <div className="hidden xl:flex flex-col space-y-5 items-center justify-center h-full bg-primary w-[30%] 2xl:w-[40%] rounded-tl-lg rounded-bl-lg text-white ">

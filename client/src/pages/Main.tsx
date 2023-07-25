@@ -9,10 +9,11 @@ function Main() {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string)
 
+  // return  currentUser && currentUser.isEmployee ? (
+  //   <Navigate to={`/profile/${currentUser._id}`} />
+  // ) : (
 
-  return  currentUser && currentUser.isEmployee ? (
-    <Navigate to={`/profile/:${currentUser._id}`} />
-  ) : (
+  return  (
     <>
     <MainHeader/>
     <MainPopular/>

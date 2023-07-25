@@ -4,8 +4,8 @@ import { AddExperience } from '../components'
 
 type Props = {}
 
-const NewGigs = (props: Props) => {
-  
+const NewGigs = () => {
+
   return (
     <div className='bg-white relative h-full'>
       <AddExperience />

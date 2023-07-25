@@ -3,12 +3,15 @@ import { LastExperiencesCard } from "../../components";
 import { FiAnchor } from "react-icons/fi";
 import { newRequest } from "../../utils/newRequest";
 import { Link, useParams } from "react-router-dom";
-import { MdDelete } from "react-icons/md";
+import { MdAdd, MdDelete } from "react-icons/md";
+import { GrAdd } from "react-icons/gr";
 
 const ProfileMain = () => {
   const { id } = useParams();
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
+  const currentUser = JSON.parse(
+    localStorage.getItem("currentUserJhire") as string
+  );
 
   const { isLoading, data } = useQuery({
     queryKey: ["experiences"],
@@ -29,15 +32,7 @@ const ProfileMain = () => {
       }),
   });
 
-  const deleteExperience = () => {
-    try {
-      newRequest.delete(`/experiences/unique/${id}`)
-      console.log('deleted')
-      window.location.reload()
-    } catch (error) {
-      console.log(error)
-    }
-    }
+  
 
   return isLoading && isDataUserLoading ? (
     <>
@@ -45,35 +40,40 @@ const ProfileMain = () => {
       <span>...</span>
     </>
   ) : (
-    <section className=" flex  w-[100vw]  md:px-8 px-4 pt-16 pb-10  justify-center text-black">
-      <div className="max-w-[1400px] w-full flex flex-col md:flex-row items-start p-4 justify-between ">
-        <div className=" w-[70%]">
-          <div className="">
-            <h4 className="font-medium"> </h4>
-            <p className="border border-black w-[60%]">{dataUser?.desc}</p>
+    <section className=" flex  w-[100vw]  md:px-8 px-4 lg:pt-16 pb-10  justify-center text-black">
+      <div className="max-w-[1400px] w-full flex flex-col lg:flex-row items-start p-4 justify-between  space-x-10">
+        <div className=" w-full xl:w-[70%] ">
+          <div className=" flex flex-col w-full items-center justify-center sm:items-start mb-10">
+            <h4 className="font-medium text-2xl  mb-4 ">About </h4>
+            <p className="border border-black w-full  md:text-lg font-medium">
+              {dataUser?.desc}
+            </p>
           </div>
 
+          <div>
+            <h4 className="font-medium text-2xl  my-4 text-center sm:text-start mb-5">
+              Last Experiences{" "}
+            </h4>
+            {currentUser && currentUser._id === id && (
+              <button className="flex bg-primary items-center my-2 space-x-1 p-2 rounded-md text-white font-medium border border-transparent hover:bg-white hover:border-primary hover:text-primary transition-all duration-200">
+                {" "}
+                <span>Add an experience</span>
+                <MdAdd />
+              </button>
+            )}
+          </div>
           {data ? (
             <div>
               {data.map((val: any, index: number) => (
-                <div key={index}>
-                  <h3 className="font-medium">Last Experiences </h3>
-                  <div className="flex flex-col space-y-4">
-                    <LastExperiencesCard
-                      role={val.role}
-                      projectName={val.projectName}
-                      technologiesUsed={val.technologiesUsed}
-                      projectLink={val.projectLink}
-                      projectDesc={val.projectDesc}
-                     
-                    />
-                    <div
-                      onClick={deleteExperience}
-                      className="bg-red-500 text-[40px] text-white rounded-full  right-[-2%] bottom-[-5%] cursor-pointer"
-                    >
-                      <MdDelete />
-                    </div>
-                  </div>
+                <div key={index} className="flex flex-col space-y-4">
+                  <LastExperiencesCard
+                    role={val.role}
+                    projectName={val.projectName}
+                    technologiesUsed={val.technologiesUsed}
+                    projectLink={val.projectLink}
+                    projectDesc={val.projectDesc}
+                    experienceId={val._id}
+                  />
                 </div>
               ))}
             </div>
@@ -82,18 +82,10 @@ const ProfileMain = () => {
               <span>Aucune experience </span>
             </>
           )}
-          {currentUser && currentUser._id === id && (
-            <Link
-              to=""
-              className="inline-block px-4 py-2 cursor-pointer bg-primary rounded-sm text-white font-bold mt-5 hover:bg-transparent border border-transparent hover:border-primary transition-all duration-300  hover:text-primary"
-            >
-              Ajouter une experience
-            </Link>
-          )}
         </div>
 
         {/* side */}
-        <div>
+        <div className="xl:w-[30%] bg-green-300">
           <h3>More Information</h3>
 
           {/* Skills */}

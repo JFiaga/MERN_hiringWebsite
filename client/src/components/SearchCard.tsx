@@ -63,6 +63,7 @@ const   GigsCard = ({
           to={`/profile/${id}`}
           className="w-full bg-primary text-center capitalize rounded-md py-3 transition-all duration-500 border border-transparent hover:border-primary hover:bg-transparent hover:text-primary"
         >
+          
           {" "}
           view Profile
         </Link>

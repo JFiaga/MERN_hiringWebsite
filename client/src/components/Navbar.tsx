@@ -18,6 +18,7 @@ import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 const Navbar = () => {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string);
+  const userId = currentUser?._id
   const [toggleMenu, setToggleMenu] = useState(false);
   const [desktopMenu, setDesktopMenu] = useState(false);
 
@@ -86,9 +87,9 @@ const Navbar = () => {
               <span onClick={closeMenu}><MdClose className="hover:text-red-600 text-2xl cursor-pointer"/></span>
               <span className="text-xl font-medium">Welcome, <span className="font-bold  text-primary">{currentUser.lastName}</span></span>
               <Link to="/" className="hover:text-primary transition-all duration-500 font-medium">Home</Link>
-              <Link to="/myDashboard" className="hover:text-primary transition-all duration-500 font-medium">My Profile</Link>
+              <Link to={`/myDashboard/${userId}`} className="hover:text-primary transition-all duration-500 font-medium">My Profile</Link>
               <Link to="/messages" className="hover:text-primary transition-all duration-500 font-medium">Messages</Link>
-              <Link to="/category" className="hover:text-primary transition-all duration-500 font-medium">Browse Categories</Link>
+              <Link to="/explore" className="hover:text-primary transition-all duration-500 font-medium">Browse Categories</Link>
               <Link to="/commingSoon" className="hover:text-primary transition-all duration-500 font-medium">get certified</Link>
               <Link to="/commingSoon" className="hover:text-primary transition-all duration-500 font-medium">Comming soon</Link>
                 <Link onClick={handleLogout} to="/" className="text-primary transition-all duration-500 font-medium">Logout</Link>
@@ -199,9 +200,9 @@ const Navbar = () => {
                       {/* Dropdown Menu */}
                     <div className={` absolute w-[100vw] sm:max-w-[500px] px-4 py-4 flex flex-col bg-primaryDark rounded-md items-center z-[1000] transition-all duration-300 right-0 ${desktopMenu ? 'top-[145%]':'-top-[1000%]'}`}>
                     <Link to="/" className="hover:text-primary transition-all duration-500 font-medium">Home</Link>
-              <Link to="/myDashboard" className="hover:text-primary transition-all duration-500 font-medium">My Profile</Link>
+                    <Link to={`/myDashboard/${userId}`}  className="hover:text-primary transition-all duration-500 font-medium">My Profile</Link>
               <Link to="/messages" className="hover:text-primary transition-all duration-500 font-medium">Messages</Link>
-              <Link to="/category" className="hover:text-primary transition-all duration-500 font-medium">Browse Categories</Link>
+              <Link to="/explore" className="hover:text-primary transition-all duration-500 font-medium">Browse Categories</Link>
               <Link to="/commingSoon" className="hover:text-primary transition-all duration-500 font-medium">get certified</Link>
               <Link to="/commingSoon" className="hover:text-primary transition-all duration-500 font-medium">Comming soon</Link>
                 <Link onClick={handleLogout} to="/" className="text-primary">Logout</Link>

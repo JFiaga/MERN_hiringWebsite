@@ -9,12 +9,14 @@ import { newRequest } from "../../utils/newRequest";
 
 const ProfileHeader = () => {
   const addHttps = (link: string): string | undefined => {
-    if (!link.includes("https://")) {
+    if (!link?.includes("https://")) {
       link = `https://${link}`;
       return link;
     }
   };
-  const currentUser = JSON.parse(localStorage.getItem("currentUser") as string);
+  const currentUser = JSON.parse(
+    localStorage.getItem("currentUserJhire") as string
+  );
 
   const { id } = useParams();
   const { isLoading, data } = useQuery({
@@ -31,9 +33,9 @@ const ProfileHeader = () => {
       <span>Chargement en cours</span>
     </>
   ) : (
-    <section className="text-black mt-10 w-[100vw] flex justify-center py-10 px-8">
+    <section className="text-black  w-[100vw] flex justify-center py-10 px-8 ">
       <div className="w-full max-w-[1400px] flex flex-col items-center space-y-5">
-        <div className="h-[150px] w-[150px] rounded-full overflow-hidden border border-primary">
+        <div className="h-[350px] w-[350px] rounded-full overflow-hidden border border-primary">
           <img
             src={data?.img || NoAvatar}
             alt=""
@@ -45,9 +47,9 @@ const ProfileHeader = () => {
 
         {currentUser ? (
           !(currentUser._id === id) && (
-            <div className="flex  text-white font-semibold justify-center  space-x-2 w-full">
+            <div className="flex  text-white font-semibold justify-center  space-x-2 w-full flex-col items-center sm:flex-row space-y-3 sm:space-y-0">
               <button
-                className={`px-4 py-2 rounded-sm font-semibold  transition-all duration-500  border   border-primary text-primary flex items-center justify-center space-x-2 hover:bg-[#f1f1f1] hover:text-primary`}
+                className={`px-4 py-2 rounded-sm font-semibold   transition-all duration-500  border   border-primary text-primary flex items-center justify-center space-x-2 hover:bg-black hover:text-primary w-full sm:max-w-[320px]`}
               >
                 <a href={data?.cv}>Download my resume</a>
                 <FiDownload className="text-xl  animate-pulse" />
@@ -56,8 +58,8 @@ const ProfileHeader = () => {
               {!currentUser.isEmployee && (
                 <Link
                   to="/message"
-                  className="w-full flex items-center justify-center space-x-1 text-white font-bold bg-primary text-center capitalize rounded-md py-3 px-2 transition-all duration-500 border border-transparent hover:border-white hover:bg-primary/70 hover:text-white max-w-[300px]"
-                >
+                  className="w-full flex items-center justify-center space-x-1 text-white font-bold bg-primary text-center capitalize rounded-md py-3 px-2 transition-all duration-500 border border-transparent hover:border-white hover:bg-primary/70 hover:text-white sm:max-w-[320px]"
+                  >
                   {" "}
                   <span>Send Me A Message</span>
                   <BiLogoTelegram className="text-xl animate-bounce" />
@@ -66,17 +68,17 @@ const ProfileHeader = () => {
             </div>
           )
         ) : (
-          <div className="flex  text-white font-semibold justify-center  space-x-2 w-full">
+          <div className="flex  text-white font-semibold justify-center  space-x-2 w-full  flex-col items-center sm:flex-row space-y-3 sm:space-y-0">
             <button
-              className={`px-4 py-2 rounded-sm font-semibold  transition-all duration-500  border   border-primary text-primary flex items-center justify-center space-x-2 hover:bg-white/70 hover:text-primary`}
+              className={`px-4 py-2 rounded-sm font-semibold  transition-all duration-500  border   border-primary text-primary flex items-center justify-center space-x-2 hover:bg-black hover:text-primary w-full sm:max-w-[320px]`}
             >
-              <Link to={"/register"}>Download my resume</Link>
-              <FiDownload className="text-xl  animate-pulse" />
+              <Link to={"/chooseProfile"}>Download my resume</Link>
+              <FiDownload className="text-xl animate-pulse" />
             </button>
 
             <Link
-              to="/message"
-              className="w-full flex items-center justify-center space-x-1 text-white font-bold bg-primary text-center capitalize rounded-md py-3 px-2 transition-all duration-500 border border-transparent hover:border-white hover:bg-primary/70 hover:text-white max-w-[300px]"
+              to="/chooseProfile"
+              className="w-full flex items-center justify-center space-x-1 text-white font-bold bg-primary text-center capitalize rounded-md py-3 px-2 transition-all duration-500 border border-transparent hover:border-white hover:bg-primary/70 hover:text-white  sm:max-w-[320px]"
             >
               {" "}
               <span>Send Me A Message</span>
@@ -85,39 +87,39 @@ const ProfileHeader = () => {
           </div>
         )}
 
-        <div className="flex space-x-2 justify-center  items-center">
+        <div className="flex flex-col sm:flex-row space-x-2 justify-center  items-center capitalize">
           <h3 className="font-medium text-xl md:text-2xl">
-            {data?.lastName} {data?.firstName}{" "}
+            {(data?.lastName as string).toLocaleLowerCase()} {(data?.firstName as string).toLocaleLowerCase()}{" "}
           </h3>
           <span className="font-bold text-xl">-</span>
           <h3 className="font-bold text-xl md:text-2xl text-primary">
             {data?.specialisation}
           </h3>
         </div>
-        <div className=" flex font-medium">
-          <BiCurrentLocation className="text-4xl rounded-full text-white  bg-primary " />
+        <div className=" flex font-semibold text-xl items-center space-x-2 uppercase">
+          <BiCurrentLocation className="text-4xl rounded-full text-white  bg-primary  " />
           <span>{data?.city}</span>
         </div>
 
         <div className=" flex space-x-4">
-          <a
-            href={data ? addHttps(data!.github) : "#noLink"}
-            className="h-[60px] w-[60px] bg-black text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-black hover:bg-white hover:text-black cursor-pointer overflow-hidden transition-all duration-500"
-          >
-            <FiGithub />
-          </a>
-          <a
-            href={data ? addHttps(data!.linkedin) : "#noLink"}
-            className="h-[60px] w-[60px] bg-blue-600 text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-blue-600 hover:bg-white hover:text-blue-600 overflow-hidden cursor-pointer transition-all duration-500"
-          >
-            <FiLinkedin />
-          </a>
-          <a
-            href={data ? addHttps(data!.twitter) : "#noLink"}
-            className="h-[60px] w-[60px] bg-blue-400 text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-blue-400 hover:bg-white hover:text-blue-400 overflow-hidden cursor-pointer transition-all duration-500"
-          >
-            <FiTwitter />
-          </a>
+      
+          {data.github && (
+            <a
+              href={addHttps(data!.github)}
+              className="h-[60px] w-[60px] bg-black text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-black hover:bg-white hover:text-black cursor-pointer overflow-hidden transition-all duration-500"
+            >
+              <FiGithub />
+            </a>
+          )}{" "}
+          {data.linkedin && (
+            <a
+              href={addHttps(data!.linkedin)}
+              className="h-[60px] w-[60px] bg-blue-700 text-white flex items-end justify-center text-[50px] rounded-full border border-transparent hover:border-blue-700 hover:bg-white hover:text-blue-700 cursor-pointer overflow-hidden transition-all duration-500"
+            >
+              <FiLinkedin />
+            </a>
+          )}
+        
         </div>
       </div>
     </section>

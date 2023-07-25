@@ -21,8 +21,8 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/explore/:id" element={<Search />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/gigs/category=backend/:id" element={<Profile />} />
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/myDashboard/:id" element={<Profile />} />
           <Route path="/messagesList" element={<MessagesList />} />
           <Route path="/messagesList/:id" element={<MessageDiscussion />} />
         </Routes>

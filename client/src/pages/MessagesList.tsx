@@ -42,17 +42,17 @@ const MessagesList = () => {
 
             <div className=" flex w-full justify-between font-medium text-xl">
               <span className="w-[20%] bg-green-400">
-                {currentUser.isEmployee ? "Recruitor" : "Employee"}
+                {currentUser?.isEmployee ? "Recruitor" : "Employee"}
               </span>
               <span className="w-[45%] bg-blue-300">Last Message</span>
               <span className="w-[20%] bg-orange-400">Date</span>
               <span className="w-[15%] bg-red-300">Action</span>
             </div>
 
-            {data.map((messageData: any) => (
+            {data?.map((messageData: any) => (
               <div key={messageData._id} className="flex w-full mt-10">
                 <span className="w-[20%] bg-green-400">
-                  {currentUser.isEmployee
+                  {currentUser?.isEmployee
                     ? messageData.recruitorId
                     : messageData.employeeId}
                 </span>
@@ -66,8 +66,8 @@ const MessagesList = () => {
                   {moment(messageData.updatedAt).fromNow()}
                 </span>
 
-                {((currentUser.isEmployee && !messageData.readByEmployee) ||
-                    (!currentUser.isEmployee && !messageData.readByRecruitor)) && (
+                {((currentUser?.isEmployee && !messageData.readByEmployee) ||
+                    (!currentUser?.isEmployee && !messageData.readByRecruitor)) && (
                     <button className="bg-green-400 w-[15%]" onClick={() => handleRead(messageData.conversationId)}>
                     Mark as Read
                   </button>
