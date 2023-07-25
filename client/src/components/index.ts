@@ -1,5 +1,5 @@
 export {default as Navbar} from './Navbar'
-export {default as CardPopular } from './CardPopular'
+export {default as CardCategory } from './CardCategory'
 export { default as SearchCard} from './SearchCard'
 export {default as Category} from './Category'
 export {default as Certified} from './Certified'

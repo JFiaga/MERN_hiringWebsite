@@ -1,8 +1,7 @@
 
 import { Navigate } from 'react-router-dom'
-import { MainHeader, MainPopular, MainPresentation } from '../containers'
-import MainCategory from '../containers/Main/MainCategory'
-import MainTestimony from '../containers/Main/MainTestimony'
+import { MainHeader, MainPopular, MainParallax,MainTestimony } from '../containers'
+
 
 
 
@@ -17,8 +16,7 @@ function Main() {
     <>
     <MainHeader/>
     <MainPopular/>
-    <MainPresentation/>
-    <MainCategory/>
+    <MainParallax/>
     <MainTestimony />
     </>
   )

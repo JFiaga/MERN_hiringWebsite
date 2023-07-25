@@ -1,12 +1,11 @@
-import { Footer } from 'flowbite-react';
-import { BsDribbble,  BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
+
 import { Link } from 'react-router-dom';
 
 export default function FooterSitemapLinks() {
   return (
-    <footer className="bg-neutral-900 text-center text-white flex items-center justify-center flex-col">
-    <div className="container px-6 pt-6 w-full">
-      <div className="mb-6 flex justify-center items-center w-full">
+    <footer className="bg-neutral-900 text-center text-white flex items-center justify-center flex-col w-full">
+    <div className="container px-6 py-1 w-full">
+      <div className="flex justify-center items-center w-full">
         <a
           href="#!"
           type="button"
@@ -110,6 +109,7 @@ export default function FooterSitemapLinks() {
 
       <Link to='/' className="text-white text-xl font-bold my-2"> JHIre</Link>
   </footer>
+ 
   )
   }
 

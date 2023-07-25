@@ -42,3 +42,15 @@ export const getAllUser = async (req:Request, res:Response, next:NextFunction) =
     next (error)
   }
 }
+export const getUserBySpecialisation = async (req:Request, res:Response, next:NextFunction) => {
+  try {
+        const user = await User.find({specialisation:req.params.id})
+        if (!user) res.status(404).send('no user found')
+        else{
+          res.status(200).send(user)
+        }
+        
+  } catch (error) {
+    next (error)
+  }
+}

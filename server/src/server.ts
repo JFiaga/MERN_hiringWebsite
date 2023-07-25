@@ -42,7 +42,6 @@ app.get("/", (req: Request, res: Response) => {
   res.json("Jhire Api");
 });
 
-
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/authRecruiter", recruiterAuthRoute);

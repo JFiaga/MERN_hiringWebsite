@@ -1,14 +1,14 @@
 import React from 'react'
-import { GigsHeader,GigsMain } from '../containers'
+import { SearchHeader,SearchMain } from '../containers'
 
 
 type Props = {}
 
-const Gigs = (props: Props) => {
+const Gigs = () => {
   return (
-    <section className='min-h-[100vh] bg-black'>
-          <GigsHeader/>
-          <GigsMain/>
+    <section className='min-h-[100vh] overflow-hidden bg-black'>
+          <SearchHeader/>
+          <SearchMain/>
     </section>
   )
 }

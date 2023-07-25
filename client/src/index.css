@@ -8,30 +8,13 @@
 
 html{
   width: 100vw;
-  background: #fff;
+  background: white;
   height: 100%;
 
 }
 body {
-
-  font-family: 'Poppins', sans-serif;
-  /* background: #F1f1f1; */
-  color: black;
+  height: 100%;
+  width: 100vw;
   /* max-width: 1000px; */
-}
-
-.carousel .carousel-prev, .carousel .carousel-next {
-  height: 50px;
-  width: 50px;
-  background: #1dbf73;
-  border-radius: 999px;
-  padding: 0 5px;
-  position: absolute;
-  top: 50%;
-  z-index: 1000;
-  transform: translate(-30%,-50%);
-}
-
-.customRadius{
-  border-radius: 20% 80% 32% 68% / 39% 89% 11% 61%  ;
+  font-family: 'Poppins', sans-serif;
 }

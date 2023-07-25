@@ -10,6 +10,15 @@ export {default as fullstackImg} from './fullstack.jpg'
 export {default as embeddedImg} from './embedded.avif'
 export {default as unityImg} from './unity.jpg'
 export {default as aiImg} from './Ai.jpg'
+export {default as mobileImg} from './mobile.jpg'
+export {default as web3Img} from './web3.png'
+export {default as unrealEngineImg} from './unrealEnngine.png'
+export {default as cybersecImg} from './cybersecurity.avif'
+export {default as devopsImg} from './devops.jpg'
+export {default as networkImg} from './network.jpg'
+
+
+
 
 
 

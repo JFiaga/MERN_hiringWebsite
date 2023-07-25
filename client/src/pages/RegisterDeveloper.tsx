@@ -35,7 +35,7 @@ const RegisterDeveloper = () => {
     >
   ) => {
     setUserData((prev) => {
-      return { ...prev, [e.target.name]: e.target.value };
+      return { ...prev, [e.target.name]: e.target.value.toLowerCase() };
     });
 
     console.log(userData);

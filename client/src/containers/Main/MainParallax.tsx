@@ -23,7 +23,7 @@ const array = [
   },
 ];
 
-const MainCategory = (props: Props) => {
+const MainParallax = (props: Props) => {
 
 
   //mettre un parallax
@@ -59,4 +59,4 @@ const MainCategory = (props: Props) => {
   );
 };
 
-export default MainCategory;
+export default MainParallax;
