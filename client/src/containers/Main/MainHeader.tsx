@@ -16,7 +16,7 @@ const MainHeader = () => {
   }
 
   return (
-    <section className=" flex  w-[100vw] h-[900px] md:px-8 px-4 py-6 bg-primaryDark justify-center md:py-14">
+    <section className=" flex  w-[100vw] h-[900px] md:max-h-[900px] md:px-8 px-4 py-6 bg-primaryDark justify-center md:py-14">
       <div className="max-w-[1400px] h-full w-full flex flex-col items-center justify-center space-y-5 lg:space-y-10 text-white">
       
         <h1 className="text-5xl  lg:text-7xl  font-bold  text-center ">

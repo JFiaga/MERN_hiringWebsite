@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, request } from "express";
 import { User } from "../models/user.model.ts";
 import { BaseError } from "../utils/error.ts";
+import { Recruiter } from "../models/recruiter.model.ts";
 
 export const deleteUser = async (
   req: Request,
@@ -46,6 +47,20 @@ export const getUserBySpecialisation = async (req:Request, res:Response, next:Ne
   try {
         const user = await User.find({specialisation:req.params.id})
         if (!user) res.status(404).send('no user found')
+        else{
+          res.status(200).send(user)
+        }
+        
+  } catch (error) {
+    next (error)
+  }
+}
+
+export const getAllRecruiter = async (req:Request, res:Response, next:NextFunction) => {
+  try {
+        const user = await Recruiter.find()
+        if (!user) res.status(404).send('no user found')
+
         else{
           res.status(200).send(user)
         }

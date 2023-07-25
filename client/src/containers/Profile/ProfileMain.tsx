@@ -55,7 +55,7 @@ const ProfileMain = () => {
               Last Experiences{" "}
             </h4>
             {currentUser && currentUser._id === id && (
-              <button className="flex bg-primary items-center my-2 space-x-1 p-2 rounded-md text-white font-medium border border-transparent hover:bg-white hover:border-primary hover:text-primary transition-all duration-200">
+              <button className="flex bg-primary items-center my-2 space-x-1 p-2 rounded-md text-white font-medium border border-transparent hover:bg-white hover:border-primary hover:text-primary transition-all duration-200 mb-8">
                 {" "}
                 <span>Add an experience</span>
                 <MdAdd />
@@ -63,9 +63,9 @@ const ProfileMain = () => {
             )}
           </div>
           {data ? (
-            <div>
+            <div className="flex flex-col space-y-4 md:space-y-8 ">
               {data.map((val: any, index: number) => (
-                <div key={index} className="flex flex-col space-y-4">
+                <div key={index} className="flex flex-col space-y-4 ">
                   <LastExperiencesCard
                     role={val.role}
                     projectName={val.projectName}
@@ -85,12 +85,12 @@ const ProfileMain = () => {
         </div>
 
         {/* side */}
-        <div className="xl:w-[30%] bg-green-300">
-          <h3>More Information</h3>
+        {/* <div className="xl:w-[30%] bg-green-300">
+          <h3>More Information</h3> */}
 
           {/* Skills */}
 
-          <div>
+          {/* <div>
             <h5>Hard Skills</h5>
             <div className="flex justify-between  items-center flex-col md:flex-row">
               <div>
@@ -171,11 +171,11 @@ const ProfileMain = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Langueage */}
 
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <h4>Language</h4>
             <div className="flex space-x-1">
               <span className="text-primary">French</span>
@@ -187,11 +187,11 @@ const ProfileMain = () => {
               <span>-</span>
               <span>Native</span>
             </div>
-          </div>
+          </div> */}
 
           {/* Education */}
 
-          <div className="flex flex-col space-y-2 my-2">
+          {/* <div className="flex flex-col space-y-2 my-2">
             <h4>Education</h4>
             <div className="flex flex-col ">
               <span className="font-medium">
@@ -215,10 +215,10 @@ const ProfileMain = () => {
                 Massachusset Institute Of Technology
               </span>
             </div>
-          </div>
+          </div> */}
 
           {/* Certification */}
-          <div className="flex flex-col space-y-2 my-2">
+          {/* <div className="flex flex-col space-y-2 my-2">
             <h4 className="mt-4">Certification</h4>
             <div className="flex flex-col ">
               <span className="font-medium">
@@ -241,7 +241,7 @@ const ProfileMain = () => {
               </span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
