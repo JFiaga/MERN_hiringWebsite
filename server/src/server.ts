@@ -27,15 +27,15 @@ app.use(helmet());
 mongoose.set("strictQuery", true);
 const connect = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/jhire");
+    // await mongoose.connect("mongodb://localhost:27017/jhire");
     // await mongoose.connect(`mongodb+srv://fiagafils:${process.env["ATLAS_SECRET"]}@cluster0.ebedins.mongodb.net/`)
-    // await mongoose.connect(`mongodb+srv://fiagafils:${process.env["ATLAS_SECRET"]}@cluster0.ebedins.mongodb.net/?retryWrites=true&w=majority";`)
-    console.log("connect to mongoDB ATLAS");
+    await mongoose.connect(`mongodb+srv://fiagafils:${process.env["ATLAS_SECRET"]}@cluster0.ebedins.mongodb.net/?retryWrites=true&w=majority";`)
+    console.log("connect to mongoDB ATLAS"); 
   } catch (error) {
     console.log(error);
-  } 
+  }
 };
- 
+
 
 // router
 app.get("/", (req: Request, res: Response) => {
@@ -47,7 +47,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/authRecruiter", recruiterAuthRoute);
 app.use("/api/profile", profileRoute);
 app.use("/api/experiences", experiencesRoute);
-app.use("/api/messagesList", messagesListRoute);
+app.use("/api/messagesList", messagesListRoute); 
 app.use("/api/messageDiscussion", messageDiscussionRoute);
 
  
