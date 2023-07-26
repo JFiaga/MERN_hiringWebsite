@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 
-import { NoAvatar, recruiter } from "../assets";
+import { NoAvatar, logoWhite, logoBlack, recruiter } from "../assets";
 import { Link, useLocation } from "react-router-dom";
 import { newRequest } from "../utils/newRequest";
 import { AxiosError } from "axios";
@@ -40,7 +40,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await newRequest.post("auth/logout");
-      localStorage.removeItem("currentUserJhire"); 
+      localStorage.removeItem("currentUserJhire");
       window.location.reload();
     } catch (error: any) {
       if (error instanceof AxiosError) {
@@ -103,8 +103,8 @@ const Navbar = () => {
 
 
 
-          <Link to="/">
-            <span className="cursor-pointer">Logo</span>
+          <Link to="/" className="h-[70px] w-[70px]">
+            <img src={logoBlack} alt=""  className="w-full h-full object-cover"/>
           </Link>
 
           {/* Register and login btn if we are not login */}
@@ -153,9 +153,9 @@ const Navbar = () => {
         <div className="bg-primaryDark  hidden sm:flex max-w-[1400px] px-4 md:px-8 justify-between w-full py-4 text-white text-xl items-center relative">
           <div className="flex items-center justify-center">
          
-            <Link to="/">
-              <span className="cursor-pointer">Logo</span>
-            </Link>
+          <Link to="/" className="h-[100px] w-[100xpx]">
+            <img src={logoWhite} alt=""  className="w-full h-full object-cover"/>
+          </Link>
           </div>
 
           <div className=" flex space-x-4 items-center">

@@ -39,4 +39,10 @@ export {default as NoAvatar} from './noAvatar.png'
 export {default as registerBg} from './registerBg.png'
 export {default as registerBg2} from './registerBg2.jpg'
 
+export {default as logoWhite} from './logoWhite.png'
+export {default as logoBlack} from './logoBlack.png'
+
+
+
+
 

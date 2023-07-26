@@ -8,9 +8,9 @@ export const createMessage = async (
   next: NextFunction
 ) => {
   const newMessagesList = new MessagesList({
-    conversationId: req.isEmployee ? req.userId + req.body.to : req.body.to + req.userId,
-    employeeId: req.isEmployee ? req.userId : req.body.to,
-    recruitorId: req.isEmployee ? req.body.to : req.userId,
+    conversationId: req.isEmployee ? req.userId + req.body.target : req.body.target + req.userId,
+    employeeId: req.isEmployee ? req.userId : req.body.target,
+    recruitorId: req.isEmployee ? req.body.target : req.userId,
     readByEmployee: req.isEmployee,
     readByRecruitor: !req.isEmployee,
     lastMessage:req.body.lastMessage

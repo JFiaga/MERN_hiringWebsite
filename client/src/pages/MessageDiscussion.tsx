@@ -4,6 +4,7 @@ import { BiLogoTelegram } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { newRequest } from "../utils/newRequest";
+import moment from "moment";
 
 type Props = {};
 
@@ -16,7 +17,7 @@ const MessageDiscussion = (props: Props) => {
 
   const queryClient = useQueryClient();
 
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["messageDiscussion"],
     queryFn: () =>
       newRequest.get(`/messageDiscussion/${id}`).then((res) => {
@@ -64,22 +65,23 @@ const MessageDiscussion = (props: Props) => {
         {isLoading ? (
           <>loading . . .</>
         ) : (
-          <div className="h-[80%] w-full bg-black/20  flex flex-col space-y-10 overflow-y-scroll scrollbar py-5 border">
+          <div className="h-[80%] w-full bg-black/20  overflow-x-hidden flex flex-col space-y-10 overflow-y-scroll scrollbar py-5 border">
             {data ? (
               data?.map((val: any) => (
                 <div
                   key={val._id}
-                  className={`w-[80%] p-4 max-w-[500px] break-words ${
+                  className={`w-[80%] p-4 max-w-[500px] break-words flex flex-col ${
                     val.userId === currentUser?._id
                       ? "bg-primary text-white self-end rounded-tl-xl"
                       : "bg-white text-black rounded-tr-xl"
                   } mx-5 my-4  rounded-b-xl `}
                 >
                   <p>{val.desc}</p>
+                    <span className="self-end text-xs">{moment(val.createdAt).fromNow()}</span>
                 </div>
               ))
             ) : (
-              <>Aucun Message</>
+              <span className=" text-center font-medium">Aucun Message</span>
             )}
           </div>
         )}

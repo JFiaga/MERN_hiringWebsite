@@ -14,11 +14,19 @@ const ProfileHeader = () => {
       return link;
     }
   };
+  const { id } = useParams();
   const currentUser = JSON.parse(
     localStorage.getItem("currentUserJhire") as string
   );
 
-  const { id } = useParams();
+
+  const createNewMessageOnMessageList = () => {
+    newRequest.post('/messagesList', {target:id})
+  }
+
+  console.log(currentUser)
+  const sendMessageLink =`/messagesList/${id}${currentUser._id}`
+
   const { isLoading, data } = useQuery({
     queryKey: ["profile"],
     queryFn: () =>
@@ -34,6 +42,7 @@ const ProfileHeader = () => {
     </>
   ) : (
     <section className="text-black  w-[100vw] flex justify-center py-10 px-8 ">
+  
       <div className="w-full max-w-[1400px] flex flex-col items-center space-y-5">
         <div className="h-[350px] w-[350px] rounded-full overflow-hidden border border-primary">
           <img
@@ -57,7 +66,8 @@ const ProfileHeader = () => {
 
               {!currentUser.isEmployee && (
                 <Link
-                  to="/message"
+                onClick={createNewMessageOnMessageList}
+                  to={sendMessageLink}
                   className="w-full flex items-center justify-center space-x-1 text-white font-bold bg-primary text-center capitalize rounded-md py-3 px-2 transition-all duration-500 border border-transparent hover:border-white hover:bg-primary/70 hover:text-white sm:max-w-[320px]"
                   >
                   {" "}

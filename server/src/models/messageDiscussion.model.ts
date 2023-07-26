@@ -11,6 +11,8 @@ const messageDiscussionSchema = new Schema<IMessageDiscussion>({
   desc: {
     type: String,
   },
+}, {
+  timestamps:true
 });
 
 export const MessageDiscussion = model<IMessageDiscussion>(

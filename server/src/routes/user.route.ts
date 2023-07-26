@@ -14,5 +14,5 @@ router.get('/recruiter', getAllRecruiter)
 router.get('/:id', getUserBySpecialisation)
 
 
- 
+  
 export default router
