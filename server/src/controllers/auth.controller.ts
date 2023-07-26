@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { User } from "../models/user.model.ts";
 import bcrypt from "bcrypt";
-import jwt, { Secret } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { notFoundError, BaseError } from "../utils/error.ts";
 import { Recruiter } from "../models/recruiter.model.ts";
 
@@ -58,7 +58,7 @@ export const login = async (
 
           //we will use the isEmployee to verify some part of application like experiences
         },
-        process.env["JWT_SECRET"] as Secret
+        process.env.JWT_SECRET 
       );
 
       const { password, ...other } = recruiter!._doc;
@@ -75,7 +75,6 @@ export const login = async (
         return next(new BaseError("Wrong email or password", 400, true));
       }
 
-      
       const token = jwt.sign(
         {
           id: user._id,
@@ -83,7 +82,8 @@ export const login = async (
 
           //we will use the isEmployee to verify some part of application like experiences
         },
-        process.env["JWT_SECRET"] as Secret
+        process.env.JWT_SECRET 
+
       );
       const { password, ...other } = user._doc;
       res
