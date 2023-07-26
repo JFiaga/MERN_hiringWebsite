@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ImCross } from "react-icons/im";
 import { newRequest } from "../utils/newRequest";
 import { useParams } from "react-router-dom";
+import { ModalContext } from "../pages/Profile";
 
 
 type Props = {
   modalStatus?: boolean;
 };
 
-const AddExperience = () => {
-  const [modalOpen, setModalOpen] = useState<boolean>(true);
+const AddExperience = (props:Props) => {
+
   const {id} = useParams()
 
   const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string)
+  
+  const {modalStatus, toggleModal} = useContext(ModalContext)
 
   const [userData, setUserData] = useState({
     role: "",
@@ -36,19 +39,21 @@ const AddExperience = () => {
 
     try {
       await newRequest.post(`experiences/createNewExperience`, { ...userData });
-      setModalOpen (val => val =false)
+     toggleModal()
       window.location.reload()
     } catch (err) {
       console.log(err);
     }
   };
 
+
+
  if(currentUser && currentUser._id === id){
   return (
     <>
-       {modalOpen &&  <div className="w-[100vw] min-h-[100vh] h-[100%] absolute  ">
+       {modalStatus &&  <div className="w-[100vw] min-h-[100vh] h-[100%] absolute  ">
      <div 
-       onClick={() => setModalOpen((bool) => (bool = false))}
+       onClick={toggleModal}
   
      className="w-[100vw] h-[100%] bg-black/50 absolute"></div>
   
@@ -58,7 +63,7 @@ const AddExperience = () => {
        className="flex flex-col items-center w-[90%] max-w-[800px] justify-center space-y-2 md:space-y-4 p-4  bg-[#f1f1f1] z-[100] absolute top-[10%] left-[50%] -translate-x-[50%] rounded-sm"
      >
        <div
-         onClick={() => setModalOpen((bool) => (bool = false))}
+         onClick={toggleModal}
          className="text-red-500 absolute right-[-20px] top-[-10px] text-xl rounded-full bg-black p-2 cursor-pointer "
        >
          <ImCross />

@@ -5,6 +5,8 @@ import { newRequest } from "../../utils/newRequest";
 import { Link, useParams } from "react-router-dom";
 import { MdAdd, MdDelete } from "react-icons/md";
 import { GrAdd } from "react-icons/gr";
+import { useContext } from "react";
+import { ModalContext } from "../../pages/Profile";
 
 const ProfileMain = () => {
   const { id } = useParams();
@@ -32,6 +34,8 @@ const ProfileMain = () => {
       }),
   });
 
+  const {toggleModal} = useContext(ModalContext)
+
   
 
   return isLoading && isDataUserLoading ? (
@@ -45,7 +49,7 @@ const ProfileMain = () => {
         <div className=" w-full xl:w-[70%] ">
           <div className=" flex flex-col w-full items-center justify-center sm:items-start mb-10">
             <h4 className="font-medium text-2xl  mb-4 ">About </h4>
-            <p className="border border-black w-full  md:text-lg font-medium">
+            <p className=" w-full md:text-lg font-medium shadow p-4 max-w-[800px] shadow-black/30">
               {dataUser?.desc}
             </p>
           </div>
@@ -55,7 +59,9 @@ const ProfileMain = () => {
               Last Experiences{" "}
             </h4>
             {currentUser && currentUser._id === id && (
-              <button className="flex bg-primary items-center my-2 space-x-1 p-2 rounded-md text-white font-medium border border-transparent hover:bg-white hover:border-primary hover:text-primary transition-all duration-200 mb-8">
+              <button 
+              onClick={toggleModal}
+              className="flex bg-primary items-center my-2 space-x-1 p-2 rounded-md text-white font-medium border border-transparent hover:bg-white hover:border-primary hover:text-primary transition-all duration-200 mb-8">
                 {" "}
                 <span>Add an experience</span>
                 <MdAdd />
@@ -243,8 +249,12 @@ const ProfileMain = () => {
           </div>
         </div> */}
       </div>
+      
     </section>
   );
 };
 
 export default ProfileMain;
+
+
+

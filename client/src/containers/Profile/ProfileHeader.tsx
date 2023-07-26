@@ -6,6 +6,8 @@ import { NoAvatar } from "../../assets";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { newRequest } from "../../utils/newRequest";
+import { useContext } from "react";
+import { ModalContext } from "../../pages/Profile";
 
 const ProfileHeader = () => {
   const addHttps = (link: string): string | undefined => {
@@ -35,6 +37,8 @@ const ProfileHeader = () => {
         return data;
       }),
   });
+
+
 
   return isLoading ? (
     <>
@@ -108,7 +112,7 @@ const ProfileHeader = () => {
         </div>
         <div className=" flex font-semibold text-xl items-center space-x-2 uppercase">
           <BiCurrentLocation className="text-4xl rounded-full text-white  bg-primary  " />
-          <span>{data?.city}</span>
+          <span>{data?.city} </span>
         </div>
 
         <div className=" flex space-x-4">
