@@ -27,7 +27,7 @@ const ProfileHeader = () => {
   }
 
   console.log(currentUser)
-  const sendMessageLink =`/messagesList/${id}${currentUser._id}`
+  const sendMessageLink =`/messagesList/${id}${currentUser?._id}`
 
   const { isLoading, data } = useQuery({
     queryKey: ["profile"],

@@ -1,6 +1,7 @@
 import { FiSearch } from "react-icons/fi";
-import { specialisationTag } from "../../utils/specialisationTag";
+
 import { useState } from "react";
+import { allCategory } from "../../utils/allCategory";
 
 
 
@@ -8,7 +9,7 @@ const MainHeader = () => {
 
   const [search, setSearch] = useState('')
 
-  const [setspacilisation, setSetspacilisation] = useState(specialisationTag)
+  const [setspacilisation, setSetspacilisation] = useState(allCategory)
 
   const handleChange =(e:React.ChangeEvent<HTMLInputElement>)=> {
     setSearch(val=> e.target.value)
@@ -36,9 +37,9 @@ const MainHeader = () => {
             placeholder="What are you looking for"
             onChange={handleChange}
           />
-            <div className="w-full bg-black flex">
-               {specialisationTag.filter((item) => search==='' ? '':item.toLowerCase().includes(search.toLowerCase()) )}
-            </div>
+            {/* <div className="w-full bg-black flex">
+               {allCategory.filter((item) => search==='' ? '':item.title.toLowerCase().includes(search.toLowerCase()) )}
+            </div> */}
           </div>
           <button className="max-h-[70px]  bg-primary py-3 rounded-sm border border-transparent transition-all hover:bg-transparent hover:border-primary md:rounded-tl-none md:rounded-bl-none md:px-4">
             <FiSearch className="font-bold mx-auto" />

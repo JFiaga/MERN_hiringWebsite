@@ -58,7 +58,7 @@ const ProfileMain = () => {
             <h4 className="font-medium text-2xl  my-4 text-center sm:text-start mb-5">
               Last Experiences{" "}
             </h4>
-            {currentUser && currentUser._id === id && (
+            {currentUser && currentUser?._id === id && (
               <button 
               onClick={toggleModal}
               className="flex bg-primary items-center my-2 space-x-1 p-2 rounded-md text-white font-medium border border-transparent hover:bg-white hover:border-primary hover:text-primary transition-all duration-200 mb-8">

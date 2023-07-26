@@ -12,5 +12,6 @@ export {default as MessageDiscussion} from './MessageDiscussion'
 
 
 export {default as Explore} from './Explore'
+export {default as NotFound} from './NotFound'
 
 

@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { newRequest } from "../utils/newRequest";
 import moment from "moment";
 
@@ -47,7 +47,9 @@ const MessagesList = () => {
   };
 
 
-  return (
+  return !currentUser ? (
+    <Navigate to="/" />
+  ) : (
     <section className=" flex  w-[100vw]  md:px-8 px-4 pt-16 pb-10 text-black justify-center min-h-[100vh]">
       <div className="max-w-[1400px] w-full flex flex-col items-center justify-start  py-4  md:space-x-4 space-y-4 ">
         {isLoading ? (
@@ -77,7 +79,7 @@ const MessagesList = () => {
                 >
                   <Link
                     to={`/messagesList/${messageData.conversationId}`}
-                    className="flex items-center justify-between w-full flex-wrap min-h-[50%] "
+                    className="flex justify-between w-full flex-wrap px-4 py-8 text-lg md:text-xl "
                   >
                     <span className="capitalize font-semibold">
                       {currentUser?.isEmployee
@@ -96,7 +98,7 @@ const MessagesList = () => {
                   </Link>
                   <Link
                     to={`/messagesList/${messageData.conversationId}`}
-                    className="min-h-[20%]"
+                    className="px-4 py-8"
                     
                   >
                     <span className="text-primary">Last Message</span>:{" "}

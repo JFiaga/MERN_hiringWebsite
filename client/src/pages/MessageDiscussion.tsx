@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 // import { mainHeaderImg2 } from "../assets";
 import { BiLogoTelegram } from "react-icons/bi";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { newRequest } from "../utils/newRequest";
 import moment from "moment";
@@ -43,23 +43,12 @@ const MessageDiscussion = (props: Props) => {
 
   console.log(data);
 
-  return (
+  return !currentUser ? (
+    <Navigate to="/" />
+  ) : (
     <section className=" flex  w-[100vw]  md:px-8 px-4 pt-16 pb-10 text-black justify-center min-h-[100vh]">
       <div className="max-w-[1400px] w-full flex flex-col items-center justify-center  h-[80vh]  py-4 md:space-x-4 space-y-4 ">
-        {/* Header */}
-        {/* <div className="h-[10%] bg-white/10 border">
-          <div className=" flex ml-10 items-center h-full">
-            <div className="h-[60px] w-[60px] rounded-full overflow-hidden border-primary border">
-              <img
-                src={mainHeaderImg2}
-                className="object-cover h-full w-full"
-                alt=""
-              />
-            </div>
-
-            <span className="font-bold text-xl  ml-1"></span>
-          </div>
-        </div> */}
+      
 
         {/* Main */}
         {isLoading ? (

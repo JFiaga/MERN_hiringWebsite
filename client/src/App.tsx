@@ -1,6 +1,6 @@
 import { Footer, Navbar } from "./components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Main, Profile, Login, RegisterDeveloper, ChooseProfile, RegisterRecruiter, MessagesList, MessageDiscussion, Search, Explore } from "./pages";
+import { Main, Profile, Login, RegisterDeveloper, ChooseProfile, RegisterRecruiter, MessagesList, MessageDiscussion, Search, Explore, NotFound } from "./pages";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -25,6 +25,8 @@ function App() {
           <Route path="/myDashboard/:id" element={<Profile />} />
           <Route path="/messagesList" element={<MessagesList />} />
           <Route path="/messagesList/:id" element={<MessageDiscussion />} />
+          <Route path={'*'} element={<NotFound />} />
+          
         </Routes>
       <Footer/>
       </BrowserRouter>

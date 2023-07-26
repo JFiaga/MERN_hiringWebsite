@@ -6,6 +6,7 @@ import { FaHandshake } from "react-icons/fa";
 import { BiPaint  } from "react-icons/bi";
 import { MdFormatAlignLeft } from "react-icons/md";
 import { registerBg } from "../assets";
+import { allCategory } from "../utils/allCategory";
 
 
 const RegisterDeveloper = () => {
@@ -79,14 +80,7 @@ const RegisterDeveloper = () => {
     }
   };
 
-  const specialisationTag = [
-    "Frontend",
-    "Backend",
-    "Android",
-    "IOS",
-    "C#",
-    "devOps",
-  ];
+ 
 
   return currentUser ? (
     <Navigate to="/" />
@@ -205,9 +199,9 @@ const RegisterDeveloper = () => {
                 onChange={handleChange}
               >
                 <option value="" />
-                {specialisationTag.map((val, index) => (
-                  <option key={index} value={val}>
-                    {val}
+                {allCategory.map((val, index) => (
+                  <option key={index} value={val.title}>
+                    {val.title}
                   </option>
                 ))}
               </select>
