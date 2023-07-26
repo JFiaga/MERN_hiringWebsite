@@ -33,7 +33,7 @@ const NewGigs = () => {
 
   return (
    <ModalContext.Provider value={{toggleModal,modalStatus}}>
-<div className='bg-white relative h-full'>
+<div className='bg-white relative min-h-[100vh]'>
       <AddExperience />
       <ProfileHeader/>
       <ProfileMain/>

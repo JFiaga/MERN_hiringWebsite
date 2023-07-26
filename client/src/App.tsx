@@ -26,7 +26,6 @@ function App() {
           <Route path="/messagesList" element={<MessagesList />} />
           <Route path="/messagesList/:id" element={<MessageDiscussion />} />
           <Route path={'*'} element={<NotFound />} />
-          
         </Routes>
       <Footer/>
       </BrowserRouter>
@@ -35,5 +34,4 @@ function App() {
   );
 }
 
-// Y3HGeaB45YF
 export default App;

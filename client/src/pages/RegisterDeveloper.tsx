@@ -36,10 +36,10 @@ const RegisterDeveloper = () => {
     >
   ) => {
     setUserData((prev) => {
-      return { ...prev, [e.target.name]: e.target.value.toLowerCase() };
+      return { ...prev, [e.target.name]: e.target.value.toLowerCase().trim() };
     });
 
-    console.log(userData);
+    
   };
 
   //Upload Image
@@ -49,14 +49,14 @@ const RegisterDeveloper = () => {
   const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setImgUpload(e.target.files[0]);
-      console.log(e.target.files[0]);
+    
     }
   };
 
   const handleUploadCv = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setCvUpload(e.target.files[0]);
-      console.log(e.target.files[0]);
+ 
     }
   };
 
@@ -74,10 +74,12 @@ const RegisterDeveloper = () => {
         cv: cvUrl,
       });
 
-      navigate("/login");
+     
     } catch (err) {
       console.log(err);
     }
+    window.location.pathname = `/login`
+
   };
 
  

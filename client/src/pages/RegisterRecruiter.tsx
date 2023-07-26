@@ -30,10 +30,10 @@ const RegisterRecruiter = () => {
       await newRequest.post("/authRecruiter/registerRecruiter", {
         ...userData,
       });
-      window.location.pathname = "/";
     } catch (err) {
       console.log(err);
     }
+    window.location.pathname = "/login";
   };
   const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string)
 

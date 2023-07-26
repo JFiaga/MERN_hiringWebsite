@@ -30,6 +30,7 @@ const SearchMain = ( ) => {
         <SearchCard
         firstName ={user.firstName}
         lastName={user.lastName}
+        imgLink={user.img}
         specialisation={user.specialisation}
         city={user.city}
         desc={user.desc} 

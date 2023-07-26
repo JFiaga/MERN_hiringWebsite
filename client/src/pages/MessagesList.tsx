@@ -8,7 +8,7 @@ const MessagesList = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string);
 
 
-  const { isLoading:isLoadingUser, data:dataUser } = useQuery({
+  const {  data:dataUser } = useQuery({
     queryKey: ["user"],
     queryFn: () =>
       newRequest.get(`/user`).then((res) => {
@@ -16,7 +16,7 @@ const MessagesList = () => {
         return data;
       }),
   }); 
-   const { isLoading:isLoadingRecruiter, data:dataRecruiter } = useQuery({
+   const { data:dataRecruiter } = useQuery({
     queryKey: ["recruiter"],
     queryFn: () =>
       newRequest.get(`/user/recruiter`).then((res) => {
@@ -46,6 +46,7 @@ const MessagesList = () => {
     mutation.mutate(id);
   };
 
+  console.log(data)
 
   return !currentUser ? (
     <Navigate to="/" />
@@ -62,16 +63,7 @@ const MessagesList = () => {
               Your <span className="text-primary">Messages</span>
             </h2>
             <div className="text-black flex w-full justify-center md:justify-start px-4 flex-col">
-              {/* <div className=" flex flex-col justify-between font-medium text-xl w-[50%]">
-              <span className="md:w-[20%] py-2 bg-red-400">
-                Name
-              </span>
-              <span className="w-[45%] bg-blue-300 ">Last Message</span>
-              <span className="w-[20%] bg-orange-400">Date</span>
-              <span className="w-[15%] bg-red-300">Action</span>
-            </div> */}
 
-              {/* <div className="flex flex-col self-start"> */}
               { dataUser && data?.map((messageData: any) => (
                 <div
                   key={messageData._id}
@@ -83,12 +75,12 @@ const MessagesList = () => {
                   >
                     <span className="capitalize font-semibold">
                       {currentUser?.isEmployee
-                        ? dataRecruiter.filter((val:any) => val._id === messageData.recruitorId)[0]?.firstName + ' '
-                        + dataRecruiter.filter((val:any) => val._id === messageData.recruitorId)[0]?.lastName
+                        ? dataRecruiter?.filter((val:any) => val._id === messageData.recruitorId)[0]?.firstName + ' '
+                        + dataRecruiter?.filter((val:any) => val._id === messageData.recruitorId)[0]?.lastName
 
                         : 
-                        dataUser.filter((val:any) => val._id === messageData.employeeId)[0]?.firstName + ' '+
-                        dataUser.filter((val:any) => val._id === messageData.employeeId)[0]?.lastName
+                        dataUser?.filter((val:any) => val._id === messageData.employeeId)[0]?.firstName + ' '+
+                        dataUser?.filter((val:any) => val._id === messageData.employeeId)[0]?.lastName
                       }
                     </span>
 
@@ -102,7 +94,7 @@ const MessagesList = () => {
                     
                   >
                     <span className="text-primary">Last Message</span>:{" "}
-                    {messageData?.lastMessage?.substring(0, 40)} {messageData?.lastMessage?.length>40 && '. . .'}
+                    <span className="text-black ">{messageData.desc?.substring(0, 40)} {messageData?.lastMessage?.length>40 && '. . .'} </span>
                   </Link>
 
                   {((currentUser?.isEmployee && !messageData.readByEmployee) ||

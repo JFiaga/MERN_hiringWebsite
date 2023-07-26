@@ -44,7 +44,7 @@ const MainParallax = (props: Props) => {
         </h2>
 
         <p className="text-center md:text-xl font-bold shadow-primaryDark mb-5">
-          Click in the button below to explore all categories of developpers we
+          Click to the button below to explore all categories of developpers we
           have
         </p>
 

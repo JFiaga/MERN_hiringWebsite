@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { GrLocation } from "react-icons/gr";
 
-import { mainHeaderImg2 } from "../assets";
+import { NoAvatar, mainHeaderImg2 } from "../assets";
 import Certified from "./Certified";
 
 type Props = {
+  imgLink:string;
   firstName: string;
   lastName: string;
   specialisation: string;
@@ -12,6 +13,7 @@ type Props = {
   desc: string;
   id: string;
   isCertified: boolean;
+
 };
 
 const   GigsCard = ({
@@ -22,6 +24,7 @@ const   GigsCard = ({
   desc,
   id,
   isCertified,
+  imgLink
 }: Props) => {
   return (
     <div className="text-black  bg-white   flex flex-col items-center justify-between space-y-4 w-[90%] sm:max-w-[25%] min-w-[300px] h-[600px]shadow-sm border border-black/10 rounded-md relative   overflow-hidden px-4 ml-4 mb-4 pb-5 h-fit">
@@ -29,7 +32,7 @@ const   GigsCard = ({
       <div className="flex flex-col justify-center items-center space-y-4 capitalize">
         <div className="h-[150px] w-[150px] rounded-full overflow-hidden border border-primary ">
           <img
-            src={mainHeaderImg2}
+            src={imgLink || NoAvatar}
             alt=""
             className="object-cover h-full w-full"
           />
@@ -43,10 +46,10 @@ const   GigsCard = ({
             <Certified value="Not Certified" bool={false} />
           </div>
         )}
-        <span className="font-bold">
+        <span className="font-bold text-center">
           {firstName.toLocaleLowerCase()} {lastName.toLocaleLowerCase()}
         </span>
-        <span className="font-semibold">
+        <span className="font-semibold text-center" >
           <span className="text-primary">{specialisation}</span> developper
         </span>
         <div className="flex justify-center items-center space-x-1 flex-wrap">

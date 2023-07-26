@@ -6,9 +6,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { newRequest } from "../utils/newRequest";
 import moment from "moment";
 
-type Props = {};
 
-const MessageDiscussion = (props: Props) => {
+const MessageDiscussion = () => {
   const currentUser = JSON.parse(
     localStorage.getItem("currentUserJhire") as string
   );

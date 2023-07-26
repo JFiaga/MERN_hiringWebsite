@@ -19,7 +19,7 @@ const Explore = (props: Props) => {
               key={index}
               title={card.title}
               subtitle={card.subtitle}
-              link={`/explore/${card.link}`}
+              link={`/explore/${card.link.trim().toLowerCase()}`}
               img={card.img}
             />
           ))}
