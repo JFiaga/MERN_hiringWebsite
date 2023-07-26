@@ -13,7 +13,11 @@ const ChooseProfile = () => {
  return currentUser ? (
     <Navigate to="/" />
   ) : (
-    <section className=" flex  w-[100vw] h-[100vh]  md:px-8 px-4 pt-16 pb-10 text-black justify-center bg-[#f1f1f1] ">
+    <section className=" flex  w-[100vw] h-[100vh]  md:px-8 px-4 pt-16 pb-10 text-black justify-center bg-[#f1f1f1] flex-col items-center ">
+
+<h2 className="font-semibold text-3xl lg:text-4xl 2xl:text-5xl mb-10 w-[90%]   self-center  px-4  max-w-[900px] text-center md:text-center  text-black ">
+              Choose your <span className="text-primary">profile</span>
+            </h2>
       <div className="max-w-[1400px] w-full flex flex-col items-center justify-center h-[80vh]  py-4 space-y-4 text-center">
         <div 
         onClick={()=> setChooseLink (link => link = 'Developer')}

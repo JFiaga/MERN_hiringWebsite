@@ -26,7 +26,6 @@ export {default as mainPresentaion} from './mainPresentaion.jpg'
 
 
 
-export {default as uiImg} from './ui.png'
 export {default as parallaxImg} from './parallaxImg.jpg'
 
 
@@ -40,7 +39,7 @@ export {default as registerBg} from './registerBg.png'
 export {default as registerBg2} from './registerBg2.jpg'
 
 export {default as logoWhite} from './logoWhite.png'
-export {default as logoBlack} from './logoBlack.png'
+export {default as logoBlack} from './logoBlack.png' 
 
 
 

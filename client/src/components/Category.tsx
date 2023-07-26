@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { uiImg } from "../assets";
+
 
 type Props = {
   img: string;

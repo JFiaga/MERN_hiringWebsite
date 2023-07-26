@@ -1,27 +1,10 @@
 import { MouseEventHandler, useState } from "react";
-import { parallaxImg, uiImg } from "../../assets";
+import { parallaxImg} from "../../assets";
 import { Category } from "../../components";
 import { Link } from "react-router-dom";
 
 type Props = {};
 
-const array = [
-  {
-    img: uiImg,
-    categoryTitle: "backend",
-    id: 1,
-  },
-  {
-    img: uiImg,
-    categoryTitle: "backend",
-    id: 2,
-  },
-  {
-    img: uiImg,
-    categoryTitle: "backend",
-    id: 3,
-  },
-];
 
 const MainParallax = (props: Props) => {
 
