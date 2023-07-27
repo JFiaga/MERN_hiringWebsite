@@ -1,7 +1,6 @@
-import  jwt  from 'jsonwebtoken';
 import bcrypt from "bcrypt";
 import { NextFunction, Request, Response } from "express";
-import { BaseError, notFoundError } from "../utils/error.ts";
+import { BaseError } from "../utils/error.ts";
 import { Recruiter } from "../models/recruiter.model.ts";
 
 

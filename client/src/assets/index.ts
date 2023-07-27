@@ -1,9 +1,3 @@
-
-export {default as mainHeaderImg2} from './mainHeaderImg2.png'
-
-
-
-
 export {default as backendImg} from './backend.jpg'
 export {default as frontendImg} from './frontend.jpg'
 export {default as fullstackImg} from './fullstack.jpg'
@@ -26,17 +20,17 @@ export {default as mainPresentaion} from './mainPresentaion.jpg'
 
 
 
-export {default as parallaxImg} from './parallaxImg.jpg'
+export {default as parallaxImg} from './parallaxImg.avif'
 
 
-export {default as laravelLogo} from './laravelLogo.png'
+
 export {default as recruiter} from './recruiter.jpg'
 
 
 export {default as NoAvatar} from './noAvatar.png'
 
 export {default as registerBg} from './registerBg.png'
-export {default as registerBg2} from './registerBg2.jpg'
+
 
 export {default as logoWhite} from './logoWhite.png'
 export {default as logoBlack} from './logoBlack.png' 

@@ -7,7 +7,7 @@ import { MainHeader, MainPopular, MainParallax,MainTestimony } from '../containe
 
 function Main() {
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string)
+
 
   // return  currentUser && currentUser.isEmployee ? (
   //   <Navigate to={`/profile/${currentUser._id}`} />

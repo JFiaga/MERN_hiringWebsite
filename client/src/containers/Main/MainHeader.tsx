@@ -1,7 +1,6 @@
 import { FiSearch } from "react-icons/fi";
 
-import { useRef, useState } from "react";
-import { allCategory } from "../../utils/allCategory";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 

@@ -1,13 +1,12 @@
-import React from "react";
+
 // import { Certified } from "../../components";
-import { FiDownload, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import { FiDownload, FiGithub, FiLinkedin } from "react-icons/fi";
 import { BiCurrentLocation, BiLogoTelegram } from "react-icons/bi";
 import { NoAvatar } from "../../assets";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { newRequest } from "../../utils/newRequest";
-import { useContext } from "react";
-import { ModalContext } from "../../pages/Profile";
+
 
 const ProfileHeader = () => {
   const addHttps = (link: string): string | undefined => {

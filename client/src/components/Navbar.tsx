@@ -7,7 +7,6 @@ import { Link, useLocation } from "react-router-dom";
 import { newRequest } from "../utils/newRequest";
 import { AxiosError } from "axios";
 import { MdClose } from "react-icons/md";
-import { AiOutlineArrowDown } from "react-icons/ai";
 import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 
 // interface ICurrentUser {

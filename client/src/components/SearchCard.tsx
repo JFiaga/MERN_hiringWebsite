@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { GrLocation } from "react-icons/gr";
 
-import { NoAvatar, mainHeaderImg2 } from "../assets";
+import { NoAvatar } from "../assets";
 import Certified from "./Certified";
 
 type Props = {

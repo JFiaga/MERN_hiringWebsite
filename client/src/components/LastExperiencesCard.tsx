@@ -1,8 +1,8 @@
-import { FiArrowRight, FiTag } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { newRequest } from "../utils/newRequest";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+
 
 type Props = {
   role: string;
@@ -31,7 +31,7 @@ const LastExperiencesCard = ({
     window.location.reload();
   };
 
-  
+
   return (
     <div className="bg-white text-black w-full relative flex flex-col items-start justify-center  border border-black/40 shadow-lg rounded-sm px-2 space-y-4 py-2">
       <div className="flex space-x-1 items-center">

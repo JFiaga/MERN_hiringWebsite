@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { LastExperiencesCard } from "../../components";
-import { FiAnchor } from "react-icons/fi";
+
 import { newRequest } from "../../utils/newRequest";
-import { Link, useParams } from "react-router-dom";
-import { MdAdd, MdDelete } from "react-icons/md";
-import { GrAdd } from "react-icons/gr";
+
+import { MdAdd  } from "react-icons/md";
+
 import { useContext } from "react";
 import { ModalContext } from "../../pages/Profile";
+import { useParams } from "react-router-dom";
 
 const ProfileMain = () => {
   const { id } = useParams();
