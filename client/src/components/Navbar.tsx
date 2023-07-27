@@ -81,7 +81,7 @@ const Navbar = () => {
                   toggleMenu ? "left-0" : "-left-[2000px]"
                 } md:hidden`}
               >
-                <div className=" flex flex-col space-y-4 w-full capitalize ">
+                <div onClick={closeMenu} className=" flex flex-col space-y-4 w-full capitalize ">
                   <span onClick={closeMenu}>
                     <MdClose className="hover:text-red-600 text-2xl cursor-pointer" />
                   </span>
@@ -93,44 +93,36 @@ const Navbar = () => {
                   </span>
                   <Link
                     to="/"
-                    className="hover:text-primary transition-all duration-500 font-medium"
+                    className="hover:text-primary transition-all duration-500 font-semibold  "
                   >
                     Home
                   </Link>
+                  {currentUser.isEmployee && (
+                    <Link
+                      to={`/myDashboard/${userId}`}
+                      className="hover:text-primary transition-all duration-500 font-semibold"
+                    >
+                      My Profile
+                    </Link>
+                  )}
                   <Link
-                    to={`/myDashboard/${userId}`}
-                    className="hover:text-primary transition-all duration-500 font-medium"
-                  >
-                    My Profile
-                  </Link>
-                  <Link
-                    to="/messages"
-                    className="hover:text-primary transition-all duration-500 font-medium"
+                    to="/messagesList"
+                    className="hover:text-primary transition-all duration-500 font-semibold"
                   >
                     Messages
                   </Link>
                   <Link
                     to="/explore"
-                    className="hover:text-primary transition-all duration-500 font-medium"
+                    className="hover:text-primary transition-all duration-500 font-semibold"
                   >
                     Browse Categories
                   </Link>
-                  <Link
-                    to="/commingSoon"
-                    className="hover:text-primary transition-all duration-500 font-medium"
-                  >
-                    get certified
-                  </Link>
-                  <Link
-                    to="/commingSoon"
-                    className="hover:text-primary transition-all duration-500 font-medium"
-                  >
-                    Comming soon
-                  </Link>
+                  {/* <Link to="/commingSoon" className="hover:text-primary transition-all duration-500 font-semibold">get certified</Link> */}
+                  {/* <Link to="/commingSoon" className="hover:text-primary transition-all duration-500 font-semibold">Comming soon</Link> */}
                   <Link
                     onClick={handleLogout}
                     to="/"
-                    className="text-primary transition-all duration-500 font-medium"
+                    className="text-primary font-medium"
                   >
                     Logout
                   </Link>

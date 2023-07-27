@@ -55,8 +55,6 @@ const MessagesList = () => {
       <div className="max-w-[1400px] w-full flex flex-col items-center justify-start  py-4  md:space-x-4 space-y-4 ">
         {isLoading ? (
           "loading"
-        ) : error ? (
-          "error"
         ) : (
           <>
             <h2 className="font-semibold text-3xl lg:text-4xl 2xl:text-5xl mb-10 w-[90%]   self-start  px-4  max-w-[900px] text-center md:text-start  text-black ">

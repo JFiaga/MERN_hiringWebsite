@@ -10,7 +10,7 @@ type Props = {
   technologiesUsed?: string;
   projectLink: string;
   projectDesc: string;
-  experienceId:string;
+  experienceId: string;
 };
 
 const LastExperiencesCard = ({
@@ -19,20 +19,19 @@ const LastExperiencesCard = ({
   technologiesUsed,
   projectLink,
   projectDesc,
-  experienceId
+  experienceId,
 }: Props) => {
   
-  
-
-  
-
-
-
+  const currentUser = JSON.parse(
+    localStorage.getItem("currentUserJhire") as string
+  );
+  const { id } = useParams();
   const handleDelete = () => {
-          newRequest.delete(`experiences/unique/${experienceId}`)
-          window.location.reload()
-  }
-
+    newRequest.delete(`experiences/unique/${experienceId}`);
+    window.location.reload();
+  };
+    
+  
   return (
     <div className="bg-white text-black w-full relative flex flex-col items-start justify-center  border border-black/40 shadow-lg rounded-sm px-2 space-y-4 py-2">
       <div className="flex space-x-1 items-center">
@@ -86,12 +85,14 @@ const LastExperiencesCard = ({
           tempora blanditiis error alias?
         </p>
       </div>
-
-      <div 
-      onClick={handleDelete}
-      className="bg-red-500 text-[40px] text-white rounded-full  right-[-2%] bottom-[-5%] cursor-pointer self-end">
-        <MdDelete />
-      </div>
+      {currentUser && currentUser._id === id && (
+        <div
+          onClick={handleDelete}
+          className="bg-red-500 text-[40px] text-white rounded-full  right-[-2%] bottom-[-5%] cursor-pointer self-end"
+        >
+          <MdDelete />
+        </div>
+      )}
     </div>
   );
 };

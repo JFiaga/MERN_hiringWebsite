@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { BiCodeAlt } from "react-icons/bi";
+import { IoMdArrowRoundBack } from "react-icons/io";
 import { MdOutlineManageSearch } from "react-icons/md";
 import { Link, Navigate } from "react-router-dom";
 
 
 
 const ChooseProfile = () => {
-  const [chooseLink, setChooseLink] = useState("");
+  const [chooseLink, setChooseLink] = useState<string | null>(null);
 
   const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string)
    
@@ -14,7 +15,9 @@ const ChooseProfile = () => {
     <Navigate to="/" />
   ) : (
     <section className=" flex  w-[100vw] h-[100vh]  md:px-8 px-4 pt-16 pb-10 text-black justify-center bg-[#f1f1f1] flex-col items-center ">
-
+      <Link  to='/' className="text-[40px]  self-start hover:text-primary duration-300 transition-all">
+        <IoMdArrowRoundBack/>
+      </Link>
 <h2 className="font-semibold text-3xl lg:text-4xl 2xl:text-5xl mb-10 w-[90%]   self-center  px-4  max-w-[900px] text-center md:text-center  text-black ">
               Choose your <span className="text-primary">profile</span>
             </h2>
@@ -37,12 +40,13 @@ const ChooseProfile = () => {
           <span className="text-xl md:text-2xl">I am a recruiter, hiring for a work</span>
         </div>
 
-        <Link to={`/register${chooseLink}`} >
+       {chooseLink &&  <Link  to={`/register${chooseLink}`} >
           <button className="bg-primary w-[200px] px-2 py-2 rounded-sm text-white font-bold border border-transparent hover:border-primary hover:text-primary hover:bg-transparent transition-all duration-300">
             Go
           </button>
-        </Link>
+        </Link>}
       </div>
+      <Link to='/login'>Already have an account ? <span className="text-primary">Login here</span></Link>
     </section>
   );
 };

@@ -73,12 +73,15 @@ const RegisterDeveloper = () => {
         img: imgUrl,
         cv: cvUrl,
       });
-
-     
-    } catch (err) {
+      navigate('/login')
+      
+      
+    } catch (err:any) {
       console.log(err);
+      if(err?.response.status === 500){
+        navigate('/login')
+      }
     }
-    window.location.pathname = `/login`
 
   };
 

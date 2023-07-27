@@ -44,7 +44,7 @@ export const allCategory = [
     title: "Artificial Intelligence",
     subtitle: "developper",
     img: aiImg,
-    link: "Artificial Intelligence",
+    link: "artificial intelligence",
   },
   {
     title: "Unity",
