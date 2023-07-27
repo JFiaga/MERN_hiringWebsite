@@ -18,7 +18,6 @@ const SearchMain = ( ) => {
       }),
   });
 
-  console.log(data)
   return (
     <section className="text-white mt-10 w-[100vw] py-10 px-8  flex flex-col items-center justify-center  h-full">
       {isLoading ? 'Loading':

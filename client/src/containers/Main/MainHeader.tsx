@@ -1,24 +1,33 @@
 import { FiSearch } from "react-icons/fi";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { allCategory } from "../../utils/allCategory";
+import { useNavigate } from "react-router-dom";
 
 
 
 const MainHeader = () => {
 
-  const [search, setSearch] = useState('')
+  const inputElement= useRef<HTMLInputElement>(null)
 
-  const [setspacilisation, setSetspacilisation] = useState(allCategory)
+  const navigate = useNavigate()
 
-  const handleChange =(e:React.ChangeEvent<HTMLInputElement>)=> {
-    setSearch(val=> e.target.value)
+    const searchCategory = (e:React.FormEvent<HTMLFormElement>) => {
 
-  }
+      e.preventDefault()
+        
+      if(inputElement.current?.value ===''){
+        navigate('/explore')
+      }
+      else{
+        navigate(`/explore/${inputElement.current?.value.toLocaleLowerCase()}`)
+      }
+    }
+ 
 
   return (
     <section className=" flex  w-[100vw] h-[900px] md:max-h-[900px] md:px-8 px-4 py-6 bg-primaryDark justify-center md:py-14">
-      <div className="max-w-[1400px] h-full w-full flex flex-col items-center justify-center space-y-5 lg:space-y-10 text-white">
+      <div  className="max-w-[1400px] h-full w-full flex flex-col items-center justify-center space-y-5 lg:space-y-10 text-white">
       
         <h1 className="text-5xl  lg:text-7xl  font-bold  text-center ">
           Find the{" "}
@@ -27,19 +36,18 @@ const MainHeader = () => {
         </h1>
 
         <form
-          action=""
+          onSubmit={searchCategory}
           className="flex flex-col space-y-2 md:space-y-0 md:flex-row  w-full max-w-[800px]"
         >
           <div className=" w-full flex flex-col">
           <input
+          ref={inputElement}
             type="text"
             className="bg-white text-black p-2 md:p-4 rounded-sm outline-none md:rounded-tr-none md:rounded-br-none w-full"
-            placeholder="What are you looking for"
-            onChange={handleChange}
+            placeholder="What are you looking for (ex:frontend)"
+           
           />
-            {/* <div className="w-full bg-black flex">
-               {allCategory.filter((item) => search==='' ? '':item.title.toLowerCase().includes(search.toLowerCase()) )}
-            </div> */}
+           
           </div>
           <button className="max-h-[70px]  bg-primary py-3 rounded-sm border border-transparent transition-all hover:bg-transparent hover:border-primary md:rounded-tl-none md:rounded-bl-none md:px-4">
             <FiSearch className="font-bold mx-auto" />

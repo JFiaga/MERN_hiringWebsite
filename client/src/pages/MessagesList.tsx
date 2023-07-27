@@ -46,7 +46,7 @@ const MessagesList = () => {
     mutation.mutate(id);
   };
 
-  console.log(data)
+ 
 
   return !currentUser ? (
     <Navigate to="/" />

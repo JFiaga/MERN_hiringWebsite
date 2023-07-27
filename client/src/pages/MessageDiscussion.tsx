@@ -40,7 +40,7 @@ const MessageDiscussion = () => {
     }
   };
 
-  console.log(data);
+  
 
   return !currentUser ? (
     <Navigate to="/" />

@@ -30,7 +30,7 @@ const AddExperience = (props:Props) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
 
-    console.log(userData);
+  
   };
 
 

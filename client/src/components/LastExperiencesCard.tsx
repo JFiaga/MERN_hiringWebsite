@@ -30,7 +30,7 @@ const LastExperiencesCard = ({
     newRequest.delete(`experiences/unique/${experienceId}`);
     window.location.reload();
   };
-    
+
   
   return (
     <div className="bg-white text-black w-full relative flex flex-col items-start justify-center  border border-black/40 shadow-lg rounded-sm px-2 space-y-4 py-2">

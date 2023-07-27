@@ -20,7 +20,7 @@ export const register = async (
         password: hash,
       });
       await newRecruiter.save();
-      res.status(201).send("Recruiter has been created");
+      res.status(200).send("Recruiter has been created");
     } else {
       return res.status(403).send("Email already exist, enter a valid email");
     }
@@ -28,7 +28,7 @@ export const register = async (
     next(new BaseError("Something went wrong", 500, true));
   }
 };
-
+  
 
 
 export const logout = async (req: Request, res: Response) => {

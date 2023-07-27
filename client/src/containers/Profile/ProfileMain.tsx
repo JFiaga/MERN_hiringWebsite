@@ -29,7 +29,7 @@ const ProfileMain = () => {
     queryFn: () =>
       newRequest.get(`/profile/${id}`).then((res) => {
         const dataUser = res.data;
-        console.log(dataUser);
+      
         return dataUser;
       }),
   });

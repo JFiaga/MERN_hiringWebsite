@@ -26,7 +26,7 @@ const ProfileHeader = () => {
     newRequest.post('/messagesList', {target:id})
   }
 
-  console.log(currentUser)
+ 
   const sendMessageLink =`/messagesList/${id}${currentUser?._id}`
 
   const { isLoading, data } = useQuery({

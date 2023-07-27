@@ -1,5 +1,5 @@
 
-import { Navigate } from 'react-router-dom'
+
 import { MainHeader, MainPopular, MainParallax,MainTestimony } from '../containers'
 
 
