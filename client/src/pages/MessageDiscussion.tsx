@@ -33,7 +33,7 @@ const MessageDiscussion = () => {
 
   const inputElement = useRef<HTMLInputElement>(null);
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+ 
     mutation.mutate({ ...data, desc: targetValue, messageDiscussionId: id });
     if (inputElement.current) {
       inputElement.current.value = "";

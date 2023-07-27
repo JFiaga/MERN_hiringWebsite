@@ -8,7 +8,7 @@ const MessagesList = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUserJhire") as string);
 
 
-  const {  data:dataUser } = useQuery({
+  const { isLoading:isLoadingDataUser, data:dataUser } = useQuery({
     queryKey: ["user"],
     queryFn: () =>
       newRequest.get(`/user`).then((res) => {
@@ -16,7 +16,7 @@ const MessagesList = () => {
         return data;
       }),
   }); 
-   const { data:dataRecruiter } = useQuery({
+   const { isLoading:isLoadingDataRecruiter, data:dataRecruiter } = useQuery({
     queryKey: ["recruiter"],
     queryFn: () =>
       newRequest.get(`/user/recruiter`).then((res) => {
@@ -62,7 +62,7 @@ const MessagesList = () => {
             </h2>
             <div className="text-black flex w-full justify-center md:justify-start px-4 flex-col">
 
-              { dataUser && data?.map((messageData: any) => (
+              {!isLoadingDataUser && !isLoadingDataRecruiter && dataUser && data?.map((messageData: any) => (
                 <div
                   key={messageData._id}
                   className="flex w-[90%] max-w-[800px] flex-col mt-10  px-2 pb-5  border border-primary/30 shadow-lg  rounded-lg min-h-[240px] "
@@ -75,7 +75,6 @@ const MessagesList = () => {
                       {currentUser?.isEmployee
                         ? dataRecruiter?.filter((val:any) => val._id === messageData.recruitorId)[0]?.firstName + ' '
                         + dataRecruiter?.filter((val:any) => val._id === messageData.recruitorId)[0]?.lastName
-
                         : 
                         dataUser?.filter((val:any) => val._id === messageData.employeeId)[0]?.firstName + ' '+
                         dataUser?.filter((val:any) => val._id === messageData.employeeId)[0]?.lastName
