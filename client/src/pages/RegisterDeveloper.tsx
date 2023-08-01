@@ -3,17 +3,77 @@ import { uploadCv, uploadImg } from "../utils/upload";
 import { newRequest } from "../utils/newRequest";
 import { Navigate, useNavigate } from "react-router-dom";
 import { FaHandshake } from "react-icons/fa";
-import { BiPaint  } from "react-icons/bi";
+import { BiPaint } from "react-icons/bi";
 import { MdFormatAlignLeft } from "react-icons/md";
 import { registerBg } from "../assets";
 import { allCategory } from "../utils/allCategory";
-
+import { useForm, SubmitHandler } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import IUser from "../interfaces/user.interface";
+import { registerInpData } from "../utils/registerInpData";
+import { RegisterDevInp } from "../components";
 
 const RegisterDeveloper = () => {
   //Verify if login
   const currentUser = JSON.parse(
     localStorage.getItem("currentUserJhire") as string
   );
+
+  const userSchema = yup.object({
+    firstName: yup.string().required("Required Field"),
+    lastName: yup.string().required("Required Field"),
+    email: yup
+      .string()
+      .email("You must enter an email")
+      .required("Required Field"),
+    password: yup
+      .string()
+      .required("Required Field")
+      .min(8, "Passwords must contain at least 08 characters"),
+    img: yup.string().required("Required Field"),
+    cv: yup.string().required("Required Field"),
+    desc: yup
+      .string()
+      .required("Required Field")
+      .min(100, "Your description must contain at least 200 words"),
+    city: yup.string().required("Required Field").min(4, "Field is too short"),
+    github: yup
+      .string()
+      .required("Required Field")
+      .url(`Must be an absolute url`),
+    linkedin: yup
+      .string()
+      .required("Required Field")
+      .url(`Must be an absolute url`),
+    specialisation: yup.string().required("Required Field"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      img: "",
+      cv: "",
+      desc: "",
+      city: "",
+      github: "",
+      linkedin: "",
+      specialisation: "",
+    },
+    resolver: yupResolver(userSchema),
+    mode: "onBlur",
+  });
+
+  watch();
 
   const [userData, setUserData] = useState({
     firstName: "",
@@ -26,7 +86,6 @@ const RegisterDeveloper = () => {
     city: "",
     github: "",
     linkedin: "",
-    twitter: "",
     specialisation: "",
   });
 
@@ -38,8 +97,6 @@ const RegisterDeveloper = () => {
     setUserData((prev) => {
       return { ...prev, [e.target.name]: e.target.value.toLowerCase().trim() };
     });
-
-    
   };
 
   //Upload Image
@@ -49,22 +106,19 @@ const RegisterDeveloper = () => {
   const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setImgUpload(e.target.files[0]);
-    
     }
   };
 
   const handleUploadCv = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setCvUpload(e.target.files[0]);
- 
     }
   };
 
   //submit form
   const navigate = useNavigate();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const submitForm: SubmitHandler<IUser> = async (event: any) => {
     const imgUrl = await uploadImg(imgUpload);
     const cvUrl = await uploadCv(cvUpload);
     try {
@@ -73,19 +127,14 @@ const RegisterDeveloper = () => {
         img: imgUrl,
         cv: cvUrl,
       });
-      navigate('/login')
-      
-      
-    } catch (err:any) {
+      navigate("/login");
+    } catch (err: any) {
       console.log(err);
-      if(err?.response.status === 500){
-        navigate('/login')
+      if (err?.response.status && err?.response.status === 500) {
+        navigate("/login");
       }
     }
-
   };
-
- 
 
   return currentUser ? (
     <Navigate to="/" />
@@ -140,7 +189,7 @@ const RegisterDeveloper = () => {
           </div>
         </div>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(submitForm)}
           action=""
           className="  overflow-x-hidden min-h-[100vh] xl:h-auto flex flex-col xl:items-start items-center  space-y-2 md:space-y-5 w-full xl:w-[70%] 2xl:w-[60%] pl-4  xl:pl-[100px] pt-10 pb-5  "
         >
@@ -152,98 +201,16 @@ const RegisterDeveloper = () => {
           </div>
 
           {/* FistName LastName */}
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 w-[90%] md:space-x-2 lg:space-x-4 md:justify-center">
-            <div className="flex flex-col md:w-[50%] ">
-              <label htmlFor="firstName" className="font-medium text-xl ">
-                First Name
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="text"
-                id="firstName"
-                name="firstName"
-                className="outline-none p-2 rounded border focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-            <div className="flex flex-col md:w-[50%] ">
-              <label htmlFor="lastName" className="font-medium text-xl ">
-                Last Name
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="text"
-                id="lastName"
-                name="lastName"
-                className="outline-none p-2 rounded border max-w-[100%]  focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-          </div>
-
-          {/*  Email - Specialisation*/}
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 w-[90%] md:space-x-2 lg:space-x-4 md:justify-center">
-            <div className="flex flex-col md:w-[50%] ">
-              <label htmlFor="email" className="font-medium text-xl ">
-                Email
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="email"
-                id="email"
-                name="email"
-                className="outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-            <div className="flex flex-col md:w-[50%] ">
-              <span className="font-medium text-xl ">Specialisation</span>
-              <select
-                className="font-medium text-xl w-full h-[50px] rounded outline-none"
-                name="specialisation"
-                onChange={handleChange}
-              >
-                <option value="" />
-                {allCategory.map((val, index) => (
-                  <option key={index} value={val.title}>
-                    {val.title}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          {/* City - Password */}
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 w-[90%] md:space-x-2 lg:space-x-4 md:justify-center">
-            <div className="flex flex-col md:w-[50%] ">
-              <label htmlFor="city" className="font-medium text-xl ">
-                City
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="text"
-                id="city"
-                name="city"
-                className="outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-
-            <div className="flex flex-col md:w-[50%] ">
-              <label htmlFor="password" className="font-medium text-xl ">
-                Password
-              </label>
-              <input
-                required
-                min={8}
-                onChange={handleChange}
-                type="password"
-                id="password"
-                name="password"
-                className="outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-          </div>
+          {registerInpData.map((val: { id: any; label: string }) => (
+            <RegisterDevInp
+              {...register(val.id)}
+              label={val.label}
+              inpId={val.id}
+              inpType={val.id === "password" ? "password" : "text"}
+              onChangeFunc={handleChange}
+              errors={errors}
+            />
+          ))}
 
           {/* Profile Pic - CV*/}
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 w-[90%] md:space-x-2 lg:space-x-4 md:justify-center">
@@ -255,13 +222,16 @@ const RegisterDeveloper = () => {
                 htmlFor="profilePic"
                 className="font-medium  outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
               >
-                <span className={` text-white px-2 py-1 rounded-md cursor-pointer ${imgUpload ? 'bg-primary':'bg-black'}`}>
+                <span
+                  className={` text-white px-2 py-1 rounded-md cursor-pointer ${
+                    imgUpload ? "bg-primary" : "bg-black"
+                  }`}
+                >
                   {" "}
-                  {imgUpload ? 'Image Choosen':'Choose an Image'}
+                  {imgUpload ? "Image Choosen" : "Choose an Image"}
                 </span>
               </label>
               <input
-                required
                 type="file"
                 id="profilePic"
                 name="profilePic"
@@ -278,48 +248,21 @@ const RegisterDeveloper = () => {
                 htmlFor="cvFile"
                 className="font-medium  outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
               >
-                <span className={` text-white px-2 py-1 rounded-md cursor-pointer ${cvUpload ? 'bg-primary':'bg-black'}`}>
+                <span
+                  className={` text-white px-2 py-1 rounded-md cursor-pointer ${
+                    cvUpload ? "bg-primary" : "bg-black"
+                  }`}
+                >
                   {" "}
-                  {cvUpload ? 'CV uploaded':'Upload your CV'}
+                  {cvUpload ? "CV uploaded" : "Upload your CV"}
                 </span>
               </label>
               <input
-                required
                 type="file"
                 id="cvFile"
                 name="cvFile"
                 onChange={handleUploadCv}
                 className="hidden"
-              />
-            </div>
-          </div>
-
-          {/* linkedin - Github */}
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 w-[90%] md:space-x-2 lg:space-x-4 md:justify-center">
-            <div className="flex flex-col md:w-[50%] ">
-              <label htmlFor="linkedin" className="font-medium text-xl ">
-                Linkedin
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="text"
-                id="linkedin"
-                name="linkedin"
-                className="outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-            <div className="flex flex-col md:w-[50%] ">
-              <label htmlFor="github" className="font-medium text-xl ">
-                Github Link
-              </label>
-              <input
-                required
-                type="url"
-                onChange={handleChange}
-                id="github"
-                name="github"
-                className="outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
               />
             </div>
           </div>
@@ -330,7 +273,6 @@ const RegisterDeveloper = () => {
               {`About (Be Explicit)`}
             </label>
             <textarea
-              required
               onChange={handleChange}
               id="desc"
               name="desc"

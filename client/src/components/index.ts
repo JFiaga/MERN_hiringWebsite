@@ -5,7 +5,7 @@ export {default as Category} from './Category'
 export {default as Certified} from './Certified'
 export {default as Testimony} from './Testimony'
 export {default as LastExperiencesCard} from './LastExperiencesCard'
-export {default as RegisterDevTag} from './RegisterDevTag'
 export {default as AddExperience} from './AddExperience'
+export {default as RegisterDevInp} from './RegisterDevInp'
 
 export {default as Footer } from'./Footer'

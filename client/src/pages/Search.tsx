@@ -2,7 +2,7 @@ import React from 'react'
 import { SearchHeader,SearchMain } from '../containers'
 
 
-type Props = {}
+
 
 const Gigs = () => {
   return (

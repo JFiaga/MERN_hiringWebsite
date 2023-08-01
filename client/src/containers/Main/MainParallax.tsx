@@ -1,6 +1,6 @@
-import { MouseEventHandler, useState } from "react";
+
 import { parallaxImg} from "../../assets";
-import { Category } from "../../components";
+
 import { Link } from "react-router-dom";
 
 type Props = {};

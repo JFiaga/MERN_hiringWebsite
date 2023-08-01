@@ -16,8 +16,8 @@ import { errorHandler } from "./middleware/errorHandler.ts";
 
 dotenv.config()
 const app = express();
-// app.use(cors ({origin:'http://localhost:3000', credentials:true}))
-app.use(cors ({origin:'https://jhire.vercel.app', credentials:true}))
+app.use(cors ({origin:'http://localhost:3000', credentials:true}))
+// app.use(cors ({origin:'https://jhire.vercel.app', credentials:true}))
 app.use(express.json());
 app.use(cookieParser())
 app.use(helmet());
@@ -29,11 +29,11 @@ const connect = async () => {
    
     await mongoose.connect(`mongodb+srv://${process.env.ATLAS_SECRET}@cluster0.ebedins.mongodb.net/?retryWrites=true&w=majority";`)
     console.log("connect to mongoDB ATLAS"); 
-  } catch (error) {
+  } catch (error) {  
     console.log(error);
   }
 };
-
+ 
   
 // router
 app.get("/", (req: Request, res: Response) => {

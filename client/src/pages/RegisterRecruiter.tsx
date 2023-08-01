@@ -34,7 +34,7 @@ const RegisterRecruiter = () => {
       window.location.pathname = "/login";
     } catch (err:any) {
       console.log(err);
-      if(err?.response.status === 500){
+      if(err?.response.status && err?.response.status === 500){
         navigate('/login')
       }
     

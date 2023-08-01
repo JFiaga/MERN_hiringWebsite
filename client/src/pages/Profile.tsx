@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import { ProfileHeader, ProfileMain } from '../containers'
 import { AddExperience } from '../components'
-import { Navigate, useLocation } from 'react-router-dom'
+import {  useLocation } from 'react-router-dom'
 
 
 
@@ -10,7 +10,6 @@ export const ModalContext = createContext<any>(null)
 
 const NewGigs = () => {
 
-  const currentUser = JSON.parse(localStorage.getItem("CurrentUserJhire") as string)
   const {pathname} = useLocation()
 
   console.log(pathname)
