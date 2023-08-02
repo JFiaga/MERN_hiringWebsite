@@ -9,8 +9,8 @@ import { registerBg } from "../assets";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import IUser from "../interfaces/user.interface";
-import { registerInpData } from "../utils/registerInpData";
+import {IUser} from "../interfaces/user.interface";
+import {  userInpData } from "../utils/registerInpData";
 
 
 const RegisterDeveloper = () => {
@@ -57,8 +57,6 @@ const RegisterDeveloper = () => {
   const {
     register,
     handleSubmit,
-    getValues,
-    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -66,19 +64,19 @@ const RegisterDeveloper = () => {
       lastName: "",
       email: "",
       password: "",
-      desc: "",
       city: "",
       github: "",
       linkedin: "",
       specialisation: "",
+      img: "",
+      cv: "",
+      desc: "",
     },
     resolver: yupResolver(userSchema),
-    // mode: "onBlur",
+    mode: "onChange",
   });
 
-  watch();
-  console.log(getValues());
-  console.log(errors)
+
 
   const [userData, setUserData] = useState({
     firstName: "",
@@ -124,7 +122,7 @@ const RegisterDeveloper = () => {
   //submit form
   const navigate = useNavigate();
 
-  const submitForm: SubmitHandler<IUser> = async (event: any) => {
+  const submitForm: SubmitHandler<IUser> = async () => {
     const imgUrl = await uploadImg(imgUpload);
     const cvUrl = await uploadCv(cvUpload);
     try {
@@ -206,8 +204,7 @@ const RegisterDeveloper = () => {
             <span className="text-primary"> Jhire </span>
           </div>
 
-          {/* FistName LastName */}
-          {registerInpData.map((val: { id: any; label: string }) => (
+          {userInpData.map((val: { id: any; label: string }) => (
             <div className="flex flex-col md:w-[50%] " key={val.id}>
               <label htmlFor={val.id} className="font-medium text-xl ">
                 {val.label}
@@ -221,7 +218,7 @@ const RegisterDeveloper = () => {
                 className="outline-none p-2 rounded border focus-within:border-primary transition-all duration-300"
               />
                {/*// @ts-ignore */}
-              <span className={`text-red-600 transition-all duration-500 ${errors[val.id] && 'scale-100'}`}>{errors[val.id]?.message}</span>
+              <span className={`text-red-600 transition-all duration-500`}>{errors[val.id]?.message}</span>
             </div>
           ))}
 
@@ -252,7 +249,7 @@ const RegisterDeveloper = () => {
                 onChange={handleUploadImage}
                 className="hidden"
               />
-              <span className={`text-red-600 transition-all duration-500 ${errors?.img && 'scale-100'}`}>{errors?.img?.message}</span>
+              <span className={`text-red-600 transition-all duration-500 `}>{errors?.img?.message}</span>
 
             </div>
 
@@ -281,7 +278,7 @@ const RegisterDeveloper = () => {
                 onChange={handleUploadCv}
                 className="hidden"
               />
-              <span className={`text-red-600 transition-all duration-500 ${errors?.cv && 'scale-100'}`}>{errors?.cv?.message}</span>
+             { errors?.cv && <span className={`text-red-600 transition-all duration-500`}>{errors?.cv?.message}</span>}
 
             </div>
           </div>

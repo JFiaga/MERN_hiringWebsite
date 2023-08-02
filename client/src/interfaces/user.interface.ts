@@ -1,4 +1,4 @@
-export default interface IUser {
+export  interface IUser {
     firstName: string;
     lastName: string;
     email: string;
@@ -11,3 +11,14 @@ export default interface IUser {
     linkedin: string;
     specialisation: string;
 }
+
+
+export interface IRecruiter{
+    firstName: string,
+      lastName: string,
+      email: string,
+      password: string,
+      city: string,
+      companyName: string,
+}
+
