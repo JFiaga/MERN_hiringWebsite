@@ -6,5 +6,5 @@ export const registerInpData = [
   { id: "password", label: "Password" },
   { id: "linkedin", label: "Linkedin" },
   { id: "github", label: "Github" },
-//   { id: "desc", label: "Desc" },
+
 ];

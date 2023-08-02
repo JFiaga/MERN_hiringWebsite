@@ -3,8 +3,8 @@ export default interface IUser {
     lastName: string;
     email: string;
     password: string;
-    img: string;
-    cv: string;
+    img: any;
+    cv: any;
     desc: string;
     city: string;
     github: string;

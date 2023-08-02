@@ -6,19 +6,22 @@ import { FaHandshake } from "react-icons/fa";
 import { BiPaint } from "react-icons/bi";
 import { MdFormatAlignLeft } from "react-icons/md";
 import { registerBg } from "../assets";
-import { allCategory } from "../utils/allCategory";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import IUser from "../interfaces/user.interface";
 import { registerInpData } from "../utils/registerInpData";
-import { RegisterDevInp } from "../components";
+
 
 const RegisterDeveloper = () => {
   //Verify if login
   const currentUser = JSON.parse(
     localStorage.getItem("currentUserJhire") as string
   );
+
+
+  //control file type and size
+
 
   const userSchema = yup.object({
     firstName: yup.string().required("Required Field"),
@@ -31,8 +34,10 @@ const RegisterDeveloper = () => {
       .string()
       .required("Required Field")
       .min(8, "Passwords must contain at least 08 characters"),
-    img: yup.string().required("Required Field"),
-    cv: yup.string().required("Required Field"),
+    img: yup
+      .mixed()
+      .required("You must upload an Image"),
+    cv: yup.mixed().required("You must upload a CV"),
     desc: yup
       .string()
       .required("Required Field")
@@ -61,8 +66,6 @@ const RegisterDeveloper = () => {
       lastName: "",
       email: "",
       password: "",
-      img: "",
-      cv: "",
       desc: "",
       city: "",
       github: "",
@@ -70,10 +73,12 @@ const RegisterDeveloper = () => {
       specialisation: "",
     },
     resolver: yupResolver(userSchema),
-    mode: "onBlur",
+    // mode: "onBlur",
   });
 
   watch();
+  console.log(getValues());
+  console.log(errors)
 
   const [userData, setUserData] = useState({
     firstName: "",
@@ -105,6 +110,7 @@ const RegisterDeveloper = () => {
 
   const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
+      console.log(e.target.files)
       setImgUpload(e.target.files[0]);
     }
   };
@@ -202,14 +208,21 @@ const RegisterDeveloper = () => {
 
           {/* FistName LastName */}
           {registerInpData.map((val: { id: any; label: string }) => (
-            <RegisterDevInp
-              {...register(val.id)}
-              label={val.label}
-              inpId={val.id}
-              inpType={val.id === "password" ? "password" : "text"}
-              onChangeFunc={handleChange}
-              errors={errors}
-            />
+            <div className="flex flex-col md:w-[50%] " key={val.id}>
+              <label htmlFor={val.id} className="font-medium text-xl ">
+                {val.label}
+              </label>
+              <input
+                {...register(val.id)}
+                onChange={handleChange}
+                type={val.id}
+                id={val.id}
+                name={val.id}
+                className="outline-none p-2 rounded border focus-within:border-primary transition-all duration-300"
+              />
+               {/*// @ts-ignore */}
+              <span className={`text-red-600 transition-all duration-500 ${errors[val.id] && 'scale-100'}`}>{errors[val.id]?.message}</span>
+            </div>
           ))}
 
           {/* Profile Pic - CV*/}
@@ -232,12 +245,15 @@ const RegisterDeveloper = () => {
                 </span>
               </label>
               <input
+              {...register('img')}
                 type="file"
                 id="profilePic"
                 name="profilePic"
                 onChange={handleUploadImage}
                 className="hidden"
               />
+              <span className={`text-red-600 transition-all duration-500 ${errors?.img && 'scale-100'}`}>{errors?.img?.message}</span>
+
             </div>
 
             <div className="flex flex-col md:w-[50%] ">
@@ -258,12 +274,15 @@ const RegisterDeveloper = () => {
                 </span>
               </label>
               <input
+                 {...register('cv')}
                 type="file"
                 id="cvFile"
                 name="cvFile"
                 onChange={handleUploadCv}
                 className="hidden"
               />
+              <span className={`text-red-600 transition-all duration-500 ${errors?.cv && 'scale-100'}`}>{errors?.cv?.message}</span>
+
             </div>
           </div>
 
