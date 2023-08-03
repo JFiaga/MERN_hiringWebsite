@@ -1,4 +1,4 @@
-import { Footer, Navbar } from "./components";
+import { Footer, Loading, Navbar } from "./components";
 import {
   BrowserRouter,
   Outlet,
@@ -42,7 +42,7 @@ function App() {
         {
           path: "/chooseProfile",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <ChooseProfile />
             </Suspense>
           ),
@@ -50,7 +50,7 @@ function App() {
         {
           path: "/registerDeveloper",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <RegisterDeveloper />
             </Suspense>
           ),
@@ -58,7 +58,7 @@ function App() {
         {
           path: "/registerRecruiter",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <RegisterRecruiter />
             </Suspense>
           ),
@@ -66,7 +66,7 @@ function App() {
         {
           path: "/login",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <Login />
             </Suspense>
           ),
@@ -74,7 +74,7 @@ function App() {
         {
           path: "/",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <Main />
             </Suspense>
           ),
@@ -82,7 +82,7 @@ function App() {
         {
           path: "explore",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <Explore />
             </Suspense>
           ),
@@ -90,7 +90,7 @@ function App() {
         {
           path: "/messagesList",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <MessagesList />
             </Suspense>
           ),
@@ -98,7 +98,7 @@ function App() {
         {
           path: "/explore/:id",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <Search />
             </Suspense>
           ),
@@ -106,7 +106,7 @@ function App() {
         {
           path: "/profile/:id",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <Profile />
             </Suspense>
           ),
@@ -114,7 +114,7 @@ function App() {
         {
           path: "/myDashboard/:id",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <Profile />
             </Suspense>
           ),
@@ -122,7 +122,7 @@ function App() {
         {
           path: "/messagesList/:id",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense fallback={<Loading/>}>
               <MessageDiscussion />
             </Suspense>
           ),
@@ -130,7 +130,7 @@ function App() {
         {
           path: "*",
           element: (
-            <Suspense fallback={<div>Loading . .</div>}>
+            <Suspense>
               <NotFound />
             </Suspense>
           ),
