@@ -12,8 +12,8 @@ import { recruiterInpData } from "../utils/registerInpData";
 
 const RegisterRecruiter = () => {
   const recruiterSchema = yup.object({
-    firstName: yup.string().required("Required Field"),
-    lastName: yup.string().required("Required Field"),
+    firstName: yup.string().required("Required Field").min(3, "Too short"),
+    lastName: yup.string().required("Required Field").min(3, "Too short"),
     email: yup
       .string()
       .email("You must enter an email")
@@ -31,7 +31,7 @@ const RegisterRecruiter = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       firstName: "",
@@ -159,6 +159,7 @@ const RegisterRecruiter = () => {
           ))}
     
           <button
+          disabled={isSubmitting}
             type="submit"
             className="w-full max-w-[300px] self-center bg-primary py-2 text-center text-white rounded-md font-medium outline-none border border-transparent hover:border-primary transition-all duration-300 hover:bg-transparent hover:text-primary mb-[20px]"
           >
@@ -172,95 +173,3 @@ const RegisterRecruiter = () => {
 
 export default RegisterRecruiter;
 
-
-{/* <>
-<div className="flex flex-col md:flex-row space-y-4 md:space-y-0 w-[90%] md:space-x-2 lg:space-x-4 md:justify-center">
-            <div className="flex flex-col  ">
-              <label htmlFor="firstName" className="font-medium text-xl ">
-                First Name
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="text"
-                id="firstName"
-                name="firstName"
-                className="outline-none p-2 rounded border focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-            <div className="flex flex-col   ">
-              <label htmlFor="lastName" className="font-medium text-xl ">
-                Last Name
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="text"
-                id="lastName"
-                name="lastName"
-                className="outline-none p-2 rounded border max-w-[100%]  focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 w-[90%] md:space-x-2 lg:space-x-4 md:justify-center">
-            <div className="flex flex-col  ">
-              <label htmlFor="email" className="font-medium text-xl ">
-                Email
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="email"
-                id="email"
-                name="email"
-                className="outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-            <div className="flex flex-col ">
-              <label htmlFor="companyName" className="font-medium text-xl ">
-                Company Name
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="text"
-                id="companyName"
-                name="companyName"
-                className="outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-          </div>
-
-         
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 w-[90%] md:space-x-2 lg:space-x-4 md:justify-center">
-            <div className="flex flex-col  ">
-              <label htmlFor="city" className="font-medium text-xl ">
-                City
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="text"
-                id="city"
-                name="city"
-                className="outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-
-            <div className="flex flex-col ">
-              <label htmlFor="password" className="font-medium text-xl ">
-                Password
-              </label>
-              <input
-                required
-                onChange={handleChange}
-                type="password"
-                id="password"
-                name="password"
-                className="outline-none p-2 rounded border  focus-within:border-primary transition-all duration-300"
-              />
-            </div>
-          </div>
-
-</> */}

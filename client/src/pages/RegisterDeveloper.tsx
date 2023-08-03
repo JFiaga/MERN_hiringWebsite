@@ -57,7 +57,7 @@ const RegisterDeveloper = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors,isSubmitting },
   } = useForm({
     defaultValues: {
       firstName: "",
@@ -297,6 +297,7 @@ const RegisterDeveloper = () => {
           </div>
 
           <button
+          disabled={isSubmitting}
             type="submit"
             className="w-full max-w-[300px] self-center bg-primary py-2 text-center text-white rounded-md font-medium outline-none border border-transparent hover:border-primary transition-all duration-300 hover:bg-transparent hover:text-primary mb-[20px]"
           >

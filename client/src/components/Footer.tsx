@@ -1,7 +1,6 @@
-
 import { Link } from 'react-router-dom';
 
-export default function FooterSitemapLinks() {
+export default function Footer() {
   return (
     <footer className="bg-neutral-900 text-center text-white flex items-center justify-center flex-col w-full">
     <div className="container px-6 py-1 w-full">
@@ -106,7 +105,7 @@ export default function FooterSitemapLinks() {
     </div>
   
 
-      <Link to='/' className="text-white text-xl font-bold my-2"> JHIre</Link>
+       <Link to='/' className="text-white text-xl font-bold my-2"> JHIre</Link> 
   </footer>
  
   )
