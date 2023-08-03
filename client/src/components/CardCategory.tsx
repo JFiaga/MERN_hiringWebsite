@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 
 type Props = {
   title: string;
@@ -12,9 +14,9 @@ const CardPopular = ({ title, img, link,subtitle }: Props) => {
   return (
     <div className="bg-black cursor-pointer h-[345px] w-[90%] sm:max-w-[500px] lg:max-w-[400px] relative overflow-hidden rounded-sm mx-2 mb-4 text-white ">
         <Link to={link}>
-        <img
+        <LazyLoadImage
           src={img}
-          alt=""
+          alt={`illustration of ${title + ' ' + subtitle}`}
           className="h-full w-full hover:scale-125 object-cover object-right z-20 transition-all duration-500 opacity-50"
         />
 
