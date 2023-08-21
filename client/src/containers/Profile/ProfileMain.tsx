@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { LastExperiencesCard } from "../../components";
+import { LastExperiencesCard, Loading } from "../../components";
 
 import { newRequest } from "../../utils/newRequest";
 
@@ -8,6 +8,7 @@ import { MdAdd  } from "react-icons/md";
 import { useContext } from "react";
 import { ModalContext } from "../../pages/Profile";
 import { useParams } from "react-router-dom";
+import { FiAnchor } from "react-icons/fi";
 
 const ProfileMain = () => {
   const { id } = useParams();
@@ -41,8 +42,7 @@ const ProfileMain = () => {
 
   return isLoading && isDataUserLoading ? (
     <>
-      {" "}
-      <span>...</span>
+      <Loading/>
     </>
   ) : (
     <section className=" flex  w-[100vw]  md:px-8 px-4 lg:pt-16 pb-10  justify-center text-black">
@@ -92,51 +92,14 @@ const ProfileMain = () => {
         </div>
 
         {/* side */}
-        {/* <div className="xl:w-[30%] bg-green-300">
-          <h3>More Information</h3> */}
+        <div className="xl:w-[30%] bg-green-300">
+          <h3>More Information</h3>
 
           {/* Skills */}
 
-          {/* <div>
+         <div>
             <h5>Hard Skills</h5>
-            <div className="flex justify-between  items-center flex-col md:flex-row">
-              <div>
-                <div>
-                  <FiAnchor className="text-primary" />
-                  <span>Laravel</span>
-                </div>{" "}
-                <div>
-                  <FiAnchor className="text-primary" />
-                  <span>Laravel</span>
-                </div>{" "}
-                <div>
-                  <FiAnchor className="text-primary" />
-                  <span>Laravel</span>
-                </div>{" "}
-                <div>
-                  <FiAnchor className="text-primary" />
-                  <span>Laravel</span>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <FiAnchor className="text-primary" />
-                  <span>Laravel</span>
-                </div>{" "}
-                <div>
-                  <FiAnchor className="text-primary" />
-                  <span>Laravel</span>
-                </div>{" "}
-                <div>
-                  <FiAnchor className="text-primary" />
-                  <span>Laravel</span>
-                </div>{" "}
-                <div>
-                  <FiAnchor className="text-primary" />
-                  <span>Laravel</span>
-                </div>
-              </div>
-            </div>
+           
           </div>
           <div>
             <h5>Soft Skills</h5>
@@ -178,7 +141,7 @@ const ProfileMain = () => {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
 
           {/* Langueage */}
 
@@ -250,11 +213,11 @@ const ProfileMain = () => {
           </div>
         </div> */}
       </div>
-      
+</div>
     </section>
-  );
-};
-
+  )
+  
+}
 export default ProfileMain;
 
 

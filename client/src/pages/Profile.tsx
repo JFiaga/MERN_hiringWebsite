@@ -1,18 +1,12 @@
 import React, { createContext, useState } from 'react'
 import { ProfileHeader, ProfileMain } from '../containers'
 import { AddExperience } from '../components'
-import {  useLocation } from 'react-router-dom'
-
-
 
 
 export const ModalContext = createContext<any>(null)
 
-const NewGigs = () => {
+const Profile = () => {
 
-  const {pathname} = useLocation()
-
-  console.log(pathname)
 
   const [modalStatus, setModalStatus] = useState<boolean>(false)  
 
@@ -28,7 +22,7 @@ const NewGigs = () => {
   //     // return <Navigate to="/" />
   //   }
   // }
-  //asynchronous
+
 
   return (
    <ModalContext.Provider value={{toggleModal,modalStatus}}>
@@ -41,4 +35,4 @@ const NewGigs = () => {
   )
 }
 
-export default NewGigs
+export default Profile

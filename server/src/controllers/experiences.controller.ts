@@ -28,7 +28,7 @@ export const deleteExperience = async (
 };
 
 export const createExperience = async (
-  req: IRequestCustom,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -93,6 +93,8 @@ export const deleteOneExperience = async (
     next(err);
   }
 };
+
+// await Experiences.deleteOne({id: req.params.id});
 
 
 //Change the any type of req
